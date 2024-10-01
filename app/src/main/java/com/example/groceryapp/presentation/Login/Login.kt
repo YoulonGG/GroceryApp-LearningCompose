@@ -1,7 +1,6 @@
 package com.example.groceryapp.presentation.Login
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -81,11 +80,13 @@ fun LoginScreen(navController: NavHostController) {
                         .width(35.dp)
                         .height(35.dp)
                 )
-                Text(text = "+855", fontSize = 16.sp, color = Color.Black, modifier = Modifier.padding(start = 10.dp))
-                if (showBottomSheet) {
-                    BottomSheet(navController)
-                }
+                Text(
+                    text = "+855",
+                    fontSize = 16.sp,
+                    color = Color.Black,
+                    modifier = Modifier.padding(start = 10.dp))
             }
+
             Spacer(modifier = Modifier.height(32.dp))
             Text(
                 textAlign = TextAlign.Center,
@@ -144,25 +145,29 @@ fun LoginScreen(navController: NavHostController) {
             }
         }
     }
+
+    if (showBottomSheet) {
+        BottomSheet(navController, onDismiss = { showBottomSheet = false })
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomSheet(navController: NavHostController) {
+fun BottomSheet(navController: NavHostController, onDismiss: () -> Unit) {
 
-    var showBottomSheet by remember { mutableStateOf(false) }
-    val sheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = false,
-    )
+    val sheetState = rememberModalBottomSheetState( skipPartiallyExpanded = false)
 
     ModalBottomSheet(
         modifier = Modifier.fillMaxHeight(),
         sheetState = sheetState,
-        onDismissRequest = { showBottomSheet = false }
+        onDismissRequest = { onDismiss() }
     ) {
         Row(
             modifier = Modifier
-                .clickable { navController.navigate("phone number") }
+                .clickable {
+                    navController.navigate("phone number")
+                    onDismiss()
+                }
                 .fillMaxWidth()
                 .height(45.dp)
                 .padding(horizontal = 16.dp),

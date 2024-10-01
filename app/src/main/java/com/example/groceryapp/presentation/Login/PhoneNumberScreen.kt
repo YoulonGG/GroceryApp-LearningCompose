@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -26,6 +27,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TransformedText
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -38,7 +40,9 @@ fun PhoneNumberScreen(navController: NavHostController) {
     var phoneNumber by rememberSaveable { mutableStateOf("") }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 32.dp)
     ) {
         Spacer(modifier = Modifier.height(80.dp))
         Image(
@@ -62,7 +66,8 @@ fun PhoneNumberScreen(navController: NavHostController) {
             fontSize = 18.sp
         )
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
                 painter = painterResource(id = R.drawable.cam),
@@ -71,12 +76,21 @@ fun PhoneNumberScreen(navController: NavHostController) {
                     .width(35.dp)
                     .height(35.dp)
             )
-            Text(text = "+855", fontSize = 16.sp, color = Color.Black, modifier = Modifier.padding(start = 10.dp))
+            Text(text = "+855", fontSize = 16.sp, color = Color.Black,
+                modifier = Modifier.padding(start = 10.dp),
+                textAlign = TextAlign.Center)
             BasicTextField(
                 value = phoneNumber,
-                onValueChange = { phoneNumber = it },
+                onValueChange = { newValue ->
+                    if (newValue.all { it.isDigit() }) {
+                        phoneNumber = newValue
+                    }
+                },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                textStyle = TextStyle(fontSize = 16.sp, color = Color.Black)
+                textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 10.dp)
             )
         }
     }
