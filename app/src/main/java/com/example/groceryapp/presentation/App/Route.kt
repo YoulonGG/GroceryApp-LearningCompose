@@ -10,6 +10,7 @@ import com.example.groceryapp.presentation.Cart.CartScreen
 import com.example.groceryapp.presentation.Explore.ExploreScreen
 import com.example.groceryapp.presentation.Favorite.FavoriteScreen
 import com.example.groceryapp.presentation.Login.LoginScreen
+import com.example.groceryapp.presentation.Login.OTPScreen
 import com.example.groceryapp.presentation.Login.PhoneNumberScreen
 import com.example.groceryapp.presentation.Login.WelcomeScreen
 import com.example.groceryapp.presentation.Shop.ShopScreen
@@ -26,5 +27,6 @@ fun Route(navController: NavHostController) {
         composable("favorite") { FavoriteScreen(navController) }
         composable("account") { AccountScreen(navController) }
         composable("phone number") { PhoneNumberScreen(navController) }
+        composable("otp screen") { OTPScreen(navController) }
     }
 }
