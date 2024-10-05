@@ -184,7 +184,7 @@ fun SelectLocationScreen(navController: NavController) {
         Spacer(modifier = Modifier.weight(1f))
         Button(
             colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
-            onClick = {navController.navigate("signing screen")},
+            onClick = {navController.navigate("signingScreen")},
             shape = RoundedCornerShape(15.dp),
             modifier = Modifier
                 .padding(horizontal = 36.dp)
