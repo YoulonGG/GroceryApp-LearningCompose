@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.BottomNavigationBar
+package com.example.groceryapp.presentation.bottomNavigationBar
 
 import androidx.annotation.DrawableRes
 import com.example.groceryapp.R
