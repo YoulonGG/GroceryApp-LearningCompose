@@ -3,6 +3,7 @@ package com.example.groceryapp.presentation.Login
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -64,21 +65,21 @@ fun PhoneNumberScreen(navController: NavController) {
             painter = painterResource(id = R.drawable.baseline_arrow_back_ios_new_24),
             contentDescription = null,
             modifier = Modifier
-                .width(30.dp)
-                .height(30.dp)
+                .width(24.dp)
+                .height(24.dp)
                 .clickable { navController.popBackStack() }
         )
         Spacer(modifier = Modifier.height(62.dp))
         Text(
             text = "Enter your mobile number",
             color = Color.Black,
-            fontSize = 30.sp
+            fontSize = 22.sp
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(
             text = "Mobile Number",
-            color = Color.Black,
-            fontSize = 18.sp
+            color = Color.Gray,
+            fontSize = 14.sp
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -88,8 +89,8 @@ fun PhoneNumberScreen(navController: NavController) {
                 painter = painterResource(id = R.drawable.cam),
                 contentDescription = null,
                 modifier = Modifier
-                    .width(35.dp)
-                    .height(35.dp)
+                    .width(30.dp)
+                    .height(30.dp)
             )
             Text(
                 text = "+855",
@@ -108,8 +109,7 @@ fun PhoneNumberScreen(navController: NavController) {
                 },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.NumberPassword),
                 textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
-                modifier = Modifier
-                    .weight(1f)
+                modifier = Modifier.weight(1f)
             )
         }
         Spacer(modifier = Modifier.weight(1f))
@@ -119,13 +119,13 @@ fun PhoneNumberScreen(navController: NavController) {
                 .size(50.dp)
                 .clip(CircleShape)
                 .background(color = colorResource(id = R.color.green1))
-                .align(Alignment.End)
                 .clickable { navController.navigate("otp screen") }
+                .align(Alignment.End)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),
                 contentDescription = null,
-            )
+                )
         }
         Spacer(modifier = Modifier.height(42.dp))
     }
