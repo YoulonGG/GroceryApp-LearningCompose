@@ -25,10 +25,10 @@ fun Route(navController: NavHostController) {
         composable("cart") { CartScreen(navController) }
         composable("favorite") { FavoriteScreen(navController) }
         composable("account") { AccountScreen(navController) }
-        composable("phone number") { PhoneNumberScreen(navController) }
-        composable("otp screen") { OTPScreen(navController) }
-        composable("select location screen") { SelectLocationScreen(navController) }
-        composable("signing screen") { SignInScreen(navController) }
-        composable("signup screen") { SignUpScreen(navController) }
+        composable("phoneNumber") { PhoneNumberScreen(navController) }
+        composable("otpScreen") { OTPScreen(navController) }
+        composable("selectLocationScreen") { SelectLocationScreen(navController) }
+        composable("signingScreen") { SignInScreen(navController) }
+        composable("signupScreen") { SignUpScreen(navController) }
     }
 }

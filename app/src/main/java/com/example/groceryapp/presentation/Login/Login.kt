@@ -32,9 +32,11 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
 
 @Composable
@@ -58,7 +60,7 @@ fun LoginScreen(navController: NavHostController) {
                 .padding(horizontal = 32.dp)
         ) {
             Text(
-                fontSize = 24.sp,
+                fontSize = 22.sp,
                 color = Color.Black,
                 text = "Get your groceries \nwith nectar",
                 fontWeight = FontWeight.Bold,
@@ -78,8 +80,8 @@ fun LoginScreen(navController: NavHostController) {
                     painter = painterResource(id = R.drawable.cam),
                     contentDescription = null,
                     modifier = Modifier
-                        .width(35.dp)
-                        .height(35.dp)
+                        .width(30.dp)
+                        .height(30.dp)
                 )
                 Text(text = "+855", fontSize = 16.sp, color = Color.Black, modifier = Modifier.padding(start = 10.dp))
                 if (showBottomSheet) {
@@ -89,7 +91,7 @@ fun LoginScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(32.dp))
             Text(
                 textAlign = TextAlign.Center,
-                fontSize = 15.sp,
+                fontSize = 14.sp,
                 color = Color.Gray,
                 text = "Or connect with social media",
                 modifier = Modifier
@@ -109,8 +111,8 @@ fun LoginScreen(navController: NavHostController) {
                     painter = painterResource(id = R.drawable.googlesymbol),
                     contentDescription = null,
                     modifier = Modifier
-                        .width(30.dp)
-                        .height(30.dp)
+                        .width(24.dp)
+                        .height(24.dp)
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
@@ -132,8 +134,8 @@ fun LoginScreen(navController: NavHostController) {
                     painter = painterResource(id = R.drawable.facebooklogo),
                     contentDescription = null,
                     modifier = Modifier
-                        .width(30.dp)
-                        .height(30.dp)
+                        .width(24.dp)
+                        .height(24.dp)
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
@@ -237,4 +239,10 @@ fun BottomSheet(navController: NavHostController) {
             Text(text = "+885", color = Color.Black, fontSize = 16.sp, textAlign = TextAlign.Center)
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewLogin() {
+    LoginScreen(navController = rememberNavController())
 }
