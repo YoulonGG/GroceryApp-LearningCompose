@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.presentation.App.RouteDestinations
 
 @Composable
 fun WelcomeScreen(navController: NavController) {
@@ -82,7 +83,7 @@ fun WelcomeScreen(navController: NavController) {
             Spacer(modifier = Modifier.weight(1f))
             Button(
                 colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
-                onClick = {navController.navigate("login")},
+                onClick = {navController.navigate(RouteDestinations.LOGIN)},
                 shape = RoundedCornerShape(15.dp),
                 modifier = Modifier
                     .padding(horizontal = 36.dp)

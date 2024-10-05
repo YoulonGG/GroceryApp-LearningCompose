@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.presentation.App.RouteDestinations
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
@@ -164,7 +165,7 @@ fun BottomSheet(navController: NavHostController) {
     ) {
         Row(
             modifier = Modifier
-                .clickable { navController.navigate("phone number") }
+                .clickable { navController.navigate(RouteDestinations.PHONE_NUMBER) }
                 .fillMaxWidth()
                 .height(45.dp)
                 .padding(horizontal = 16.dp),

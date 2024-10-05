@@ -18,6 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.groceryapp.R
+import com.example.groceryapp.presentation.App.RouteDestinations
 import kotlinx.coroutines.delay
 
 @Composable
@@ -44,6 +45,6 @@ fun SplashScreen(navController: NavController) {
 
     LaunchedEffect(Unit) {
         delay(3000)
-        navController.navigate("welcome")
+        navController.navigate(RouteDestinations.WELCOME)
     }
 }
