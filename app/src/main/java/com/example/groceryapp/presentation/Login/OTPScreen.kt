@@ -137,7 +137,7 @@ fun OTPScreen(navController: NavController) {
                     .clip(CircleShape)
                     .background(color = colorResource(id = R.color.green1))
                     .clickable {
-                        navController.navigate("select location screen")
+                        navController.navigate("selectLocationScreen")
                     }
             ) {
                 Image(
