@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.presentation.App.RouteDestinations
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -184,7 +185,7 @@ fun SelectLocationScreen(navController: NavController) {
         Spacer(modifier = Modifier.weight(1f))
         Button(
             colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
-            onClick = {navController.navigate("signingScreen")},
+            onClick = { navController.navigate(RouteDestinations.SIGN_IN) },
             shape = RoundedCornerShape(15.dp),
             modifier = Modifier
                 .padding(horizontal = 36.dp)

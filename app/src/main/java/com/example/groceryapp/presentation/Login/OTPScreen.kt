@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.presentation.App.RouteDestinations
 
 @Composable
 fun OTPScreen(navController: NavController) {
@@ -137,7 +138,7 @@ fun OTPScreen(navController: NavController) {
                     .clip(CircleShape)
                     .background(color = colorResource(id = R.color.green1))
                     .clickable {
-                        navController.navigate("selectLocationScreen")
+                        navController.navigate(RouteDestinations.SELECT_LOCATION_SCREEN)
                     }
             ) {
                 Image(
