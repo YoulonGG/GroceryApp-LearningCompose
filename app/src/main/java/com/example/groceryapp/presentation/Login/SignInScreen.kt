@@ -170,7 +170,7 @@ fun SignInScreen(navController: NavController) {
             Text(
                 modifier = Modifier
                     .padding(start = 8.dp)
-                    .clickable { navController.navigate("signup screen") },
+                    .clickable { navController.navigate("signupScreen") },
                 text = "Sign Up",
                 fontSize = 14.sp,
                 color = colorResource(id = R.color.green1)

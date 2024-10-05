@@ -209,7 +209,7 @@ fun SignUpScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(start = 8.dp)
                     .clickable {
-                        navController.navigate("signing screen")
+                        navController.navigate("signingScreen")
                     },
                 text = "Login",
                 fontSize = 14.sp,
