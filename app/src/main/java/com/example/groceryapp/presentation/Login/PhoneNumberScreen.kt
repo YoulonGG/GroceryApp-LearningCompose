@@ -65,8 +65,7 @@ fun PhoneNumberScreen(navController: NavController) {
             painter = painterResource(id = R.drawable.baseline_arrow_back_ios_new_24),
             contentDescription = null,
             modifier = Modifier
-                .width(24.dp)
-                .height(24.dp)
+                .size(24.dp)
                 .clickable { navController.popBackStack() }
         )
         Spacer(modifier = Modifier.height(62.dp))
