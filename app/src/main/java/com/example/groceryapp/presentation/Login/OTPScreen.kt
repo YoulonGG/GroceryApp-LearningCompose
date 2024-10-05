@@ -44,17 +44,20 @@ import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
 
 @Composable
-fun PhoneNumberScreen(navController: NavController) {
-
-    var phoneNumber by remember { mutableStateOf("") }
+fun OTPScreen(navController: NavController) {
+    val otpDigits = remember { List(4) { mutableStateOf("") } }
     val colors = TextFieldDefaults.colors(
         focusedContainerColor = Color.White,
         unfocusedContainerColor = Color.White,
         disabledContainerColor = Color.White,
-        focusedIndicatorColor = Color.Transparent,
-        unfocusedIndicatorColor = Color.Transparent,
-        disabledIndicatorColor = Color.Transparent
+        focusedIndicatorColor = Color.Gray,
+        unfocusedIndicatorColor = Color.Gray,
+        disabledIndicatorColor = Color.Transparent,
+        focusedTextColor = Color.Black,
+        unfocusedTextColor = Color.Black
     )
+    val focusRequesters = List(4) { FocusRequester() }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -65,74 +68,93 @@ fun PhoneNumberScreen(navController: NavController) {
             painter = painterResource(id = R.drawable.baseline_arrow_back_ios_new_24),
             contentDescription = null,
             modifier = Modifier
-                .size(24.dp)
+                .width(24.dp)
+                .height(24.dp)
                 .clickable { navController.popBackStack() }
         )
         Spacer(modifier = Modifier.height(62.dp))
         Text(
-            text = "Enter your mobile number",
+            text = "Enter 4-digits code",
             color = Color.Black,
             fontSize = 22.sp
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(
-            text = "Mobile Number",
+            text = "Code",
             color = Color.Gray,
             fontSize = 14.sp
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically, // This is fine
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.cam),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(30.dp)
-            )
-            Text(
-                text = "+855",
-                fontSize = 16.sp,
-                color = Color.Black,
-                modifier = Modifier.padding(start = 10.dp),
-                textAlign = TextAlign.Center
-            )
-            TextField(
-                colors = colors,
-                value = phoneNumber,
-                onValueChange = { newValue ->
-                    if (newValue.all { it.isDigit() }) {
-                        phoneNumber = newValue
-                    }
-                },
-                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.NumberPassword),
-                textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
-                modifier = Modifier.weight(1f)
-            )
+            for (i in 0..3) {
+                TextField(
+                    value = otpDigits[i].value,
+                    onValueChange = { newValue ->
+                        if (newValue.length <= 1 && newValue.all { it.isDigit() }) {
+                            otpDigits[i].value = newValue
+                            if (newValue.isNotEmpty() && i < 3) {
+                                focusRequesters[i + 1].requestFocus()
+                            }
+                        } else if (newValue.isEmpty() && i > 0) {
+                            focusRequesters[i - 1].requestFocus()
+                        }
+                    },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
+                    modifier = Modifier
+                        .size(60.dp)
+                        .focusRequester(focusRequesters[i]),
+                    textStyle = TextStyle(
+                        fontSize = 24.sp,
+                        textAlign = TextAlign.Center,
+                        color = Color.Black
+                    ),
+                    singleLine = true,
+                    maxLines = 1,
+                    colors = colors
+                )
+            }
         }
         Spacer(modifier = Modifier.weight(1f))
-        Box(
-            contentAlignment = Alignment.Center,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
-                .size(50.dp)
-                .clip(CircleShape)
-                .background(color = colorResource(id = R.color.green1))
-                .clickable { navController.navigate("otp screen") }
+                .fillMaxWidth()
                 .align(Alignment.End)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),
-                contentDescription = null,
+            Text(
+                text = "Resend Code",
+                fontSize = 18.sp,
+                color = colorResource(id = R.color.green1),
+                textAlign = TextAlign.Center
+            )
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .size(50.dp)
+                    .clip(CircleShape)
+                    .background(color = colorResource(id = R.color.green1))
+                    .clickable {
+                        navController.navigate("selectLocationScreen")
+                    }
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),
+                    contentDescription = null,
                 )
+            }
         }
         Spacer(modifier = Modifier.height(42.dp))
     }
 }
 
+
+
+
 @Preview(showBackground = true)
 @Composable
-fun PreviewPhoneNumberInputScreen() {
-    PhoneNumberScreen(navController = rememberNavController())
+fun Preview() {
+    OTPScreen(navController = rememberNavController())
 }
-
-
