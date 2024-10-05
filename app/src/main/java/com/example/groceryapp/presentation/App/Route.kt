@@ -26,5 +26,6 @@ fun Route(navController: NavHostController) {
         composable("favorite") { FavoriteScreen(navController) }
         composable("account") { AccountScreen(navController) }
         composable("phone number") { PhoneNumberScreen(navController) }
+       // composable("otp screen") { OTPScreen(navController) }
     }
 }

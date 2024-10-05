@@ -1,0 +1,43 @@
+[33mcommit fffbed1f92503ace6339f791e63596ede68e4d43[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/InputPhoneNumber_screen[m[33m, [m[1;31morigin/feature/InputPhoneNumber_screen[m[33m)[m
+Author: YoulonGG <johnyoulong@gmail.com>
+Date:   Sat Oct 5 10:30:48 2024 +0700
+
+    Done
+
+[33mcommit ea8e4cbc1ecfd9d586f0c73b1ff71b09251c1a84[m
+Author: YoulonGG <johnyoulong@gmail.com>
+Date:   Sat Oct 5 10:24:06 2024 +0700
+
+    Done
+
+[33mcommit 0eb08712317d93912146ef804ac2f8d659a2f09d[m
+Author: YoulonGG <johnyoulong@gmail.com>
+Date:   Fri Oct 4 10:43:35 2024 +0700
+
+    - Complete phone number input screen
+    - Already handled the bottomsheet
+
+[33mcommit 53ca7393498ec7a364c51096071de5e9fe915272[m[33m ([m[1;31morigin/feature/onboarding_screens[m[33m, [m[1;32mfeature/onboarding_screens[m[33m)[m
+Author: YoungGG <johnyoulong@gmail.com>
+Date:   Tue Oct 1 14:34:49 2024 +0700
+
+    -Handle bottomsheet
+
+[33mcommit 543c8e9fd5e4d56476aeb379626abdbc3c8928a5[m
+Author: YoulonGG <johnyoulong@gmail.com>
+Date:   Mon Sep 30 17:28:20 2024 +0700
+
+    added remember for bottom navigation item declartion
+
+[33mcommit 01cf73e40c637b49c04a755d0565e2c3a278389a[m
+Author: YoulonGG <johnyoulong@gmail.com>
+Date:   Mon Sep 30 17:16:15 2024 +0700
+
+    ~ done : Welcome screen UI design
+    ~ wip : login UI footer work
+
+[33mcommit 7b5a5cfd773dbd48ebe5db47e9e62f4023c26cd9[m[33m ([m[1;32mmaster[m[33m)[m
+Author: YoulonGG <johnyoulong@gmail.com>
+Date:   Mon Sep 30 17:10:45 2024 +0700
+
+    Initial commit
