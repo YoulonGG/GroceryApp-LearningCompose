@@ -84,8 +84,7 @@ fun PhoneNumberScreen(navController: NavController) {
                 painter = painterResource(id = R.drawable.cam),
                 contentDescription = null,
                 modifier = Modifier
-                    .width(30.dp)
-                    .height(30.dp)
+                    .size(30.dp)
             )
             Text(
                 text = "+855",
