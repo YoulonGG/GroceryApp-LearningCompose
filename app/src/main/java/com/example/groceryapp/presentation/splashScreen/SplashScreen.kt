@@ -44,6 +44,7 @@ fun SplashScreen(navController: NavController) {
     }
 
     LaunchedEffect(Unit) {
+        delay(3000L)
         navController.navigate(RouteDestinations.WELCOME)
     }
 }
