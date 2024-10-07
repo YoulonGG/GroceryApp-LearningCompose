@@ -1,7 +1,6 @@
-package com.example.groceryapp.presentation.Login
+package com.example.groceryapp.presentation.login
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,7 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
-import com.example.groceryapp.presentation.App.RouteDestinations
+import com.example.groceryapp.presentation.app.RouteDestinations
 
 @Composable
 fun LoginScreen(navController: NavHostController) {

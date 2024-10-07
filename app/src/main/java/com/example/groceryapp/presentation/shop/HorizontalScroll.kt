@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.Shop
+package com.example.groceryapp.presentation.shop
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
