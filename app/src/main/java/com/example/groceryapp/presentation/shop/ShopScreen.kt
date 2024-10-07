@@ -41,9 +41,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.presentation.BottomNavigationBar.BottomNavigation
+import com.example.groceryapp.presentation.Shop.ExclusiveHorizontalItemList
+import com.example.groceryapp.presentation.Shop.ExclusiveItem
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
-import com.example.groceryapp.presentation.bottomNavigationBar.BottomNavigation
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPagerIndicator
 

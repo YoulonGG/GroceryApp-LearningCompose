@@ -55,10 +55,8 @@ fun ItemCard(item: ExclusiveItem) {
     Card(
         modifier = Modifier
             .padding(horizontal = 8.dp)
-            .padding()
             .height(160.dp)
-            .width(110.dp),
-        elevation = 4.dp,
+            .width(115.dp),
         shape = RoundedCornerShape(10.dp)
     ) {
         Column(
