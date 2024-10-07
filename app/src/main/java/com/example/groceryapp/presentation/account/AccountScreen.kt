@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
-import com.example.groceryapp.presentation.BottomNavigationBar.BottomNavigation
+import com.example.groceryapp.presentation.bottomNavigationBar.BottomNavigation
 
 @Composable
 fun AccountScreen(navController: NavController) {

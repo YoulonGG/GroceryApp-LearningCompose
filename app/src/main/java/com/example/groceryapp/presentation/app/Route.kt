@@ -4,8 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.NavHost
+import com.example.groceryapp.presentation.Account.AccountScreen
+import com.example.groceryapp.presentation.Explore.ExploreScreen
 import com.example.groceryapp.presentation.splashScreen.SplashScreen
-import com.example.groceryapp.presentation.account.AccountScreen
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.ACCOUNT
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.CART
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.EXPLORE
@@ -20,7 +21,6 @@ import com.example.groceryapp.presentation.app.RouteDestinations.Companion.SIGN_
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.SPLASH
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.WELCOME
 import com.example.groceryapp.presentation.cart.CartScreen
-import com.example.groceryapp.presentation.explore.ExploreScreen
 import com.example.groceryapp.presentation.favorite.FavoriteScreen
 import com.example.groceryapp.presentation.login.LoginScreen
 import com.example.groceryapp.presentation.login.OTPScreen
