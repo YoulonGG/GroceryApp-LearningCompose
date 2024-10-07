@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.BottomNavigationBar
+package com.example.groceryapp.presentation.bottomNavigationBar
 
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
@@ -22,7 +22,6 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
-import com.example.groceryapp.presentation.Shop.ShopScreen
 
 @Composable
 fun BottomNavigation(

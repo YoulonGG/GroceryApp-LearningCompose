@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.Shop
+package com.example.groceryapp.presentation.shop
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -41,9 +41,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.presentation.BottomNavigationBar.BottomNavigation
+import com.example.groceryapp.presentation.Shop.ExclusiveHorizontalItemList
+import com.example.groceryapp.presentation.Shop.ExclusiveItem
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
-import com.example.groceryapp.presentation.BottomNavigationBar.BottomNavigation
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPagerIndicator
 
@@ -152,6 +154,7 @@ fun ShopScreen(navController: NavController) {
                     .height(50.dp)
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp)
+                    .shadow(elevation = 10.dp, shape = RoundedCornerShape(10.dp)) // Add shadow here
             )
             Spacer(modifier = Modifier.height(16.dp))
             Box(
@@ -205,7 +208,7 @@ fun ShopScreen(navController: NavController) {
                     color = colorResource(id = R.color.green1)
                 )
             }
-            Column {
+            Column() {
                 ExclusiveHorizontalItemList(items = exclusiveItem)
             }
             Row(

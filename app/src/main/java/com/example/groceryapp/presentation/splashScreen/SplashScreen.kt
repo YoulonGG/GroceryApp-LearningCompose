@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.SplashScreen
+package com.example.groceryapp.presentation.splashScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -18,7 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.groceryapp.R
-import com.example.groceryapp.presentation.App.RouteDestinations
+import com.example.groceryapp.presentation.app.RouteDestinations
 import kotlinx.coroutines.delay
 
 @Composable
@@ -44,7 +44,6 @@ fun SplashScreen(navController: NavController) {
     }
 
     LaunchedEffect(Unit) {
-        delay(3000)
         navController.navigate(RouteDestinations.WELCOME)
     }
 }

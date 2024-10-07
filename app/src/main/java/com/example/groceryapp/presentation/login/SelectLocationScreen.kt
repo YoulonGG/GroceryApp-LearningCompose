@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.Login
+package com.example.groceryapp.presentation.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -26,7 +26,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -38,7 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
-import com.example.groceryapp.presentation.App.RouteDestinations
+import com.example.groceryapp.presentation.app.RouteDestinations
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.Login
+package com.example.groceryapp.presentation.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
