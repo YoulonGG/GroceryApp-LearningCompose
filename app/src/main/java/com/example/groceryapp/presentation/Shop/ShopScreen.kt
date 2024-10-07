@@ -44,7 +44,6 @@ import com.example.groceryapp.R
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.example.groceryapp.presentation.BottomNavigationBar.BottomNavigation
-import com.example.groceryapp.presentation.Login.PhoneNumberScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPagerIndicator
 
@@ -153,7 +152,6 @@ fun ShopScreen(navController: NavController) {
                     .height(50.dp)
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp)
-                    .shadow(elevation = 10.dp, shape = RoundedCornerShape(10.dp)) // Add shadow here
             )
             Spacer(modifier = Modifier.height(16.dp))
             Box(
@@ -207,7 +205,7 @@ fun ShopScreen(navController: NavController) {
                     color = colorResource(id = R.color.green1)
                 )
             }
-            Column() {
+            Column {
                 ExclusiveHorizontalItemList(items = exclusiveItem)
             }
             Row(
