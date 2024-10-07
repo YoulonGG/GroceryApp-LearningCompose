@@ -34,14 +34,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
-import com.example.groceryapp.presentation.App.RouteDestinations
 import com.example.groceryapp.presentation.BottomNavigationBar.BottomNavigation
 
 @Composable
 fun AccountScreen(navController: NavController) {
-
-    val green = colorResource(id = R.color.green1)
-    val white = colorResource(id = R.color.white3)
 
     Scaffold(
         bottomBar = { BottomNavigation(navController) },
