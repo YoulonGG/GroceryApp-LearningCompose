@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.Shop
+package com.example.groceryapp.presentation.shop
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -43,8 +43,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
-import com.example.groceryapp.presentation.BottomNavigationBar.BottomNavigation
-import com.example.groceryapp.presentation.Login.PhoneNumberScreen
+import com.example.groceryapp.presentation.bottomNavigationBar.BottomNavigation
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPagerIndicator
 

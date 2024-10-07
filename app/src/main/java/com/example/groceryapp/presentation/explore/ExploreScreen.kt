@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.Account
+package com.example.groceryapp.presentation.explore
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -7,10 +7,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.example.groceryapp.presentation.BottomNavigationBar.BottomNavigation
+import com.example.groceryapp.presentation.bottomNavigationBar.BottomNavigation
 
 @Composable
-fun AccountScreen(navController: NavController) {
+fun ExploreScreen(navController: NavController) {
 
     Scaffold(
         bottomBar = { BottomNavigation(navController) },
@@ -21,5 +21,4 @@ fun AccountScreen(navController: NavController) {
             Text(text = "Account")
         }
     }
-
 }
