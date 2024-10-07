@@ -42,4 +42,8 @@ fun SplashScreen(navController: NavController) {
             )
         }
     }
+
+    LaunchedEffect(Unit) {
+        navController.navigate(RouteDestinations.WELCOME)
+    }
 }
