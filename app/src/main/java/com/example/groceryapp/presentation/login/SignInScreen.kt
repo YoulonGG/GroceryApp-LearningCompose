@@ -99,6 +99,7 @@ fun SignInScreen(navController: NavController) {
             value = email,
             onValueChange = {email = it},
             textStyle = TextStyle(fontSize = 16.sp),
+            isError = false,
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
