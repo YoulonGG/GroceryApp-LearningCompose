@@ -5,11 +5,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.NavHost
 import com.example.groceryapp.presentation.Account.AccountScreen
-import com.example.groceryapp.presentation.Explore.ExploreScreen
 import com.example.groceryapp.presentation.splashScreen.SplashScreen
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.ACCOUNT
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.CART
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.EXPLORE
+import com.example.groceryapp.presentation.app.RouteDestinations.Companion.EXPLORE_BEVERAGES
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.FAVOURITE
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.LOGIN
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.OTP
@@ -21,6 +21,8 @@ import com.example.groceryapp.presentation.app.RouteDestinations.Companion.SIGN_
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.SPLASH
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.WELCOME
 import com.example.groceryapp.presentation.cart.CartScreen
+import com.example.groceryapp.presentation.explore.ExploreScreen
+import com.example.groceryapp.presentation.explore.beverages.BeveragesScreen
 import com.example.groceryapp.presentation.favorite.FavoriteScreen
 import com.example.groceryapp.presentation.login.LoginScreen
 import com.example.groceryapp.presentation.login.OTPScreen
@@ -47,6 +49,7 @@ fun Route(navController: NavHostController) {
         composable(SELECT_LOCATION_SCREEN) { SelectLocationScreen(navController) }
         composable(SIGN_IN) { SignInScreen(navController) }
         composable(SIGN_UP) { SignUpScreen(navController) }
+        composable(EXPLORE_BEVERAGES) { BeveragesScreen(navController) }
     }
 }
 
@@ -65,5 +68,6 @@ class RouteDestinations {
         const val SELECT_LOCATION_SCREEN = "selectLocationScreen"
         const val SIGN_IN = "signingScreen"
         const val SIGN_UP = "signupScreen"
+        const val EXPLORE_BEVERAGES = "exploreBeverages"
     }
 }
