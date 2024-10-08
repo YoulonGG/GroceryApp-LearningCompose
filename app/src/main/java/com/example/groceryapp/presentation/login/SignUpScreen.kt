@@ -1,8 +1,10 @@
 package com.example.groceryapp.presentation.login
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,8 +14,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -30,6 +36,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,17 +54,8 @@ fun SignUpScreen(navController: NavController) {
     var signupPassword by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
 
-    val colors = TextFieldDefaults.colors(
-        focusedContainerColor = Color.White,
-        unfocusedContainerColor = Color.White,
-        disabledContainerColor = Color.White,
-        focusedIndicatorColor = Color.Gray,
-        unfocusedIndicatorColor = Color.Gray,
-        disabledIndicatorColor = Color.White
-    )
-
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().background(color = Color.White)
     ) {
         Spacer(modifier = Modifier.height(150.dp))
         Image(
@@ -89,17 +87,20 @@ fun SignUpScreen(navController: NavController) {
             color = Color.Gray,
             fontSize = 16.sp,
         )
-        OutlinedTextField(
+        Spacer(modifier = Modifier.height(8.dp))
+        BasicTextField(
             modifier = Modifier
-                .height(48.dp)
                 .padding(horizontal = 36.dp)
                 .fillMaxWidth(),
-            singleLine = true,
-            colors = colors,
             value = signupUsername,
             onValueChange = {signupUsername = it},
-            textStyle = TextStyle(fontSize = 16.sp),
+            textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email
+            ),
         )
+        Spacer(modifier = Modifier.height(10.dp))
+        HorizontalDivider(modifier = Modifier.padding(horizontal = 36.dp).background(color = Color.Black), thickness = 1.dp)
         Spacer(modifier = Modifier.height(24.dp))
         Text(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
@@ -107,17 +108,20 @@ fun SignUpScreen(navController: NavController) {
             color = Color.Gray,
             fontSize = 16.sp,
         )
-        OutlinedTextField(
+        Spacer(modifier = Modifier.height(8.dp))
+        BasicTextField(
             modifier = Modifier
-                .height(48.dp)
                 .padding(horizontal = 36.dp)
                 .fillMaxWidth(),
-            singleLine = true,
-            colors = colors,
             value = signupEmail,
             onValueChange = {signupEmail = it},
-            textStyle = TextStyle(fontSize = 16.sp),
+            textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email
+            ),
         )
+        Spacer(modifier = Modifier.height(10.dp))
+        HorizontalDivider(modifier = Modifier.padding(horizontal = 36.dp).background(color = Color.Black), thickness = 1.dp)
         Spacer(modifier = Modifier.height(24.dp))
         Text(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
@@ -125,29 +129,35 @@ fun SignUpScreen(navController: NavController) {
             color = Color.Gray,
             fontSize = 16.sp,
         )
-        OutlinedTextField(
-            modifier = Modifier
-                .height(48.dp)
-                .padding(horizontal = 36.dp)
-                .fillMaxWidth(),
-            singleLine = true,
-            colors = colors,
-            value = signupPassword,
-            onValueChange = { signupPassword = it },
-            textStyle = TextStyle(fontSize = 16.sp),
-            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            trailingIcon = {
-                val image = if (passwordVisible) R.drawable.baseline_remove_red_eye_24 else R.drawable.baseline_remove_red_eye_24
+        Box(
+            modifier = Modifier.padding(horizontal = 36.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                BasicTextField(
+                    value = signupPassword,
+                    onValueChange = { signupPassword = it },
+                    textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
+                    visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                    modifier = Modifier.padding(end = 8.dp).weight(1f),
+                )
                 IconButton(onClick = {
                     passwordVisible = !passwordVisible
                 }) {
-                    Image(
-                        painter = painterResource(id = image),
-                        contentDescription = null
+                    val visibilityIcon = if (passwordVisible) {
+                        painterResource(id = R.drawable.baseline_remove_red_eye_24)
+                    } else {
+                        painterResource(id = R.drawable.baseline_remove_red_eye_24)
+                    }
+                    Icon(
+                        painter = visibilityIcon,
+                        contentDescription = if (passwordVisible) "Hide password" else "Show password"
                     )
                 }
-            },
-        )
+            }
+        }
+        HorizontalDivider(modifier = Modifier.padding(horizontal = 36.dp).background(color = Color.Black), thickness = 1.dp)
         Spacer(modifier = Modifier.height(8.dp))
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp)
@@ -158,6 +168,7 @@ fun SignUpScreen(navController: NavController) {
                 color = Color.Black,
             )
             Text(
+                modifier = Modifier.weight(1f),
                 text = " Terms of Service",
                 fontSize = 14.sp,
                 color = colorResource(id = R.color.green1),
@@ -172,6 +183,7 @@ fun SignUpScreen(navController: NavController) {
                 color = Color.Black,
             )
             Text(
+                modifier = Modifier.weight(1f),
                 text = " Privacy Policy",
                 fontSize = 14.sp,
                 color = colorResource(id = R.color.green1),

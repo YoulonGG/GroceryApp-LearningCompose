@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,6 +61,7 @@ fun OTPScreen(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 32.dp)
+            .background(color = Color.White)
     ) {
         Spacer(modifier = Modifier.height(80.dp))
         Image(
@@ -101,12 +103,13 @@ fun OTPScreen(navController: NavController) {
                     },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
                     modifier = Modifier
-                        .size(60.dp)
+                        .size(70.dp)
                         .focusRequester(focusRequesters[i]),
                     textStyle = TextStyle(
-                        fontSize = 24.sp,
+                        fontSize = 32.sp,
                         textAlign = TextAlign.Center,
-                        color = Color.Black
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold
                     ),
                     singleLine = true,
                     maxLines = 1,
@@ -139,12 +142,12 @@ fun OTPScreen(navController: NavController) {
                     }
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),
+                    painter = painterResource(id = R.drawable.white_arrow),
                     contentDescription = null,
                 )
             }
         }
-        Spacer(modifier = Modifier.height(42.dp))
+        Spacer(modifier = Modifier.height(60.dp))
     }
 }
 
