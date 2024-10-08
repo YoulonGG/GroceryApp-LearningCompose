@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -38,6 +40,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
 import com.example.groceryapp.presentation.app.RouteDestinations
+import kotlinx.coroutines.flow.callbackFlow
 
 @Composable
 fun PhoneNumberScreen(navController: NavController) {
@@ -93,19 +96,25 @@ fun PhoneNumberScreen(navController: NavController) {
                 modifier = Modifier.padding(start = 10.dp),
                 textAlign = TextAlign.Center
             )
-            TextField(
-                colors = colors,
+            BasicTextField(
+//                colors = colors,
                 value = phoneNumber,
                 onValueChange = { newValue ->
-                    if (newValue.all { it.isDigit() }) {
+                    if (newValue.all { it.isDigit() } || newValue.isEmpty()) {
                         phoneNumber = newValue
                     }
                 },
-                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.NumberPassword),
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                 textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f).padding(start = 8.dp)
+//                modifier = Modifier
+//                    .background(Color.White, RoundedCornerShape(8.dp))
+//                    .border(BorderStroke(1.dp, if (phoneNumber.isNotEmpty()) Color.Blue else Color.Gray), RoundedCornerShape(8.dp))
+//                    .padding(12.dp)
+//                    .fillMaxWidth()
             )
         }
+        HorizontalDivider(modifier = Modifier.background(color = Color.Black), thickness = 1.dp)
         Spacer(modifier = Modifier.weight(1f))
         Box(
             contentAlignment = Alignment.Center,
@@ -121,7 +130,7 @@ fun PhoneNumberScreen(navController: NavController) {
                 contentDescription = null,
                 )
         }
-        Spacer(modifier = Modifier.height(42.dp))
+        Spacer(modifier = Modifier.height(60.dp))
     }
 }
 
