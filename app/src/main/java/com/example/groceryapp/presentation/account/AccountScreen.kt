@@ -47,9 +47,9 @@ fun AccountScreen(navController: NavController) {
                 .padding(innerPadding)
                 .fillMaxSize()
                 .background(color = Color.White)
-                .padding(horizontal = 15.dp)
+                .padding(horizontal = 16.dp)
         ) {
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             Row(
                 modifier = Modifier.fillMaxWidth().height(70.dp),
                 horizontalArrangement = Arrangement.Center,
@@ -59,7 +59,7 @@ fun AccountScreen(navController: NavController) {
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
                         .size(60.dp)
-                        .background(color = Color.White, shape = RoundedCornerShape(15.dp))
+                        .background(color = Color.White, shape = RoundedCornerShape(16.dp))
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.boy),
@@ -100,7 +100,7 @@ fun AccountScreen(navController: NavController) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             HorizontalDivider(modifier = Modifier.background(color = Color.White),thickness = 1.dp)
             Spacer(modifier = Modifier.height(24.dp))
             Row(
@@ -115,9 +115,8 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Orders",
-                    fontSize = 15.sp,
+                    fontSize = 16.sp,
                     color = Color.Black,
-                    fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
@@ -141,9 +140,8 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "My Details",
-                    fontSize = 15.sp,
+                    fontSize = 16.sp,
                     color = Color.Black,
-                    fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
@@ -167,9 +165,8 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Delivery Address",
-                    fontSize = 15.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold
+                    fontSize = 16.sp,
+                    color = Color.Black
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
@@ -193,9 +190,8 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Payment Methods",
-                    fontSize = 15.sp,
+                    fontSize = 16.sp,
                     color = Color.Black,
-                    fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
@@ -219,9 +215,8 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Promo Card",
-                    fontSize = 15.sp,
+                    fontSize = 16.sp,
                     color = Color.Black,
-                    fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
@@ -245,9 +240,8 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Notifications",
-                    fontSize = 15.sp,
+                    fontSize = 16.sp,
                     color = Color.Black,
-                    fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
@@ -271,9 +265,8 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Help",
-                    fontSize = 15.sp,
+                    fontSize = 16.sp,
                     color = Color.Black,
-                    fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
@@ -297,9 +290,8 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "About",
-                    fontSize = 15.sp,
+                    fontSize = 16.sp,
                     color = Color.Black,
-                    fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
@@ -315,9 +307,8 @@ fun AccountScreen(navController: NavController) {
             Button(
                 colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
                 onClick = {},
-                shape = RoundedCornerShape(15.dp),
+                shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
-                    .padding(horizontal = 15.dp)
                     .height(48.dp)
                     .fillMaxWidth()
             ) {
@@ -325,15 +316,15 @@ fun AccountScreen(navController: NavController) {
                     painter = painterResource(id = R.drawable.logout),
                     contentDescription = "Button icon",
                 )
-                Spacer(modifier = Modifier.width(15.dp))
+                Spacer(modifier = Modifier.width(16.dp))
                 Text(
-                    fontSize = 15.sp,
+                    fontSize = 16.sp,
                     color = Color.White,
                     text = "Log out",
                     fontWeight = FontWeight.Bold,
                 )
             }
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(16.dp))
         }
 
     }

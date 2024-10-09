@@ -3,7 +3,6 @@ package com.example.groceryapp.presentation.cart
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,24 +15,46 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ModalBottomSheetValue
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.presentation.app.RouteDestinations
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.time.delay
+import java.time.Duration
 
 data class CartClass(
     val image: Int,
@@ -47,9 +68,16 @@ data class CartClass(
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CartList(initialItems: List<CartClass>) {
+fun CartList(
+    initialItems: List<CartClass> ,
+    navController: NavController
+) {
     val items = remember { mutableStateListOf<CartClass>().apply { addAll(initialItems) } }
+    val bottomSheetState = rememberModalBottomSheetState(false)
+    val scope = rememberCoroutineScope()
+    var showBottomSheet by remember { mutableStateOf(false) }
 
     LazyColumn(
         modifier = Modifier
@@ -64,12 +92,8 @@ fun CartList(initialItems: List<CartClass>) {
                     val index = items.indexOf(item)
                     items[index] = updatedItem
                 },
-                onRemove = {
-                    items.remove(item)
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
+                onRemove = { items.remove(item) },
+                modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(8.dp))
             Divider(
@@ -78,6 +102,211 @@ fun CartList(initialItems: List<CartClass>) {
                 modifier = Modifier.padding(horizontal = 8.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
+        }
+        item {
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
+                onClick = {
+                    scope.launch {
+                        bottomSheetState.show()
+                    }
+                    showBottomSheet = true
+                },
+                shape = RoundedCornerShape(15.dp),
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .height(48.dp)
+                    .fillMaxWidth()
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Spacer(modifier = Modifier.height(20.dp).width(60.dp))
+                    Text(
+                        fontSize = 16.sp,
+                        color = Color.White,
+                        text = "Check Out",
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        modifier = Modifier
+                            .height(20.dp)
+                            .width(60.dp)
+                            .background(color = colorResource(id = R.color.green3)),
+                        text = "$99.99",
+                        fontSize = 14.sp,
+                        color = Color.White,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+    }
+    if (showBottomSheet) {
+        BottomSheet(onDismissRequest = {
+            scope.launch {
+                bottomSheetState.hide()
+                showBottomSheet = false
+            }
+        },navController = navController)
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)
+    ModalBottomSheet(
+        modifier = Modifier.wrapContentHeight(),
+        sheetState = sheetState,
+        onDismissRequest = { onDismissRequest() }
+    ) {
+        Column(
+            modifier = Modifier.fillMaxSize().padding(vertical = 8.dp, horizontal = 16.dp)
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth().height(40.dp)
+            ) {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = "Checkout",
+                    fontSize = 22.sp,
+                    color = Color.Black,
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.close1),
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
+                )
+            }
+            Spacer(modifier = Modifier.height(24.dp))
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ){
+                Text(
+                    text = "Delivery",
+                    fontSize = 18.sp,
+                    color = Color.Gray
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    textAlign = TextAlign.End,
+                    text = "Select Method",
+                    fontSize = 16.sp,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Image(
+                    painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),
+                    contentDescription = null
+                )
+            }
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth().height(40.dp)
+            ){
+                Text(
+                    text = "Payment",
+                    fontSize = 18.sp,
+                    color = Color.Gray
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Image(
+                    painter = painterResource(id = R.drawable.creditcard),
+                    contentDescription = null
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Image(
+                    painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),
+                    contentDescription = null
+                )
+            }
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth().height(40.dp)
+            ){
+                Text(
+                    text = "Promo Code",
+                    fontSize = 18.sp,
+                    color = Color.Gray
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    text = "Pick Discount",
+                    fontSize = 16.sp,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Image(
+                    painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),
+                    contentDescription = null
+                )
+            }
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth().height(40.dp)
+            ){
+                Text(
+                    text = "Total Cost",
+                    fontSize = 18.sp,
+                    color = Color.Gray
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    textAlign = TextAlign.End,
+                    text = "$99.99",
+                    fontSize = 16.sp,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Image(
+                    painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),
+                    contentDescription = null
+                )
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "By placing an order you agree to our",
+                fontSize = 14.sp,
+                color = Color.Gray
+            )
+            Text(
+                text = "Terms and Conditions",
+                fontSize = 14.sp,
+                color = Color.Black
+
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
+                onClick = {
+                    onDismissRequest()
+                    navController.navigate(RouteDestinations.ACCEPTED_ORDER)
+                },
+                shape = RoundedCornerShape(15.dp),
+                modifier = Modifier
+                    .height(48.dp)
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    fontSize = 16.sp,
+                    color = Color.White,
+                    text = "Place Order",
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
@@ -189,4 +418,5 @@ fun CartCard(
         }
     }
 }
+
 

@@ -1,7 +1,9 @@
 package com.example.groceryapp.presentation.shop
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +19,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -47,7 +50,7 @@ import com.google.accompanist.pager.rememberPagerState
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPagerIndicator
 
-data class Item1(val imageResId: Int )
+data class Item1(val imageResId: Int)
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
@@ -130,7 +133,12 @@ fun ShopScreen(navController: NavController) {
             TextField(
                 value = search,
                 onValueChange = { search = it },
-                placeholder = { Text("Search store...", style = TextStyle(fontSize = 16.sp, color = Color.Gray)) },
+                placeholder = {
+                    Text(
+                        "Search store...",
+                        style = TextStyle(fontSize = 16.sp, color = Color.Gray)
+                    )
+                },
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White,
@@ -151,8 +159,8 @@ fun ShopScreen(navController: NavController) {
                 modifier = Modifier
                     .height(50.dp)
                     .fillMaxWidth()
-                    .padding(horizontal = 24.dp)
-                    .shadow(elevation = 10.dp, shape = RoundedCornerShape(10.dp)) // Add shadow here
+                    .padding(horizontal = 16.dp)
+                    .shadow(elevation = 16.dp, shape = RoundedCornerShape(10.dp))
             )
             Spacer(modifier = Modifier.height(16.dp))
             Box(
@@ -161,30 +169,27 @@ fun ShopScreen(navController: NavController) {
                 HorizontalPager(
                     state = bannerState,
                     count = banner.size,
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp).height(200.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .height(200.dp)
                 ) { page ->
                     val item = banner[page]
-                    Column(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Image(
-                            contentScale = ContentScale.Crop,
-                            painter = painterResource(id = item.imageResId),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 32.dp)
-                        )
-                    }
+                    Image(
+                        contentScale = ContentScale.None,
+                        painter = painterResource(id = item.imageResId),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .fillMaxWidth()
+
+                    )
                 }
                 Spacer(modifier = Modifier.height(4.dp))
                 HorizontalPagerIndicator(
                     pagerState = bannerState,
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
-                        .padding(bottom = 16.dp), // Add some padding if needed
+                        .padding(bottom = 16.dp),
                     activeColor = colorResource(R.color.green1),
                     inactiveColor = Color.Gray
                 )
@@ -192,7 +197,10 @@ fun ShopScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(top = 8.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+                    .padding(top = 8.dp)
             ) {
                 Text(
                     text = "Exclusive Offer",
@@ -202,16 +210,18 @@ fun ShopScreen(navController: NavController) {
                 )
                 Text(
                     text = "See all",
-                    fontSize = 16.sp,
-                    color = colorResource(id = R.color.green1)
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = colorResource(id = R.color.green1),
                 )
             }
-            Column {
-                ExclusiveHorizontalItemList(items = exclusiveItem)
+            Box (modifier = Modifier.padding(horizontal = 8.dp)){
+                ExclusiveHorizontalItemList(items = exclusiveItem, modifier = Modifier)
             }
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
             ) {
                 Text(
                     text = "Best Selling",
@@ -225,12 +235,14 @@ fun ShopScreen(navController: NavController) {
                     color = colorResource(id = R.color.green1)
                 )
             }
-            Column {
+            Box (modifier = Modifier.padding(horizontal = 8.dp)) {
                 ExclusiveHorizontalItemList(items = bestSellingItem)
             }
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
             ) {
                 Text(
                     text = "Groceries",
@@ -244,7 +256,7 @@ fun ShopScreen(navController: NavController) {
                     color = colorResource(id = R.color.green1)
                 )
             }
-            Column {
+            Box(modifier = Modifier.padding(horizontal = 8.dp)) {
                 ExclusiveHorizontalItemList(items = groceriesItem)
             }
         }

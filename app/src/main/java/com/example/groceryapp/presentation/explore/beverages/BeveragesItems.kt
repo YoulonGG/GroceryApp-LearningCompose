@@ -1,5 +1,6 @@
 package com.example.groceryapp.presentation.explore.beverages
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -69,10 +70,10 @@ fun BeverageCard(item: BeveragesClass, modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxWidth()
             .height(210.dp)
-            .padding(horizontal = 10.dp, vertical = 10.dp)
-        .border(1.dp, color = colorResource(id = R.color.green1), RoundedCornerShape(10.dp)),
+            .padding(horizontal = 8.dp, vertical = 10.dp),
         shape = RoundedCornerShape(10.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        border = BorderStroke(0.5.dp,Color.Gray.copy(alpha = 0.6F)),
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

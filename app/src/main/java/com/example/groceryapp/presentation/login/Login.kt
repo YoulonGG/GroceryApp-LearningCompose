@@ -55,7 +55,7 @@ fun LoginScreen(navController: NavHostController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 8.dp)
-                    .clickable { showBottomSheet = true }  // Opens the BottomSheet
+                    .clickable { showBottomSheet = true }
             ) {
                 Image(
                     painter = painterResource(id = selectedImageRes),

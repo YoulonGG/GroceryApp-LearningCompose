@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -25,7 +26,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
 
 
@@ -66,14 +67,13 @@ fun BeveragesScreen(navController: NavController) {
         modifier = Modifier.background(color = Color.White),
         topBar = {
             TopAppBar(
-                modifier = Modifier.padding(top = 16.dp),
                 title = {
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 16.dp)
+                            .padding(end = 16.dp)
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.baseline_arrow_back_ios_new_24),
@@ -105,9 +105,10 @@ fun BeveragesScreen(navController: NavController) {
                 .fillMaxSize()
                 .padding(innerPadding)
                 .background(color = Color.White)
-                .padding(horizontal = 20.dp)
         ) {
-            BeverageList(items = beverages)
+            Box(modifier = Modifier.padding(horizontal = 8.dp)) {
+                BeverageList(items = beverages)
+            }
         }
     }
 }
@@ -325,6 +326,6 @@ fun Filter(
 
 @Preview(showBackground = true)
 @Composable
-fun FilterPreview() {
-    Filter(onDismiss = {  })
+fun FilterBeverages() {
+    BeveragesScreen(navController = rememberNavController())
 }

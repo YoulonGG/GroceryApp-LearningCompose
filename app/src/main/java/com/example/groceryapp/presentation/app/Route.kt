@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.NavHost
 import com.example.groceryapp.presentation.account.AccountScreen
+import com.example.groceryapp.presentation.app.RouteDestinations.Companion.ACCEPTED_ORDER
 import com.example.groceryapp.presentation.splashScreen.SplashScreen
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.ACCOUNT
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.CART
@@ -20,6 +21,7 @@ import com.example.groceryapp.presentation.app.RouteDestinations.Companion.SIGN_
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.SIGN_UP
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.SPLASH
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.WELCOME
+import com.example.groceryapp.presentation.cart.AcceptedOrderScreen
 import com.example.groceryapp.presentation.cart.CartScreen
 import com.example.groceryapp.presentation.explore.ExploreScreen
 import com.example.groceryapp.presentation.explore.beverages.BeveragesScreen
@@ -50,6 +52,7 @@ fun Route(navController: NavHostController) {
         composable(SIGN_IN) { SignInScreen(navController) }
         composable(SIGN_UP) { SignUpScreen(navController) }
         composable(EXPLORE_BEVERAGES) { BeveragesScreen(navController) }
+        composable(ACCEPTED_ORDER) { AcceptedOrderScreen(navController) }
     }
 }
 
@@ -69,5 +72,6 @@ class RouteDestinations {
         const val SIGN_IN = "signingScreen"
         const val SIGN_UP = "signupScreen"
         const val EXPLORE_BEVERAGES = "exploreBeverages"
+        const val ACCEPTED_ORDER = "acceptedOrder"
     }
 }
