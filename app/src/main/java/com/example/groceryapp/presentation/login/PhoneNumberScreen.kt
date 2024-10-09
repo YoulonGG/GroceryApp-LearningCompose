@@ -17,8 +17,6 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -40,20 +38,12 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
 import com.example.groceryapp.presentation.app.RouteDestinations
-import kotlinx.coroutines.flow.callbackFlow
 
 @Composable
 fun PhoneNumberScreen(navController: NavController) {
 
     var phoneNumber by remember { mutableStateOf("") }
-    val colors = TextFieldDefaults.colors(
-        focusedContainerColor = Color.White,
-        unfocusedContainerColor = Color.White,
-        disabledContainerColor = Color.White,
-        focusedIndicatorColor = Color.Transparent,
-        unfocusedIndicatorColor = Color.Transparent,
-        disabledIndicatorColor = Color.Transparent
-    )
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -97,7 +87,6 @@ fun PhoneNumberScreen(navController: NavController) {
                 textAlign = TextAlign.Center
             )
             BasicTextField(
-//                colors = colors,
                 value = phoneNumber,
                 onValueChange = { newValue ->
                     if (newValue.all { it.isDigit() } || newValue.isEmpty()) {
@@ -107,11 +96,6 @@ fun PhoneNumberScreen(navController: NavController) {
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                 textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
                 modifier = Modifier.weight(1f).padding(start = 8.dp)
-//                modifier = Modifier
-//                    .background(Color.White, RoundedCornerShape(8.dp))
-//                    .border(BorderStroke(1.dp, if (phoneNumber.isNotEmpty()) Color.Blue else Color.Gray), RoundedCornerShape(8.dp))
-//                    .padding(12.dp)
-//                    .fillMaxWidth()
             )
         }
         HorizontalDivider(modifier = Modifier.background(color = Color.Black), thickness = 1.dp)
@@ -126,7 +110,7 @@ fun PhoneNumberScreen(navController: NavController) {
                 .align(Alignment.End)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),
+                painter = painterResource(id = R.drawable.white_arrow),
                 contentDescription = null,
                 )
         }

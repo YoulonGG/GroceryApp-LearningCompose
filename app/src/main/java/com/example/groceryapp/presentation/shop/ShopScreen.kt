@@ -96,7 +96,7 @@ fun ShopScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = colorResource(id = R.color.white2))
+                .background(color = Color.White)
                 .padding(paddingValues)
                 .verticalScroll(rememberScrollState())
         ) {
@@ -206,7 +206,7 @@ fun ShopScreen(navController: NavController) {
                     color = colorResource(id = R.color.green1)
                 )
             }
-            Column() {
+            Column {
                 ExclusiveHorizontalItemList(items = exclusiveItem)
             }
             Row(
