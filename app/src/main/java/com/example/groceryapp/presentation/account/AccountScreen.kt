@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.Account
+package com.example.groceryapp.presentation.account
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -46,10 +46,10 @@ fun AccountScreen(navController: NavController) {
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .background(color = colorResource(id = R.color.white2))
-                .padding(horizontal = 16.dp)
+                .background(color = Color.White)
+                .padding(horizontal = 15.dp)
         ) {
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(15.dp))
             Row(
                 modifier = Modifier.fillMaxWidth().height(70.dp),
                 horizontalArrangement = Arrangement.Center,
@@ -100,7 +100,7 @@ fun AccountScreen(navController: NavController) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(15.dp))
             HorizontalDivider(modifier = Modifier.background(color = Color.White),thickness = 1.dp)
             Spacer(modifier = Modifier.height(24.dp))
             Row(
@@ -115,7 +115,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Orders",
-                    fontSize = 16.sp,
+                    fontSize = 15.sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
@@ -141,7 +141,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "My Details",
-                    fontSize = 16.sp,
+                    fontSize = 15.sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
@@ -167,7 +167,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Delivery Address",
-                    fontSize = 16.sp,
+                    fontSize = 15.sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
@@ -193,7 +193,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Payment Methods",
-                    fontSize = 16.sp,
+                    fontSize = 15.sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
@@ -219,7 +219,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Promo Card",
-                    fontSize = 16.sp,
+                    fontSize = 15.sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
@@ -245,7 +245,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Notifications",
-                    fontSize = 16.sp,
+                    fontSize = 15.sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
@@ -271,7 +271,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Help",
-                    fontSize = 16.sp,
+                    fontSize = 15.sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
@@ -297,7 +297,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "About",
-                    fontSize = 16.sp,
+                    fontSize = 15.sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
@@ -317,7 +317,7 @@ fun AccountScreen(navController: NavController) {
                 onClick = {},
                 shape = RoundedCornerShape(15.dp),
                 modifier = Modifier
-                    .padding(horizontal = 16.dp)
+                    .padding(horizontal = 15.dp)
                     .height(48.dp)
                     .fillMaxWidth()
             ) {
@@ -325,15 +325,15 @@ fun AccountScreen(navController: NavController) {
                     painter = painterResource(id = R.drawable.logout),
                     contentDescription = "Button icon",
                 )
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(15.dp))
                 Text(
-                    fontSize = 16.sp,
+                    fontSize = 15.sp,
                     color = Color.White,
                     text = "Log out",
                     fontWeight = FontWeight.Bold,
                 )
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(15.dp))
         }
 
     }

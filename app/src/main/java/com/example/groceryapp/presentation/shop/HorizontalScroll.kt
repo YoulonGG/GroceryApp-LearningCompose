@@ -1,7 +1,9 @@
 package com.example.groceryapp.presentation.shop
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -55,9 +57,10 @@ fun ItemCard(item: ExclusiveItem) {
     Card(
         modifier = Modifier
             .padding(horizontal = 8.dp)
-            .height(160.dp)
-            .width(115.dp),
-        shape = RoundedCornerShape(10.dp)
+            .height(180.dp)
+            .width(130.dp),
+        shape = RoundedCornerShape(10.dp),
+        border = BorderStroke(1.dp,Color.Gray),
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -71,15 +74,15 @@ fun ItemCard(item: ExclusiveItem) {
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = item.name,
-                fontSize = 15.sp,
+                fontSize = 16.sp,
                 maxLines = 1,
                 color = Color.Black,
-                modifier = Modifier.align(Alignment.Start)
+                modifier = Modifier.align(Alignment.Start).fillMaxWidth()
             )
             Text(
-                modifier = Modifier.align(Alignment.Start),
+                modifier = Modifier.align(Alignment.Start).fillMaxWidth(),
                 text = item.des,
-                fontSize = 10.sp,
+                fontSize = 12.sp,
                 maxLines = 1,
                 color = Color.Gray
             )
@@ -91,14 +94,14 @@ fun ItemCard(item: ExclusiveItem) {
             ) {
                 Text(
                     text = item.price,
-                    fontSize = 12.sp,
+                    fontSize = 16.sp,
                     maxLines = 1,
                     color = Color.Black
                 )
                 Box(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
-                        .size(25.dp)
+                        .size(30.dp)
                         .clip(RoundedCornerShape(10.dp))
                         .background(color = colorResource(id = R.color.green1))
                         .clickable { }

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.NavHost
-import com.example.groceryapp.presentation.Account.AccountScreen
+import com.example.groceryapp.presentation.account.AccountScreen
 import com.example.groceryapp.presentation.splashScreen.SplashScreen
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.ACCOUNT
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.CART
