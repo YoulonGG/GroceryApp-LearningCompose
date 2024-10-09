@@ -27,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,9 +41,12 @@ data class ExclusiveItem(
 )
 
 @Composable
-fun ExclusiveHorizontalItemList(items: List<ExclusiveItem>) {
+fun ExclusiveHorizontalItemList(
+    modifier: Modifier = Modifier,
+    items: List<ExclusiveItem>
+) {
     LazyRow(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(bottom = 20.dp, top = 8.dp)
     ) {
@@ -60,7 +64,7 @@ fun ItemCard(item: ExclusiveItem) {
             .height(180.dp)
             .width(130.dp),
         shape = RoundedCornerShape(10.dp),
-        border = BorderStroke(1.dp,Color.Gray),
+        border = BorderStroke(0.5.dp,Color.Gray.copy(alpha = 0.6F)),
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

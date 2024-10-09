@@ -39,7 +39,6 @@ fun BottomNavigation(
             tonalElevation = 8.dp,
             containerColor = Color.White,
             modifier = Modifier
-                .height(80.dp)
                 .shadow(elevation = 8.dp)
         ) {
             val navBackStackEntry by navController.currentBackStackEntryAsState()

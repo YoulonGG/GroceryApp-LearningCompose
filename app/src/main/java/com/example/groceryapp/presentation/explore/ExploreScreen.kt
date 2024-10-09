@@ -35,6 +35,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -80,7 +81,6 @@ fun ExploreScreen(navController: NavController) {
                 .padding(innerPadding)
                 .fillMaxSize()
                 .background(color = Color.White)
-                .padding(horizontal = 20.dp)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(16.dp))
@@ -108,15 +108,16 @@ fun ExploreScreen(navController: NavController) {
                 modifier = Modifier
                     .height(50.dp)
                     .fillMaxWidth()
-                    .padding(horizontal = 10.dp)
+                    .padding(horizontal = 16.dp)
+                    .shadow(elevation = 16.dp, shape = RoundedCornerShape(10.dp))
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             Column(
-                modifier = Modifier.fillMaxSize().background(color = Color.White)
+                modifier = Modifier.fillMaxSize().background(color = Color.White).padding(horizontal = 16.dp)
             ) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceEvenly,
-                    modifier = Modifier.fillMaxWidth().background(color = Color.White)
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
                 ) {
                     Card(
                         modifier = Modifier
@@ -124,7 +125,6 @@ fun ExploreScreen(navController: NavController) {
                             .width(180.dp)
                             .height(200.dp)
                             .background(color = Color.White)
-                            .padding(horizontal = 10.dp, vertical = 10.dp)
                             .border(BorderStroke(1.dp, color = colorResource(id = R.color.blue1)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -140,27 +140,27 @@ fun ExploreScreen(navController: NavController) {
                                 painter = painterResource(id = R.drawable.explore1),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(110.dp)
+                                    .size(115.dp)
                                     .clip(CircleShape)
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                                 text = "Fresh Fruits and Vegetables",
-                                fontSize = 14.sp,
+                                fontSize = 16.sp,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
                             )
                         }
                     }
+                    Spacer(modifier = Modifier.width(16.dp))
                     Card(
                         modifier = Modifier
                             .weight(1f)
                             .width(180.dp)
                             .height(200.dp)
                             .background(color = Color.White)
-                            .padding(horizontal = 10.dp, vertical = 10.dp)
                             .border(BorderStroke(1.dp, color = colorResource(id = R.color.purple_200)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -176,14 +176,14 @@ fun ExploreScreen(navController: NavController) {
                                 painter = painterResource(id = R.drawable.explore2),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(110.dp)
+                                    .size(115.dp)
                                     .clip(CircleShape)
                             )
                             Spacer(modifier = Modifier.height(8.dp))
-                            androidx.compose.material.Text(
+                            Text(
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                                 text = "Cooking Oil and Ghee",
-                                fontSize = 14.sp,
+                                fontSize = 16.sp,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
@@ -193,7 +193,7 @@ fun ExploreScreen(navController: NavController) {
                 }
                 Row(
                     horizontalArrangement = Arrangement.SpaceEvenly,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
                 ) {
                     Card(
                         modifier = Modifier
@@ -201,7 +201,6 @@ fun ExploreScreen(navController: NavController) {
                             .width(180.dp)
                             .height(200.dp)
                             .background(color = Color.White)
-                            .padding(horizontal = 10.dp, vertical = 10.dp)
                             .border(BorderStroke(1.dp, color = colorResource(id = R.color.teal_700)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -217,27 +216,27 @@ fun ExploreScreen(navController: NavController) {
                                 painter = painterResource(id = R.drawable.explore3),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(110.dp)
+                                    .size(115.dp)
                                     .clip(CircleShape)
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                                 text = "Meat and Fish",
-                                fontSize = 14.sp,
+                                fontSize = 16.sp,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
                             )
                         }
                     }
+                    Spacer(modifier = Modifier.width(16.dp))
                     Card(
                         modifier = Modifier
                             .weight(1f)
                             .width(180.dp)
                             .height(200.dp)
                             .background(color = Color.White)
-                            .padding(horizontal = 10.dp, vertical = 10.dp)
                             .border(BorderStroke(1.dp, color = colorResource(id = R.color.green1)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -253,14 +252,14 @@ fun ExploreScreen(navController: NavController) {
                                 painter = painterResource(id = R.drawable.explore4),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(110.dp)
+                                    .size(115.dp)
                                     .clip(CircleShape)
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                                 text = "Bakery and Snacks",
-                                fontSize = 14.sp,
+                                fontSize = 16.sp,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
@@ -270,7 +269,7 @@ fun ExploreScreen(navController: NavController) {
                 }
                 Row(
                     horizontalArrangement = Arrangement.SpaceEvenly,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
                 ) {
                     Card(
                         modifier = Modifier
@@ -278,7 +277,6 @@ fun ExploreScreen(navController: NavController) {
                             .width(180.dp)
                             .height(200.dp)
                             .background(color = Color.White)
-                            .padding(horizontal = 10.dp, vertical = 10.dp)
                             .border(BorderStroke(1.dp, color = colorResource(id = R.color.blue2)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -294,20 +292,21 @@ fun ExploreScreen(navController: NavController) {
                                 painter = painterResource(id = R.drawable.explore5),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(110.dp)
+                                    .size(115.dp)
                                     .clip(CircleShape)
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                                 text = "Dairy and Egg",
-                                fontSize = 14.sp,
+                                fontSize = 16.sp,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
                             )
                         }
                     }
+                    Spacer(modifier = Modifier.width(16.dp))
                     Card(
                         modifier = Modifier
                             .weight(1f)
@@ -315,7 +314,6 @@ fun ExploreScreen(navController: NavController) {
                             .width(180.dp)
                             .height(200.dp)
                             .background(color = Color.White)
-                            .padding(horizontal = 10.dp, vertical = 10.dp)
                             .border(BorderStroke(1.dp, color = colorResource(id = R.color.purple_200)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -331,14 +329,14 @@ fun ExploreScreen(navController: NavController) {
                                 painter = painterResource(id = R.drawable.explore6),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(110.dp)
+                                    .size(115.dp)
                                     .clip(CircleShape)
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                                 text = "Beverages",
-                                fontSize = 14.sp,
+                                fontSize = 16.sp,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
@@ -348,7 +346,7 @@ fun ExploreScreen(navController: NavController) {
                 }
                 Row(
                     horizontalArrangement = Arrangement.SpaceEvenly,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
                 ) {
                     Card(
                         modifier = Modifier
@@ -357,7 +355,6 @@ fun ExploreScreen(navController: NavController) {
                             .width(180.dp)
                             .height(200.dp)
                             .background(color = Color.White)
-                            .padding(horizontal = 10.dp, vertical = 10.dp)
                             .border(BorderStroke(1.dp, color = colorResource(id = R.color.purple_700)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -373,20 +370,21 @@ fun ExploreScreen(navController: NavController) {
                                 painter = painterResource(id = R.drawable.explore6),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(110.dp)
+                                    .size(115.dp)
                                     .clip(CircleShape)
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                                 text = "Beverages",
-                                fontSize = 14.sp,
+                                fontSize = 16.sp,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
                             )
                         }
                     }
+                    Spacer(modifier = Modifier.width(16.dp))
                     Card(
                         modifier = Modifier
                             .weight(1f)
@@ -394,7 +392,6 @@ fun ExploreScreen(navController: NavController) {
                             .width(180.dp)
                             .height(200.dp)
                             .background(color = Color.White)
-                            .padding(horizontal = 10.dp, vertical = 10.dp)
                             .border(BorderStroke(1.dp, color = colorResource(id = R.color.blue1)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -410,14 +407,14 @@ fun ExploreScreen(navController: NavController) {
                                 painter = painterResource(id = R.drawable.explore6),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(110.dp)
+                                    .size(115.dp)
                                     .clip(CircleShape)
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                                 text = "Beverages",
-                                fontSize = 14.sp,
+                                fontSize = 16.sp,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
