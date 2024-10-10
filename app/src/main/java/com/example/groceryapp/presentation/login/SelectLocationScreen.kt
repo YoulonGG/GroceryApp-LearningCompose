@@ -16,6 +16,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -62,12 +63,12 @@ fun SelectLocationScreen(navController: NavController) {
     Column(
         modifier = Modifier.fillMaxSize(),
     ) {
-        Spacer(modifier = Modifier.height(80.dp))
+        Spacer(modifier = Modifier.height(70.dp))
         Image(
             painter = painterResource(id = R.drawable.baseline_arrow_back_ios_new_24),
             contentDescription = null,
             modifier = Modifier
-                .padding(start = 32.dp)
+                .padding(start = 16.dp)
                 .width(24.dp)
                 .height(24.dp)
                 .clickable { navController.popBackStack() }
@@ -85,7 +86,7 @@ fun SelectLocationScreen(navController: NavController) {
             modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
             text = "Select your location",
             color = Color.Black,
-            fontSize = 22.sp,
+            style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(10.dp))
@@ -93,20 +94,19 @@ fun SelectLocationScreen(navController: NavController) {
             modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
             text = "Switch on your location to stay tuned with what's happening in your area",
             color = Color.Gray,
-            fontSize = 14.sp,
+            style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(52.dp))
         Text(
             text = "Your Zone",
             color = Color.Gray,
-            fontSize = 14.sp,
-            modifier = Modifier.padding(start = 30.dp)
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(start = 16.dp)
         )
         ExposedDropdownMenuBox(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp)
                 .height(50.dp),
             expanded = expandedZone,
             onExpandedChange = { expandedZone = !expandedZone }
@@ -142,13 +142,12 @@ fun SelectLocationScreen(navController: NavController) {
         Text(
             text = "Your Area",
             color = Color.Gray,
-            fontSize = 14.sp,
-            modifier = Modifier.padding(start = 30.dp)
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(start = 16.dp)
         )
         ExposedDropdownMenuBox(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp)
                 .height(50.dp),
             expanded = expandedArea,
             onExpandedChange = { expandedArea = !expandedArea }
@@ -187,12 +186,12 @@ fun SelectLocationScreen(navController: NavController) {
             onClick = { navController.navigate(RouteDestinations.SIGN_IN) },
             shape = RoundedCornerShape(15.dp),
             modifier = Modifier
-                .padding(horizontal = 36.dp)
+                .padding(horizontal = 16.dp)
                 .height(45.dp)
                 .fillMaxWidth()
         ) {
             Text(
-                fontSize = 16.sp,
+                style = MaterialTheme.typography.titleMedium,
                 color = Color.White,
                 text = "Submit",
                 fontWeight = FontWeight.Bold,

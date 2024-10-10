@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -56,15 +57,15 @@ fun WelcomeScreen(navController: NavController) {
                     .height(40.dp)
                 )
             Text(
-                fontSize = 42.sp,
+                style = MaterialTheme.typography.displayMedium,
                 color = Color.White,
                 text = "Welcome \n to Our Store",
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.padding(horizontal = 42.dp)
+                modifier = Modifier.padding(horizontal = 42.dp).fillMaxWidth()
             )
             Text(
-                fontSize = 14.sp,
+                style = MaterialTheme.typography.bodyMedium,
                 color = Color.White,
                     text = "Get your groceries in as fast as one hour",
                 modifier = Modifier.padding(horizontal = 42.dp).padding(top = 8.dp)
@@ -75,7 +76,7 @@ fun WelcomeScreen(navController: NavController) {
                 onClick = {navController.navigate(RouteDestinations.LOGIN)},
                 shape = RoundedCornerShape(15.dp),
                 modifier = Modifier
-                    .padding(horizontal = 36.dp)
+                    .padding(horizontal = 16.dp)
                     .height(48.dp)
                     .fillMaxWidth()
             ) {

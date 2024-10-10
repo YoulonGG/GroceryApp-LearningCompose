@@ -16,6 +16,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -47,7 +48,7 @@ fun PhoneNumberScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 32.dp)
+            .padding(horizontal = 16.dp)
     ) {
         Spacer(modifier = Modifier.height(80.dp))
         Image(
@@ -61,13 +62,13 @@ fun PhoneNumberScreen(navController: NavController) {
         Text(
             text = "Enter your mobile number",
             color = Color.Black,
-            fontSize = 22.sp
+            style = MaterialTheme.typography.titleLarge
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(
             text = "Mobile Number",
             color = Color.Gray,
-            fontSize = 14.sp
+            style = MaterialTheme.typography.titleMedium
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -81,7 +82,7 @@ fun PhoneNumberScreen(navController: NavController) {
             )
             Text(
                 text = "+855",
-                fontSize = 16.sp,
+                style = MaterialTheme.typography.bodyLarge,
                 color = Color.Black,
                 modifier = Modifier.padding(start = 10.dp),
                 textAlign = TextAlign.Center
@@ -94,7 +95,7 @@ fun PhoneNumberScreen(navController: NavController) {
                     }
                 },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-                textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
+                textStyle = TextStyle(fontSize = 18.sp, color = Color.Black),
                 modifier = Modifier.weight(1f).padding(start = 8.dp)
             )
         }

@@ -42,10 +42,11 @@ fun LoginScreen(navController: NavHostController) {
         Column(
             modifier = Modifier
                 .padding(top = 360.dp)
-                .padding(horizontal = 32.dp)
+                .padding(horizontal = 16.dp)
         ) {
             Text(
-                fontSize = 22.sp,
+                modifier = Modifier.fillMaxWidth(),
+                style = MaterialTheme.typography.titleLarge,
                 color = Color.Black,
                 text = "Get your groceries \nwith nectar",
                 fontWeight = FontWeight.Bold,
@@ -64,7 +65,7 @@ fun LoginScreen(navController: NavHostController) {
                 )
                 Text(
                     text = selectedCountryCode,
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.bodyLarge,
                     color = Color.Black,
                     modifier = Modifier.padding(start = 10.dp)
                 )
@@ -80,7 +81,7 @@ fun LoginScreen(navController: NavHostController) {
                     .fillMaxWidth()
             ) {
                 Text(
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.White,
                     text = "Login",
                     fontWeight = FontWeight.Bold,
@@ -89,7 +90,7 @@ fun LoginScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(42.dp))
             Text(
                 textAlign = TextAlign.Center,
-                fontSize = 14.sp,
+                style = MaterialTheme.typography.bodyMedium,
                 color = Color.Gray,
                 text = "Or connect with social media",
                 modifier = Modifier
@@ -112,7 +113,7 @@ fun LoginScreen(navController: NavHostController) {
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
-                    fontSize = 14.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.White,
                     text = "Continue with Google",
                 )
@@ -133,7 +134,7 @@ fun LoginScreen(navController: NavHostController) {
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
-                    fontSize = 14.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.White,
                     text = "Continue with Facebook",
                 )

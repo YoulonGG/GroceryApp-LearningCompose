@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -60,7 +61,7 @@ fun OTPScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 32.dp)
+            .padding(horizontal = 16.dp)
             .background(color = Color.White)
     ) {
         Spacer(modifier = Modifier.height(80.dp))
@@ -76,13 +77,13 @@ fun OTPScreen(navController: NavController) {
         Text(
             text = "Enter 4-digits code",
             color = Color.Black,
-            fontSize = 22.sp
+            style = MaterialTheme.typography.titleLarge
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(
             text = "Code",
             color = Color.Gray,
-            fontSize = 14.sp
+            style = MaterialTheme.typography.titleMedium
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -127,7 +128,7 @@ fun OTPScreen(navController: NavController) {
         ) {
             Text(
                 text = "Resend Code",
-                fontSize = 18.sp,
+                style = MaterialTheme.typography.bodyLarge,
                 color = colorResource(id = R.color.green1),
                 textAlign = TextAlign.Center
             )

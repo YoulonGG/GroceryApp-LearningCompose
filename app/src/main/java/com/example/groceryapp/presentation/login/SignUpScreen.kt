@@ -21,9 +21,8 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -45,6 +44,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.presentation.app.RouteDestinations
 
 @Composable
 fun SignUpScreen(navController: NavController) {
@@ -68,29 +68,29 @@ fun SignUpScreen(navController: NavController) {
         )
         Spacer(modifier = Modifier.height(42.dp))
         Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Sign Up",
             color = Color.Black,
-            fontSize = 22.sp,
+            style = MaterialTheme.typography.titleLarge
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Enter your credentials to continue",
             color = Color.Gray,
-            fontSize = 14.sp,
+            style = MaterialTheme.typography.bodyMedium
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Username",
             color = Color.Gray,
-            fontSize = 16.sp,
+            style = MaterialTheme.typography.bodyLarge
         )
         Spacer(modifier = Modifier.height(8.dp))
         BasicTextField(
             modifier = Modifier
-                .padding(horizontal = 36.dp)
+                .padding(horizontal = 16.dp)
                 .fillMaxWidth(),
             value = signupUsername,
             onValueChange = {signupUsername = it},
@@ -100,18 +100,18 @@ fun SignUpScreen(navController: NavController) {
             ),
         )
         Spacer(modifier = Modifier.height(10.dp))
-        HorizontalDivider(modifier = Modifier.padding(horizontal = 36.dp).background(color = Color.Black), thickness = 1.dp)
+        HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp).background(color = Color.Black), thickness = 1.dp)
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Email",
             color = Color.Gray,
-            fontSize = 16.sp,
+            style = MaterialTheme.typography.bodyLarge
         )
         Spacer(modifier = Modifier.height(8.dp))
         BasicTextField(
             modifier = Modifier
-                .padding(horizontal = 36.dp)
+                .padding(horizontal = 16.dp)
                 .fillMaxWidth(),
             value = signupEmail,
             onValueChange = {signupEmail = it},
@@ -121,16 +121,16 @@ fun SignUpScreen(navController: NavController) {
             ),
         )
         Spacer(modifier = Modifier.height(10.dp))
-        HorizontalDivider(modifier = Modifier.padding(horizontal = 36.dp).background(color = Color.Black), thickness = 1.dp)
+        HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp).background(color = Color.Black), thickness = 1.dp)
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Password",
             color = Color.Gray,
-            fontSize = 16.sp,
+            style = MaterialTheme.typography.bodyLarge
         )
         Box(
-            modifier = Modifier.padding(horizontal = 36.dp)
+            modifier = Modifier.padding(horizontal = 16.dp)
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
@@ -157,50 +157,50 @@ fun SignUpScreen(navController: NavController) {
                 }
             }
         }
-        HorizontalDivider(modifier = Modifier.padding(horizontal = 36.dp).background(color = Color.Black), thickness = 1.dp)
+        HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp).background(color = Color.Black), thickness = 1.dp)
         Spacer(modifier = Modifier.height(8.dp))
         Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp)
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
         ) {
             Text(
                 text = "By continuing you agree to our",
-                fontSize = 14.sp,
+                style = MaterialTheme.typography.bodyMedium,
                 color = Color.Black,
             )
             Text(
                 modifier = Modifier.weight(1f),
                 text = " Terms of Service",
-                fontSize = 14.sp,
+                style = MaterialTheme.typography.bodyMedium,
                 color = colorResource(id = R.color.green1),
             )
         }
         Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp)
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
         ) {
             Text(
                 text = "and",
-                fontSize = 14.sp,
+                style = MaterialTheme.typography.bodyMedium,
                 color = Color.Black,
             )
             Text(
                 modifier = Modifier.weight(1f),
                 text = " Privacy Policy",
-                fontSize = 14.sp,
+                style = MaterialTheme.typography.bodyMedium,
                 color = colorResource(id = R.color.green1),
                 )
         }
         Spacer(modifier = Modifier.height(42.dp))
         Button(
             colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
-            onClick = {navController.navigate("shop")},
+            onClick = {navController.navigate(RouteDestinations.SIGN_IN)},
             shape = RoundedCornerShape(15.dp),
             modifier = Modifier
-                .padding(horizontal = 36.dp)
+                .padding(horizontal = 16.dp)
                 .height(48.dp)
                 .fillMaxWidth()
         ) {
             Text(
-                fontSize = 16.sp,
+                style = MaterialTheme.typography.titleMedium,
                 color = Color.White,
                 text = "Sign Up",
                 fontWeight = FontWeight.Bold,
@@ -213,7 +213,7 @@ fun SignUpScreen(navController: NavController) {
         ) {
             Text(
                 text = "Already have an account?",
-                fontSize = 14.sp,
+                style = MaterialTheme.typography.bodyMedium,
                 color = Color.Black
             )
             Text(
@@ -223,7 +223,7 @@ fun SignUpScreen(navController: NavController) {
                         navController.navigate("signingScreen")
                     },
                 text = "Login",
-                fontSize = 14.sp,
+                style = MaterialTheme.typography.bodyMedium,
                 color = colorResource(id = R.color.green1)
             )
         }

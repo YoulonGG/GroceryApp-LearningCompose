@@ -1,6 +1,5 @@
 package com.example.groceryapp.presentation.bottomNavigationBar
 
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar

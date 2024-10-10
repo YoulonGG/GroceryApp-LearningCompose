@@ -45,7 +45,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
 
 
@@ -152,7 +151,7 @@ fun Filter(
                     )
                     Text(
                         text = "Filters",
-                        fontSize = 18.sp,
+                        style = MaterialTheme.typography.titleLarge,
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
@@ -166,7 +165,7 @@ fun Filter(
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = "Categories",
-                        fontSize = 22.sp,
+                        style = MaterialTheme.typography.headlineSmall,
                         color = Color.Black,
                     )
                     Spacer(modifier = Modifier.height(10.dp))
@@ -183,7 +182,7 @@ fun Filter(
                             onCheckedChange = { categoryEggs = it },
                         )
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text(text = "Eggs", fontSize = 15.sp, color = if (categoryEggs) colorResource(id = R.color.green1) else Color.Black)
+                        Text(text = "Eggs", style = MaterialTheme.typography.bodyLarge, color = if (categoryEggs) colorResource(id = R.color.green1) else Color.Black)
                     }
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -198,7 +197,7 @@ fun Filter(
                             onCheckedChange = { categoryNoodle = it }
                         )
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text(text = "Noodle & Pasta", fontSize = 15.sp, color = if (categoryNoodle) colorResource(id = R.color.green1) else Color.Black)
+                        Text(text = "Noodle & Pasta", style = MaterialTheme.typography.bodyLarge, color = if (categoryNoodle) colorResource(id = R.color.green1) else Color.Black)
                     }
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -213,7 +212,7 @@ fun Filter(
                             onCheckedChange = { categoryChips = it }
                         )
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text(text = "Chips & Crispy", fontSize = 15.sp, color = if (categoryChips) colorResource(id = R.color.green1) else Color.Black)
+                        Text(text = "Chips & Crispy", style = MaterialTheme.typography.bodyLarge, color = if (categoryChips) colorResource(id = R.color.green1) else Color.Black)
                     }
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -228,14 +227,14 @@ fun Filter(
                             onCheckedChange = { categoryFastFood = it }
                         )
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text(text = "Fast Food", fontSize = 15.sp, color = if (categoryFastFood) colorResource(id = R.color.green1) else Color.Black)
+                        Text(text = "Fast Food", style = MaterialTheme.typography.bodyLarge, color = if (categoryFastFood) colorResource(id = R.color.green1) else Color.Black)
                     }
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = "Brand",
-                    fontSize = 22.sp,
+                    style = MaterialTheme.typography.headlineSmall,
                     color = Color.Black,
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -252,7 +251,7 @@ fun Filter(
                         onCheckedChange = { brand1 = it },
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(text = "Eggs", fontSize = 15.sp, color = if (brand1) colorResource(id = R.color.green1) else Color.Black)
+                    Text(text = "Eggs", style = MaterialTheme.typography.bodyLarge, color = if (brand1) colorResource(id = R.color.green1) else Color.Black)
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -267,7 +266,7 @@ fun Filter(
                         onCheckedChange = { brand2 = it }
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(text = "Noodle & Pasta", fontSize = 15.sp, color = if (brand2) colorResource(id = R.color.green1) else Color.Black)
+                    Text(text = "Noodle & Pasta", style = MaterialTheme.typography.bodyLarge, color = if (brand2) colorResource(id = R.color.green1) else Color.Black)
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -282,7 +281,7 @@ fun Filter(
                         onCheckedChange = { brand3 = it }
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(text = "Ifad", fontSize = 15.sp, color = if (brand3) colorResource(id = R.color.green1) else Color.Black)
+                    Text(text = "Ifad", style = MaterialTheme.typography.bodyLarge, color = if (brand3) colorResource(id = R.color.green1) else Color.Black)
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -299,7 +298,7 @@ fun Filter(
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = "Kazi Farmas",
-                        fontSize = 15.sp,
+                        style = MaterialTheme.typography.bodyLarge,
                         color = if (brand4) colorResource(id = R.color.green1) else Color.Black
                     )
                 }
@@ -327,6 +326,6 @@ fun Filter(
 
 @Preview(showBackground = true)
 @Composable
-fun FilterBeverages() {
-    BeveragesScreen(navController = rememberNavController())
+fun PreviewFilter() {
+    Filter { }
 }

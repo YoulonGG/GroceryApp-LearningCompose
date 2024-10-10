@@ -21,6 +21,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -66,29 +67,29 @@ fun SignInScreen(navController: NavController) {
         )
         Spacer(modifier = Modifier.height(42.dp))
         Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Log in",
             color = Color.Black,
-            fontSize = 22.sp,
+            style = MaterialTheme.typography.titleLarge
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Enter your email and password",
             color = Color.Gray,
-            fontSize = 14.sp,
+            style = MaterialTheme.typography.bodyMedium
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Email",
             color = Color.Gray,
-            fontSize = 16.sp,
+            style = MaterialTheme.typography.bodyLarge
         )
         Spacer(modifier = Modifier.height(8.dp))
         BasicTextField(
             modifier = Modifier
-                .padding(horizontal = 36.dp)
+                .padding(horizontal = 16.dp)
                 .fillMaxWidth(),
             value = email,
             onValueChange = {email = it},
@@ -98,16 +99,16 @@ fun SignInScreen(navController: NavController) {
             ),
         )
         Spacer(modifier = Modifier.height(10.dp))
-        HorizontalDivider(modifier = Modifier.padding(horizontal = 36.dp).background(color = Color.Black), thickness = 1.dp)
+        HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp).background(color = Color.Black), thickness = 1.dp)
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Password",
             color = Color.Gray,
-            fontSize = 16.sp,
+            style = MaterialTheme.typography.bodyLarge
         )
         Box(
-            modifier = Modifier.padding(horizontal = 36.dp)
+            modifier = Modifier.padding(horizontal = 16.dp)
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
@@ -134,11 +135,11 @@ fun SignInScreen(navController: NavController) {
                 }
             }
         }
-        HorizontalDivider(modifier = Modifier.padding(horizontal = 36.dp).background(color = Color.Black), thickness = 1.dp)
+        HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp).background(color = Color.Black), thickness = 1.dp)
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             modifier = Modifier
-                .padding(horizontal = 36.dp)
+                .padding(horizontal = 16.dp)
                 .fillMaxWidth(),
             text = "Forget your password?",
             fontSize = 14.sp,
@@ -151,12 +152,12 @@ fun SignInScreen(navController: NavController) {
             onClick = {navController.navigate("shop")},
             shape = RoundedCornerShape(15.dp),
             modifier = Modifier
-                .padding(horizontal = 36.dp)
+                .padding(horizontal = 16.dp)
                 .height(48.dp)
                 .fillMaxWidth()
         ) {
             Text(
-                fontSize = 16.sp,
+                style = MaterialTheme.typography.titleMedium,
                 color = Color.White,
                 text = "Login",
                 fontWeight = FontWeight.Bold,
