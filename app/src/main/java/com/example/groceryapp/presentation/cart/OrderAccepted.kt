@@ -58,7 +58,7 @@ fun AcceptedOrderScreen(navController: NavController) {
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
             text = "Your Order has been Accepted",
-            fontSize = 32.sp,
+            style = MaterialTheme.typography.displaySmall,
             color = Color.Black,
             textAlign = TextAlign.Center
         )
@@ -68,7 +68,7 @@ fun AcceptedOrderScreen(navController: NavController) {
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
             text = "Your items have been placed and it’s on its way to being processed",
-            fontSize = 16.sp,
+            style = MaterialTheme.typography.titleMedium,
             color = Color.Gray,
             textAlign = TextAlign.Center
         )
@@ -83,7 +83,7 @@ fun AcceptedOrderScreen(navController: NavController) {
                 .fillMaxWidth()
         ) {
             Text(
-                fontSize = 16.sp,
+                style = MaterialTheme.typography.titleMedium,
                 color = Color.White,
                 text = "Track Order",
                 fontWeight = FontWeight.Bold,
@@ -98,7 +98,7 @@ fun AcceptedOrderScreen(navController: NavController) {
                 .fillMaxWidth()
                 .clickable { navController.navigate(RouteDestinations.CART) },
             text = "Back Home",
-            fontSize = 16.sp,
+            style = MaterialTheme.typography.titleMedium,
             color = Color.Black,
             textAlign = TextAlign.Center
         )

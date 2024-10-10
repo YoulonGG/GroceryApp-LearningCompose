@@ -1,6 +1,5 @@
 package com.example.groceryapp.presentation.cart
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,8 +19,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -31,7 +28,6 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -45,16 +41,11 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
 import com.example.groceryapp.presentation.app.RouteDestinations
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.time.delay
-import java.time.Duration
 
 data class CartClass(
     val image: Int,
@@ -97,8 +88,7 @@ fun CartList(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Divider(
-                color = Color.Gray,
-                thickness = 1.dp,
+                color = Color.Gray.copy(alpha = 0.4F),
                 modifier = Modifier.padding(horizontal = 8.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -126,7 +116,7 @@ fun CartList(
                 ) {
                     Spacer(modifier = Modifier.height(20.dp).width(60.dp))
                     Text(
-                        fontSize = 16.sp,
+                        style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
                         color = Color.White,
                         text = "Check Out",
                         fontWeight = FontWeight.Bold,
@@ -137,7 +127,7 @@ fun CartList(
                             .width(60.dp)
                             .background(color = colorResource(id = R.color.green3)),
                         text = "$99.99",
-                        fontSize = 14.sp,
+                        style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
                         color = Color.White,
                         textAlign = TextAlign.Center
                     )
@@ -176,7 +166,7 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = "Checkout",
-                    fontSize = 22.sp,
+                    style = androidx.compose.material3.MaterialTheme.typography.titleLarge,
                     color = Color.Black,
                 )
                 Image(
@@ -193,14 +183,14 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             ){
                 Text(
                     text = "Delivery",
-                    fontSize = 18.sp,
+                    style = androidx.compose.material3.MaterialTheme.typography.bodyLarge,
                     color = Color.Gray
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
                     textAlign = TextAlign.End,
                     text = "Select Method",
-                    fontSize = 16.sp,
+                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
                     color = Color.Black
                 )
                 Spacer(modifier = Modifier.width(8.dp))
@@ -216,7 +206,7 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             ){
                 Text(
                     text = "Payment",
-                    fontSize = 18.sp,
+                    style = androidx.compose.material3.MaterialTheme.typography.bodyLarge,
                     color = Color.Gray
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -237,13 +227,13 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             ){
                 Text(
                     text = "Promo Code",
-                    fontSize = 18.sp,
+                    style = androidx.compose.material3.MaterialTheme.typography.bodyLarge,
                     color = Color.Gray
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
                     text = "Pick Discount",
-                    fontSize = 16.sp,
+                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
                     color = Color.Black
                 )
                 Spacer(modifier = Modifier.width(8.dp))
@@ -259,14 +249,14 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             ){
                 Text(
                     text = "Total Cost",
-                    fontSize = 18.sp,
+                    style = androidx.compose.material3.MaterialTheme.typography.bodyLarge,
                     color = Color.Gray
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
                     textAlign = TextAlign.End,
                     text = "$99.99",
-                    fontSize = 16.sp,
+                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
                     color = Color.Black
                 )
                 Spacer(modifier = Modifier.width(8.dp))
@@ -278,12 +268,12 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "By placing an order you agree to our",
-                fontSize = 14.sp,
+                style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
                 color = Color.Gray
             )
             Text(
                 text = "Terms and Conditions",
-                fontSize = 14.sp,
+                style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
                 color = Color.Black
 
             )
@@ -300,7 +290,7 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
                     .fillMaxWidth()
             ) {
                 Text(
-                    fontSize = 16.sp,
+                    style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
                     color = Color.White,
                     text = "Place Order",
                     fontWeight = FontWeight.Bold,
@@ -347,13 +337,13 @@ fun CartCard(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = item.name,
-                    fontSize = 16.sp,
+                    style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
                     color = Color.Black
                 )
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = item.des,
-                    fontSize = 14.sp,
+                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
                     color = Color.Gray
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -378,7 +368,7 @@ fun CartCard(
                     Spacer(modifier = Modifier.width(16.dp))
                     Text(
                         text = item.quantity.toString(),
-                        fontSize = 16.sp,
+                        style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
                         color = Color.Black
                     )
                     Spacer(modifier = Modifier.width(16.dp))
@@ -411,7 +401,7 @@ fun CartCard(
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
                     text = "$${item.totalPrice}",
-                    fontSize = 18.sp,
+                    style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
                     color = Color.Black
                 )
             }

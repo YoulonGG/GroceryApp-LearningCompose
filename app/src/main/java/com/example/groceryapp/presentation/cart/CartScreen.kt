@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.TopAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -54,7 +55,7 @@ fun CartScreen(navController: NavController) {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = "Cart",
-                        fontSize = 18.sp,
+                        style = MaterialTheme.typography.titleLarge,
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
@@ -76,7 +77,7 @@ fun CartScreen(navController: NavController) {
     }
 }
 
-    @Preview(showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun PreviewCart() {
     CartScreen(navController = rememberNavController())

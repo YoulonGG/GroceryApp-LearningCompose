@@ -22,6 +22,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -82,7 +83,7 @@ fun BeveragesScreen(navController: NavController) {
                         )
                         Text(
                             text = "Beverages",
-                            fontSize = 18.sp,
+                            style = MaterialTheme.typography.titleLarge,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Center

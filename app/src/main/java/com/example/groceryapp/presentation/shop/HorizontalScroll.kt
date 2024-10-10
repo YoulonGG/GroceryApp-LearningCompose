@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -78,7 +79,7 @@ fun ItemCard(item: ExclusiveItem) {
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = item.name,
-                fontSize = 16.sp,
+                style = MaterialTheme.typography.titleMedium,
                 maxLines = 1,
                 color = Color.Black,
                 modifier = Modifier.align(Alignment.Start).fillMaxWidth()
@@ -86,7 +87,7 @@ fun ItemCard(item: ExclusiveItem) {
             Text(
                 modifier = Modifier.align(Alignment.Start).fillMaxWidth(),
                 text = item.des,
-                fontSize = 12.sp,
+                style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
                 color = Color.Gray
             )
@@ -98,7 +99,7 @@ fun ItemCard(item: ExclusiveItem) {
             ) {
                 Text(
                     text = item.price,
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
                     color = Color.Black
                 )
