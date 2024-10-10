@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -66,8 +67,8 @@ fun AccountScreen(navController: NavController) {
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .fillMaxWidth(0.7f)
-                            .fillMaxHeight(0.7f)
+                            .fillMaxWidth(0.8f)
+                            .fillMaxHeight(0.8f)
                     )
                 }
                 Spacer(modifier = Modifier.width(8.dp))
@@ -82,7 +83,7 @@ fun AccountScreen(navController: NavController) {
                     ) {
                         Text(
                             text = "John Youlong",
-                            fontSize = 18.sp,
+                            style = MaterialTheme.typography.titleMedium,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -92,10 +93,9 @@ fun AccountScreen(navController: NavController) {
                             modifier = Modifier.size(18.dp).padding(start = 4.dp)
                         )
                     }
-                    Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = "johnyoulong@gmail.com",
-                        fontSize = 14.sp,
+                        style = MaterialTheme.typography.bodyMedium,
                         color = Color.Gray
                     )
                 }
@@ -115,7 +115,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Orders",
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.Black,
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -140,7 +140,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "My Details",
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.Black,
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -165,7 +165,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Delivery Address",
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.Black
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -190,7 +190,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Payment Methods",
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.Black,
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -215,7 +215,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Promo Card",
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.Black,
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -240,7 +240,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Notifications",
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.Black,
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -265,7 +265,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Help",
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.Black,
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -290,7 +290,7 @@ fun AccountScreen(navController: NavController) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "About",
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.Black,
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -318,7 +318,7 @@ fun AccountScreen(navController: NavController) {
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.White,
                     text = "Log out",
                     fontWeight = FontWeight.Bold,

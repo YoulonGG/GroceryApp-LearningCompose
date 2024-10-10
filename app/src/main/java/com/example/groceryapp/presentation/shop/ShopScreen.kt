@@ -3,7 +3,6 @@ package com.example.groceryapp.presentation.shop
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,9 +14,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -93,6 +95,12 @@ fun ShopScreen(navController: NavController) {
         ExclusiveItem(R.drawable.banana, "Red Apple", "Good for health", "4.00$"),
     )
 
+    val itemsList = listOf(
+        Pair(R.drawable.g1, "Pulse"),
+        Pair(R.drawable.g2, "Rice"),
+        Pair(R.drawable.g2, "Rice")
+    )
+
     Scaffold(
         bottomBar = { BottomNavigation(navController) },
     ) { paddingValues ->
@@ -124,7 +132,7 @@ fun ShopScreen(navController: NavController) {
                 )
                 Text(
                     text = "Phnom Penh, Cambodia",
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.titleMedium,
                     color = colorResource(id = R.color.black)
 
                 )
@@ -204,7 +212,7 @@ fun ShopScreen(navController: NavController) {
             ) {
                 Text(
                     text = "Exclusive Offer",
-                    fontSize = 18.sp,
+                    style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     color = colorResource(id = R.color.black)
                 )
@@ -225,13 +233,13 @@ fun ShopScreen(navController: NavController) {
             ) {
                 Text(
                     text = "Best Selling",
-                    fontSize = 18.sp,
+                    style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     color = colorResource(id = R.color.black)
                 )
                 Text(
                     text = "See all",
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.bodyLarge,
                     color = colorResource(id = R.color.green1)
                 )
             }
@@ -246,16 +254,48 @@ fun ShopScreen(navController: NavController) {
             ) {
                 Text(
                     text = "Groceries",
-                    fontSize = 18.sp,
+                    style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     color = colorResource(id = R.color.black)
                 )
                 Text(
                     text = "See all",
-                    fontSize = 16.sp,
+                    style = MaterialTheme.typography.bodyLarge,
                     color = colorResource(id = R.color.green1)
                 )
             }
+            Spacer(modifier = Modifier.height(8.dp))
+            LazyRow(
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)
+            ) {
+                items(itemsList) { item ->
+                    Card(
+                        modifier = Modifier
+                            .width(180.dp)
+                            .padding(horizontal = 8.dp),
+                        shape = RoundedCornerShape(10.dp),
+                        border = BorderStroke(0.5.dp,Color.Gray.copy(alpha = 0.6F)),
+                    ) {
+                        Row(
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = item.first),
+                                contentDescription = null,
+                                modifier = Modifier.size(50.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = item.second,
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                        }
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(8.dp))
             Box(modifier = Modifier.padding(horizontal = 8.dp)) {
                 ExclusiveHorizontalItemList(items = groceriesItem)
             }

@@ -23,6 +23,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.TopAppBar
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -67,7 +68,7 @@ fun ExploreScreen(navController: NavController) {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = "Find Products",
-                        fontSize = 18.sp,
+                        style = MaterialTheme.typography.titleLarge,
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
@@ -87,7 +88,12 @@ fun ExploreScreen(navController: NavController) {
             TextField(
                 value = exploreSearch,
                 onValueChange = { exploreSearch = it },
-                placeholder = { Text("Search store...", style = TextStyle(fontSize = 16.sp, color = Color.Gray)) },
+                placeholder = { Text(
+                    "Search store...",
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        color = Color.Gray)
+                ) },
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White,
@@ -125,7 +131,7 @@ fun ExploreScreen(navController: NavController) {
                             .width(180.dp)
                             .height(200.dp)
                             .background(color = Color.White)
-                            .border(BorderStroke(1.dp, color = colorResource(id = R.color.blue1)), shape = RoundedCornerShape(10.dp)),
+                            .border(BorderStroke(0.5.dp, color = colorResource(id = R.color.blue1)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
                     ) {
@@ -145,9 +151,9 @@ fun ExploreScreen(navController: NavController) {
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Fresh Fruits and Vegetables",
-                                fontSize = 16.sp,
+                                style = MaterialTheme.typography.titleMedium,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
@@ -181,9 +187,9 @@ fun ExploreScreen(navController: NavController) {
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Cooking Oil and Ghee",
-                                fontSize = 16.sp,
+                                style = MaterialTheme.typography.titleMedium,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
@@ -221,9 +227,9 @@ fun ExploreScreen(navController: NavController) {
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Meat and Fish",
-                                fontSize = 16.sp,
+                                style = MaterialTheme.typography.titleMedium,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
@@ -257,9 +263,9 @@ fun ExploreScreen(navController: NavController) {
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Bakery and Snacks",
-                                fontSize = 16.sp,
+                                style = MaterialTheme.typography.titleMedium,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
@@ -297,9 +303,9 @@ fun ExploreScreen(navController: NavController) {
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Dairy and Egg",
-                                fontSize = 16.sp,
+                                style = MaterialTheme.typography.titleMedium,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
@@ -334,9 +340,9 @@ fun ExploreScreen(navController: NavController) {
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Beverages",
-                                fontSize = 16.sp,
+                                style = MaterialTheme.typography.titleMedium,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
@@ -375,9 +381,9 @@ fun ExploreScreen(navController: NavController) {
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Beverages",
-                                fontSize = 16.sp,
+                                style = MaterialTheme.typography.bodyMedium,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
@@ -392,7 +398,7 @@ fun ExploreScreen(navController: NavController) {
                             .width(180.dp)
                             .height(200.dp)
                             .background(color = Color.White)
-                            .border(BorderStroke(1.dp, color = colorResource(id = R.color.blue1)), shape = RoundedCornerShape(10.dp)),
+                            .border(BorderStroke(0.5.dp, color = colorResource(id = R.color.blue1)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
                     ) {
@@ -412,9 +418,9 @@ fun ExploreScreen(navController: NavController) {
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Beverages",
-                                fontSize = 16.sp,
+                                style = MaterialTheme.typography.titleMedium,
                                 color = Color.Black,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
