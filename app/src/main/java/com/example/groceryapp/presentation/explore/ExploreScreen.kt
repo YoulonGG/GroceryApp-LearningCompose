@@ -58,18 +58,18 @@ fun ExploreScreen(navController: NavController) {
     var exploreSearch by remember { mutableStateOf("") }
 
     Scaffold(
-        modifier = Modifier.background(color = Color.White).padding(top = 42.dp),
+        modifier = Modifier.background(color = MaterialTheme.colorScheme.secondary).padding(top = 42.dp),
         bottomBar = { BottomNavigation(navController) },
         topBar = {
             TopAppBar(
-                contentColor = Color.White,
-                backgroundColor = Color.White,
+                contentColor = MaterialTheme.colorScheme.secondary,
+                backgroundColor = MaterialTheme.colorScheme.secondary,
                 title = {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = "Find Products",
                         style = MaterialTheme.typography.titleLarge,
-                        color = Color.Black,
+                        color = MaterialTheme.colorScheme.surface,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
                     )
@@ -81,7 +81,7 @@ fun ExploreScreen(navController: NavController) {
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .background(color = Color.White)
+                .background(color = MaterialTheme.colorScheme.secondary)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(16.dp))
@@ -119,7 +119,7 @@ fun ExploreScreen(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(8.dp))
             Column(
-                modifier = Modifier.fillMaxSize().background(color = Color.White).padding(horizontal = 16.dp)
+                modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.secondary).padding(horizontal = 16.dp)
             ) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceEvenly,
@@ -127,10 +127,11 @@ fun ExploreScreen(navController: NavController) {
                 ) {
                     Card(
                         modifier = Modifier
+                            .clickable { navController.navigate(RouteDestinations.EXPLORE_FRUIT_VEGETABLE) }
                             .weight(1f)
                             .width(180.dp)
                             .height(200.dp)
-                            .background(color = Color.White)
+                            .background(color = MaterialTheme.colorScheme.secondary)
                             .border(BorderStroke(0.5.dp, color = colorResource(id = R.color.blue1)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -154,7 +155,7 @@ fun ExploreScreen(navController: NavController) {
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Fresh Fruits and Vegetables",
                                 style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
+                                color = MaterialTheme.colorScheme.onSecondary,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
                             )
@@ -163,10 +164,11 @@ fun ExploreScreen(navController: NavController) {
                     Spacer(modifier = Modifier.width(16.dp))
                     Card(
                         modifier = Modifier
+                            .clickable { navController.navigate(RouteDestinations.EXPLORE_COOKING_INCREDIENT) }
                             .weight(1f)
                             .width(180.dp)
                             .height(200.dp)
-                            .background(color = Color.White)
+                            .background(color = MaterialTheme.colorScheme.secondary)
                             .border(BorderStroke(1.dp, color = colorResource(id = R.color.purple_200)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -190,7 +192,7 @@ fun ExploreScreen(navController: NavController) {
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Cooking Oil and Ghee",
                                 style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
+                                color = MaterialTheme.colorScheme.onSecondary,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
                             )
@@ -203,10 +205,11 @@ fun ExploreScreen(navController: NavController) {
                 ) {
                     Card(
                         modifier = Modifier
+                            .clickable { navController.navigate(RouteDestinations.EXPLORE_MEAT_FISH) }
                             .weight(1f)
                             .width(180.dp)
                             .height(200.dp)
-                            .background(color = Color.White)
+                            .background(color = MaterialTheme.colorScheme.secondary)
                             .border(BorderStroke(1.dp, color = colorResource(id = R.color.teal_700)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -230,7 +233,7 @@ fun ExploreScreen(navController: NavController) {
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Meat and Fish",
                                 style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
+                                color = MaterialTheme.colorScheme.onSecondary,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
                             )
@@ -239,10 +242,11 @@ fun ExploreScreen(navController: NavController) {
                     Spacer(modifier = Modifier.width(16.dp))
                     Card(
                         modifier = Modifier
+                            .clickable { navController.navigate(RouteDestinations.EXPLORE_BAKERY_SNACK) }
                             .weight(1f)
                             .width(180.dp)
                             .height(200.dp)
-                            .background(color = Color.White)
+                            .background(color = MaterialTheme.colorScheme.secondary)
                             .border(BorderStroke(1.dp, color = colorResource(id = R.color.green1)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -266,7 +270,7 @@ fun ExploreScreen(navController: NavController) {
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Bakery and Snacks",
                                 style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
+                                color = MaterialTheme.colorScheme.onSecondary,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
                             )
@@ -279,10 +283,11 @@ fun ExploreScreen(navController: NavController) {
                 ) {
                     Card(
                         modifier = Modifier
+                            .clickable { navController.navigate(RouteDestinations.EXPLORE_DAIRY) }
                             .weight(1f)
                             .width(180.dp)
                             .height(200.dp)
-                            .background(color = Color.White)
+                            .background(color = MaterialTheme.colorScheme.secondary)
                             .border(BorderStroke(1.dp, color = colorResource(id = R.color.blue2)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -306,7 +311,7 @@ fun ExploreScreen(navController: NavController) {
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Dairy and Egg",
                                 style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
+                                color = MaterialTheme.colorScheme.onSecondary,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
                             )
@@ -319,7 +324,7 @@ fun ExploreScreen(navController: NavController) {
                             .clickable { navController.navigate(RouteDestinations.EXPLORE_BEVERAGES) }
                             .width(180.dp)
                             .height(200.dp)
-                            .background(color = Color.White)
+                            .background(color = MaterialTheme.colorScheme.secondary)
                             .border(BorderStroke(1.dp, color = colorResource(id = R.color.purple_200)), shape = RoundedCornerShape(10.dp)),
                         shape = RoundedCornerShape(10.dp),
                         elevation = 4.dp
@@ -343,85 +348,7 @@ fun ExploreScreen(navController: NavController) {
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
                                 text = "Beverages",
                                 style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
-                }
-                Row(
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
-                ) {
-                    Card(
-                        modifier = Modifier
-                            .weight(1f)
-                            .clickable { navController.navigate(RouteDestinations.EXPLORE_BEVERAGES) }
-                            .width(180.dp)
-                            .height(200.dp)
-                            .background(color = Color.White)
-                            .border(BorderStroke(1.dp, color = colorResource(id = R.color.purple_700)), shape = RoundedCornerShape(10.dp)),
-                        shape = RoundedCornerShape(10.dp),
-                        elevation = 4.dp
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .fillMaxSize()
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.explore6),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(115.dp)
-                                    .clip(CircleShape)
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
-                                text = "Beverages",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = Color.Black,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Card(
-                        modifier = Modifier
-                            .weight(1f)
-                            .clickable { navController.navigate(RouteDestinations.EXPLORE_BEVERAGES) }
-                            .width(180.dp)
-                            .height(200.dp)
-                            .background(color = Color.White)
-                            .border(BorderStroke(0.5.dp, color = colorResource(id = R.color.blue1)), shape = RoundedCornerShape(10.dp)),
-                        shape = RoundedCornerShape(10.dp),
-                        elevation = 4.dp
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .fillMaxSize()
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.explore6),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(115.dp)
-                                    .clip(CircleShape)
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
-                                text = "Beverages",
-                                style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
+                                color = MaterialTheme.colorScheme.onSecondary,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold
                             )

@@ -35,21 +35,21 @@ fun CartScreen(navController: NavController) {
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.White),
+            .background(color = MaterialTheme.colorScheme.secondary),
         bottomBar = { BottomNavigation(navController) },
         topBar = {
             TopAppBar(
                 modifier = Modifier
+                    .background(color = MaterialTheme.colorScheme.secondary)
                     .fillMaxWidth()
-                    .background(color = Color.White)
                     .statusBarsPadding(),
-                backgroundColor = Color.White,
+                backgroundColor = MaterialTheme.colorScheme.secondary,
                 title = {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = "Cart",
                         style = MaterialTheme.typography.titleLarge,
-                        color = Color.Black,
+                        color = MaterialTheme.colorScheme.surface,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
                     )
@@ -61,7 +61,7 @@ fun CartScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .background(color = Color.White)
+                .background(color = MaterialTheme.colorScheme.secondary)
         ) {
             Box(modifier = Modifier.padding(horizontal = 4.dp)) {
                 CartList(cart,navController)

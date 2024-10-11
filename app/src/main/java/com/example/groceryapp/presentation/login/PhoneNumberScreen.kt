@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -44,35 +45,40 @@ import com.example.groceryapp.presentation.app.RouteDestinations
 fun PhoneNumberScreen(navController: NavController) {
 
     var phoneNumber by remember { mutableStateOf("") }
+    var isError by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp)
+            .background(color = MaterialTheme.colorScheme.secondary)
     ) {
         Spacer(modifier = Modifier.height(80.dp))
         Image(
+            colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.surface),
             painter = painterResource(id = R.drawable.baseline_arrow_back_ios_new_24),
             contentDescription = null,
             modifier = Modifier
+                .padding(start = 16.dp)
                 .size(24.dp)
                 .clickable { navController.popBackStack() }
         )
         Spacer(modifier = Modifier.height(62.dp))
         Text(
+            modifier = Modifier.fillMaxWidth(). padding(horizontal = 16.dp),
             text = "Enter your mobile number",
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.surface,
             style = MaterialTheme.typography.titleLarge
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(
+            modifier = Modifier.fillMaxWidth(). padding(horizontal = 16.dp),
             text = "Mobile Number",
-            color = Color.Gray,
+            color = MaterialTheme.colorScheme.tertiary,
             style = MaterialTheme.typography.titleMedium
         )
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically, // This is fine
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
                 painter = painterResource(id = R.drawable.cam),
@@ -83,7 +89,7 @@ fun PhoneNumberScreen(navController: NavController) {
             Text(
                 text = "+855",
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.surface,
                 modifier = Modifier.padding(start = 10.dp),
                 textAlign = TextAlign.Center
             )
@@ -92,23 +98,42 @@ fun PhoneNumberScreen(navController: NavController) {
                 onValueChange = { newValue ->
                     if (newValue.all { it.isDigit() } || newValue.isEmpty()) {
                         phoneNumber = newValue
+                        if (isError && newValue.isNotEmpty()) {
+                            isError = false
+                        }
                     }
                 },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-                textStyle = TextStyle(fontSize = 18.sp, color = Color.Black),
+                textStyle = TextStyle(fontSize = 18.sp, color = MaterialTheme.colorScheme.surface),
                 modifier = Modifier.weight(1f).padding(start = 8.dp)
             )
         }
-        HorizontalDivider(modifier = Modifier.background(color = Color.Black), thickness = 1.dp)
+        HorizontalDivider(modifier = Modifier
+            .padding(horizontal = 16.dp)
+            .background(color = MaterialTheme.colorScheme.surface),
+            thickness = 1.dp)
+        if (isError) {
+            Text(
+                text = "Please enter a valid phone number.",
+                color = Color.Red,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+        }
         Spacer(modifier = Modifier.weight(1f))
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .size(50.dp)
                 .clip(CircleShape)
-                .background(color = colorResource(id = R.color.green1))
-                .clickable { navController.navigate(RouteDestinations.OTP) }
-                .align(Alignment.End)
+                .background(color = MaterialTheme.colorScheme.primary)
+                .clickable {
+                if (phoneNumber.length >= 8) {
+                    navController.navigate(RouteDestinations.OTP)
+                } else {
+                    isError = true
+                }
+            }.align(Alignment.End)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.white_arrow),

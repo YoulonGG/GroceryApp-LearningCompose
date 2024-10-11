@@ -81,7 +81,7 @@ fun ItemCard(item: ExclusiveItem) {
                 text = item.name,
                 style = MaterialTheme.typography.titleMedium,
                 maxLines = 1,
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.onSecondary,
                 modifier = Modifier.align(Alignment.Start).fillMaxWidth()
             )
             Text(
@@ -89,7 +89,7 @@ fun ItemCard(item: ExclusiveItem) {
                 text = item.des,
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
-                color = Color.Gray
+                color = MaterialTheme.colorScheme.tertiary
             )
             Spacer(modifier = Modifier.weight(1f))
             Row(
@@ -101,14 +101,14 @@ fun ItemCard(item: ExclusiveItem) {
                     text = item.price,
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
-                    color = Color.Black
+                    color = MaterialTheme.colorScheme.onSecondary
                 )
                 Box(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
                         .size(30.dp)
                         .clip(RoundedCornerShape(10.dp))
-                        .background(color = colorResource(id = R.color.green1))
+                        .background(color = MaterialTheme.colorScheme.primary)
                         .clickable { }
                 ) {
                     Image(

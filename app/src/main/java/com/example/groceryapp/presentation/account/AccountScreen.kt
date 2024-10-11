@@ -21,10 +21,12 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -47,7 +49,7 @@ fun AccountScreen(navController: NavController) {
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .background(color = Color.White)
+                .background(color = MaterialTheme.colorScheme.secondary)
                 .padding(horizontal = 16.dp)
         ) {
             Spacer(modifier = Modifier.height(16.dp))
@@ -60,7 +62,7 @@ fun AccountScreen(navController: NavController) {
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
                         .size(60.dp)
-                        .background(color = Color.White, shape = RoundedCornerShape(16.dp))
+                        .background(color = MaterialTheme.colorScheme.secondary, shape = RoundedCornerShape(16.dp))
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.boy),
@@ -84,7 +86,7 @@ fun AccountScreen(navController: NavController) {
                         Text(
                             text = "John Youlong",
                             style = MaterialTheme.typography.titleMedium,
-                            color = Color.Black,
+                            color = MaterialTheme.colorScheme.surface,
                             fontWeight = FontWeight.Bold
                         )
                         Image(
@@ -96,7 +98,7 @@ fun AccountScreen(navController: NavController) {
                     Text(
                         text = "johnyoulong@gmail.com",
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Gray
+                        color = MaterialTheme.colorScheme.tertiary
                     )
                 }
             }
@@ -108,6 +110,7 @@ fun AccountScreen(navController: NavController) {
                 modifier = Modifier.height(45.dp).fillMaxWidth()
             ) {
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.order),
                     contentDescription = null
@@ -116,10 +119,11 @@ fun AccountScreen(navController: NavController) {
                 Text(
                     text = "Orders",
                     style = MaterialTheme.typography.titleMedium,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.surface,
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.blackarrow),
                     contentDescription = null
@@ -133,6 +137,7 @@ fun AccountScreen(navController: NavController) {
                 modifier = Modifier.height(45.dp).fillMaxWidth()
             ) {
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.mydetail),
                     contentDescription = null
@@ -141,10 +146,11 @@ fun AccountScreen(navController: NavController) {
                 Text(
                     text = "My Details",
                     style = MaterialTheme.typography.titleMedium,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.surface,
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.blackarrow),
                     contentDescription = null
@@ -158,6 +164,7 @@ fun AccountScreen(navController: NavController) {
                 modifier = Modifier.height(45.dp).fillMaxWidth()
             ) {
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.locationpin),
                     contentDescription = null
@@ -166,7 +173,7 @@ fun AccountScreen(navController: NavController) {
                 Text(
                     text = "Delivery Address",
                     style = MaterialTheme.typography.titleMedium,
-                    color = Color.Black
+                    color = MaterialTheme.colorScheme.surface
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
@@ -183,6 +190,7 @@ fun AccountScreen(navController: NavController) {
                 modifier = Modifier.height(45.dp).fillMaxWidth()
             ) {
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.creditcard),
                     contentDescription = null
@@ -191,10 +199,11 @@ fun AccountScreen(navController: NavController) {
                 Text(
                     text = "Payment Methods",
                     style = MaterialTheme.typography.titleMedium,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.surface,
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.blackarrow),
                     contentDescription = null
@@ -208,6 +217,7 @@ fun AccountScreen(navController: NavController) {
                 modifier = Modifier.height(45.dp).fillMaxWidth()
             ) {
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.promocard),
                     contentDescription = null
@@ -216,10 +226,11 @@ fun AccountScreen(navController: NavController) {
                 Text(
                     text = "Promo Card",
                     style = MaterialTheme.typography.titleMedium,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.surface,
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.blackarrow),
                     contentDescription = null
@@ -233,6 +244,7 @@ fun AccountScreen(navController: NavController) {
                 modifier = Modifier.height(45.dp).fillMaxWidth()
             ) {
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.notification),
                     contentDescription = null
@@ -241,10 +253,11 @@ fun AccountScreen(navController: NavController) {
                 Text(
                     text = "Notifications",
                     style = MaterialTheme.typography.titleMedium,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.surface,
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.blackarrow),
                     contentDescription = null
@@ -258,6 +271,7 @@ fun AccountScreen(navController: NavController) {
                 modifier = Modifier.height(45.dp).fillMaxWidth()
             ) {
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.help),
                     contentDescription = null
@@ -266,10 +280,11 @@ fun AccountScreen(navController: NavController) {
                 Text(
                     text = "Help",
                     style = MaterialTheme.typography.titleMedium,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.surface,
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.blackarrow),
                     contentDescription = null
@@ -283,6 +298,7 @@ fun AccountScreen(navController: NavController) {
                 modifier = Modifier.height(45.dp).fillMaxWidth()
             ) {
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.about),
                     contentDescription = null
@@ -291,10 +307,11 @@ fun AccountScreen(navController: NavController) {
                 Text(
                     text = "About",
                     style = MaterialTheme.typography.titleMedium,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.surface,
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surface),
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.blackarrow),
                     contentDescription = null
@@ -305,7 +322,7 @@ fun AccountScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(8.dp))
             Spacer(modifier = Modifier.weight(1f))
             Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                 onClick = {},
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier

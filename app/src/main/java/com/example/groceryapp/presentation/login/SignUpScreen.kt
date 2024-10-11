@@ -31,7 +31,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -55,7 +54,7 @@ fun SignUpScreen(navController: NavController) {
     var passwordVisible by remember { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier.fillMaxSize().background(color = Color.White)
+        modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.secondary)
     ) {
         Spacer(modifier = Modifier.height(150.dp))
         Image(
@@ -70,21 +69,21 @@ fun SignUpScreen(navController: NavController) {
         Text(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Sign Up",
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.surface,
             style = MaterialTheme.typography.titleLarge
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Enter your credentials to continue",
-            color = Color.Gray,
+            color = MaterialTheme.colorScheme.surface,
             style = MaterialTheme.typography.bodyMedium
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Username",
-            color = Color.Gray,
+            color = MaterialTheme.colorScheme.surface,
             style = MaterialTheme.typography.bodyLarge
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -94,7 +93,7 @@ fun SignUpScreen(navController: NavController) {
                 .fillMaxWidth(),
             value = signupUsername,
             onValueChange = {signupUsername = it},
-            textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
+            textStyle = TextStyle(fontSize = 16.sp, color = MaterialTheme.colorScheme.surface),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email
             ),
@@ -105,7 +104,7 @@ fun SignUpScreen(navController: NavController) {
         Text(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Email",
-            color = Color.Gray,
+            color = MaterialTheme.colorScheme.surface,
             style = MaterialTheme.typography.bodyLarge
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -115,7 +114,7 @@ fun SignUpScreen(navController: NavController) {
                 .fillMaxWidth(),
             value = signupEmail,
             onValueChange = {signupEmail = it},
-            textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
+            textStyle = TextStyle(fontSize = 16.sp, color = MaterialTheme.colorScheme.surface),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email
             ),
@@ -126,7 +125,7 @@ fun SignUpScreen(navController: NavController) {
         Text(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Password",
-            color = Color.Gray,
+            color = MaterialTheme.colorScheme.surface,
             style = MaterialTheme.typography.bodyLarge
         )
         Box(
@@ -138,7 +137,7 @@ fun SignUpScreen(navController: NavController) {
                 BasicTextField(
                     value = signupPassword,
                     onValueChange = { signupPassword = it },
-                    textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
+                    textStyle = TextStyle(fontSize = 16.sp, color = MaterialTheme.colorScheme.surface),
                     visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     modifier = Modifier.padding(end = 8.dp).weight(1f),
                 )
@@ -151,6 +150,7 @@ fun SignUpScreen(navController: NavController) {
                         painterResource(id = R.drawable.baseline_remove_red_eye_24)
                     }
                     Icon(
+                        tint = MaterialTheme.colorScheme.surface,
                         painter = visibilityIcon,
                         contentDescription = if (passwordVisible) "Hide password" else "Show password"
                     )
@@ -165,13 +165,13 @@ fun SignUpScreen(navController: NavController) {
             Text(
                 text = "By continuing you agree to our",
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.Black,
-            )
+                color = MaterialTheme.colorScheme.surface,
+                )
             Text(
                 modifier = Modifier.weight(1f),
                 text = " Terms of Service",
                 style = MaterialTheme.typography.bodyMedium,
-                color = colorResource(id = R.color.green1),
+                color = MaterialTheme.colorScheme.primary,
             )
         }
         Row(
@@ -180,18 +180,18 @@ fun SignUpScreen(navController: NavController) {
             Text(
                 text = "and",
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.Black,
-            )
+                color = MaterialTheme.colorScheme.surface,
+                )
             Text(
                 modifier = Modifier.weight(1f),
                 text = " Privacy Policy",
                 style = MaterialTheme.typography.bodyMedium,
-                color = colorResource(id = R.color.green1),
+                color = MaterialTheme.colorScheme.primary,
                 )
         }
         Spacer(modifier = Modifier.height(42.dp))
         Button(
-            colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
             onClick = {navController.navigate(RouteDestinations.SIGN_IN)},
             shape = RoundedCornerShape(15.dp),
             modifier = Modifier
@@ -201,7 +201,7 @@ fun SignUpScreen(navController: NavController) {
         ) {
             Text(
                 style = MaterialTheme.typography.titleMedium,
-                color = Color.White,
+                color = MaterialTheme.colorScheme.onSurface,
                 text = "Sign Up",
                 fontWeight = FontWeight.Bold,
             )
@@ -214,8 +214,8 @@ fun SignUpScreen(navController: NavController) {
             Text(
                 text = "Already have an account?",
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.Black
-            )
+                color = MaterialTheme.colorScheme.surface,
+                )
             Text(
                 modifier = Modifier
                     .padding(start = 8.dp)
@@ -224,7 +224,7 @@ fun SignUpScreen(navController: NavController) {
                     },
                 text = "Login",
                 style = MaterialTheme.typography.bodyMedium,
-                color = colorResource(id = R.color.green1)
+                color = MaterialTheme.colorScheme.primary
             )
         }
     }

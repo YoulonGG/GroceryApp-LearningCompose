@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.explore.beverages
+package com.example.groceryapp.presentation.explore.exploreProducts
 
 
 import androidx.compose.foundation.Image
@@ -45,7 +45,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.presentation.explore.BeverageList
+import com.example.groceryapp.presentation.explore.ExploreItemsClass
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,18 +56,17 @@ import com.example.groceryapp.R
 fun BeveragesScreen(navController: NavController) {
 
     val beverages = listOf(
-        BeveragesClass(R.drawable.b1, "Diet Coke", "355ML, Price", "1.99$"),
-        BeveragesClass(R.drawable.b2, "Sprite", "325ML, Price", "1.50$"),
-        BeveragesClass(R.drawable.b3, "Apple & Grape Juice", "2L, Price", "15.99$"),
-        BeveragesClass(R.drawable.b4, "Orange Juice", "2L, Price", "15.99$"),
-        BeveragesClass(R.drawable.b5, "Coca Cola", "325ML, Price", "4.99$"),
-        BeveragesClass(R.drawable.b6, "Pepsi", "335ML, Price", "4.99$"),
+        ExploreItemsClass(R.drawable.b1, "Diet Coke", "355ML, Price", "1.99$"),
+        ExploreItemsClass(R.drawable.b2, "Sprite", "325ML, Price", "1.50$"),
+        ExploreItemsClass(R.drawable.b3, "Apple & Grape Juice", "2L, Price", "15.99$"),
+        ExploreItemsClass(R.drawable.b4, "Orange Juice", "2L, Price", "15.99$"),
+        ExploreItemsClass(R.drawable.b5, "Coca Cola", "325ML, Price", "4.99$"),
+        ExploreItemsClass(R.drawable.b6, "Pepsi", "335ML, Price", "4.99$"),
     )
 
     var showFilterDialog by remember { mutableStateOf(false) }
 
     Scaffold(
-        modifier = Modifier.background(color = Color.White),
         topBar = {
             TopAppBar(
                 title = {
@@ -327,5 +329,5 @@ fun Filter(
 @Preview(showBackground = true)
 @Composable
 fun PreviewFilter() {
-    Filter { }
+    BeveragesScreen(navController = rememberNavController())
 }

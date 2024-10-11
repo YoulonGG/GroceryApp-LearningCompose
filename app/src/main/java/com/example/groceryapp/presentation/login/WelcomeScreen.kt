@@ -1,5 +1,6 @@
 package com.example.groceryapp.presentation.login
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,7 +20,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -46,7 +46,7 @@ fun WelcomeScreen(navController: NavController) {
             contentScale = ContentScale.Crop
         )
         Column(
-            modifier = Modifier.fillMaxSize().padding(top = 500.dp),
+            modifier = Modifier.fillMaxSize().padding(top = 400.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Image(
@@ -72,7 +72,24 @@ fun WelcomeScreen(navController: NavController) {
             )
             Spacer(modifier = Modifier.weight(1f))
             Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+                onClick = {navController.navigate(RouteDestinations.SIGN_IN)},
+                shape = RoundedCornerShape(15.dp),
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .height(48.dp)
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    fontSize = 16.sp,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    text = "Login With Email",
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                 onClick = {navController.navigate(RouteDestinations.LOGIN)},
                 shape = RoundedCornerShape(15.dp),
                 modifier = Modifier
@@ -82,8 +99,8 @@ fun WelcomeScreen(navController: NavController) {
             ) {
                 Text(
                     fontSize = 16.sp,
-                    color = Color.White,
-                    text = "Get Start",
+                    color = MaterialTheme.colorScheme.onSurface,
+                    text = "Login With Phone Number",
                     fontWeight = FontWeight.Bold,
                 )
             }
@@ -91,6 +108,8 @@ fun WelcomeScreen(navController: NavController) {
         }
     }
 }
+
+
 
 @Preview(showBackground = true)
 @Composable

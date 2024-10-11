@@ -54,7 +54,7 @@ fun SignInScreen(navController: NavController) {
     var passwordVisible by remember { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier.fillMaxSize().background(color = Color.White)
+        modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.secondary)
     ) {
         Spacer(modifier = Modifier.height(150.dp))
         Image(
@@ -69,21 +69,21 @@ fun SignInScreen(navController: NavController) {
         Text(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Log in",
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.surface,
             style = MaterialTheme.typography.titleLarge
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Enter your email and password",
-            color = Color.Gray,
+            color = MaterialTheme.colorScheme.surface,
             style = MaterialTheme.typography.bodyMedium
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Email",
-            color = Color.Gray,
+            color = MaterialTheme.colorScheme.surface,
             style = MaterialTheme.typography.bodyLarge
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -93,7 +93,7 @@ fun SignInScreen(navController: NavController) {
                 .fillMaxWidth(),
             value = email,
             onValueChange = {email = it},
-            textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
+            textStyle = TextStyle(fontSize = 16.sp, color = MaterialTheme.colorScheme.surface),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email
             ),
@@ -104,7 +104,7 @@ fun SignInScreen(navController: NavController) {
         Text(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Password",
-            color = Color.Gray,
+            color = MaterialTheme.colorScheme.surface,
             style = MaterialTheme.typography.bodyLarge
         )
         Box(
@@ -116,7 +116,7 @@ fun SignInScreen(navController: NavController) {
                 BasicTextField(
                     value = password,
                     onValueChange = { password = it },
-                    textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
+                    textStyle = TextStyle(fontSize = 16.sp, color = MaterialTheme.colorScheme.surface),
                     visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     modifier = Modifier.padding(end = 8.dp).weight(1f),
                 )
@@ -129,6 +129,7 @@ fun SignInScreen(navController: NavController) {
                         painterResource(id = R.drawable.baseline_remove_red_eye_24)
                     }
                     Icon(
+                        tint = MaterialTheme.colorScheme.surface,
                         painter = visibilityIcon,
                         contentDescription = if (passwordVisible) "Hide password" else "Show password"
                     )
@@ -143,12 +144,12 @@ fun SignInScreen(navController: NavController) {
                 .fillMaxWidth(),
             text = "Forget your password?",
             fontSize = 14.sp,
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.surface,
             textAlign = TextAlign.End
         )
         Spacer(modifier = Modifier.height(42.dp))
         Button(
-            colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
             onClick = {navController.navigate("shop")},
             shape = RoundedCornerShape(15.dp),
             modifier = Modifier
@@ -158,7 +159,7 @@ fun SignInScreen(navController: NavController) {
         ) {
             Text(
                 style = MaterialTheme.typography.titleMedium,
-                color = Color.White,
+                color = MaterialTheme.colorScheme.onSurface,
                 text = "Login",
                 fontWeight = FontWeight.Bold,
             )
@@ -171,7 +172,7 @@ fun SignInScreen(navController: NavController) {
             Text(
                 text = "Don't have an account?",
                 fontSize = 14.sp,
-                color = Color.Black
+                color = MaterialTheme.colorScheme.surface,
             )
             Text(
                 modifier = Modifier
@@ -179,7 +180,7 @@ fun SignInScreen(navController: NavController) {
                     .clickable { navController.navigate("signupScreen") },
                 text = "Sign Up",
                 fontSize = 14.sp,
-                color = colorResource(id = R.color.green1)
+                color = MaterialTheme.colorScheme.primary,
             )
         }
     }

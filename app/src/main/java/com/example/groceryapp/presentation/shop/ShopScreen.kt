@@ -1,5 +1,6 @@
 package com.example.groceryapp.presentation.shop
 
+import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -107,8 +109,8 @@ fun ShopScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = Color.White)
                 .padding(paddingValues)
+                .background(MaterialTheme.colorScheme.secondary)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(36.dp))
@@ -116,8 +118,7 @@ fun ShopScreen(navController: NavController) {
                 painter = painterResource(id = R.drawable.orangecarrot),
                 contentDescription = null,
                 modifier = Modifier
-                    .width(30.dp)
-                    .height(30.dp)
+                    .size(30.dp)
                     .align(Alignment.CenterHorizontally)
             )
             Spacer(modifier = Modifier.height(5.dp))
@@ -128,12 +129,13 @@ fun ShopScreen(navController: NavController) {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.locationpin),
-                    contentDescription = null
+                    contentDescription = null,
+                    colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.surface)
                 )
                 Text(
                     text = "Phnom Penh, Cambodia",
                     style = MaterialTheme.typography.titleMedium,
-                    color = colorResource(id = R.color.black)
+                    color = MaterialTheme.colorScheme.surface
 
                 )
             }
@@ -214,12 +216,12 @@ fun ShopScreen(navController: NavController) {
                     text = "Exclusive Offer",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
-                    color = colorResource(id = R.color.black)
+                    color = MaterialTheme.colorScheme.surface
                 )
                 Text(
                     text = "See all",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = colorResource(id = R.color.green1),
+                    color = MaterialTheme.colorScheme.primary,
                 )
             }
             Box (modifier = Modifier.padding(horizontal = 8.dp)){
@@ -235,12 +237,12 @@ fun ShopScreen(navController: NavController) {
                     text = "Best Selling",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
-                    color = colorResource(id = R.color.black)
+                    color = MaterialTheme.colorScheme.surface
                 )
                 Text(
                     text = "See all",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = colorResource(id = R.color.green1)
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
             Box (modifier = Modifier.padding(horizontal = 8.dp)) {
@@ -256,12 +258,12 @@ fun ShopScreen(navController: NavController) {
                     text = "Groceries",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
-                    color = colorResource(id = R.color.black)
+                    color = MaterialTheme.colorScheme.surface
                 )
                 Text(
                     text = "See all",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = colorResource(id = R.color.green1)
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
             Spacer(modifier = Modifier.height(8.dp))
@@ -289,7 +291,8 @@ fun ShopScreen(navController: NavController) {
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
                                 text = item.second,
-                                style = MaterialTheme.typography.titleMedium
+                                style = MaterialTheme.typography.titleMedium,
+                                color = MaterialTheme.colorScheme.onSecondary
                             )
                         }
                     }
@@ -303,8 +306,24 @@ fun ShopScreen(navController: NavController) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
-fun PreviewShop() {
-    ShopScreen(navController = rememberNavController())
+fun PreviewShopLight() {
+    MaterialTheme {
+        ShopScreen(navController = rememberNavController())
+    }
 }
+
+@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun PreviewShopDark() {
+    MaterialTheme {
+        ShopScreen(navController = rememberNavController())
+    }
+}
+
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewShop() {
+//    ShopScreen(navController = rememberNavController())
+//}

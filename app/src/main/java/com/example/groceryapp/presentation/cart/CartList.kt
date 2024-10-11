@@ -24,6 +24,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -62,7 +63,7 @@ data class CartClass(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CartList(
-    initialItems: List<CartClass> ,
+    initialItems: List<CartClass>,
     navController: NavController
 ) {
     val items = remember { mutableStateListOf<CartClass>().apply { addAll(initialItems) } }
@@ -73,7 +74,7 @@ fun CartList(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(color = MaterialTheme.colorScheme.secondary)
     ) {
         items(items) { item ->
             CartCard(
@@ -83,7 +84,12 @@ fun CartList(
                     val index = items.indexOf(item)
                     items[index] = updatedItem
                 },
-                onRemove = { items.remove(item) },
+                onRemove = {
+                    items.remove(item)
+                    if (items.isEmpty()) {
+                        showBottomSheet = false
+                    }
+                },
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -93,47 +99,62 @@ fun CartList(
             )
             Spacer(modifier = Modifier.height(8.dp))
         }
-        item {
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
-                onClick = {
-                    scope.launch {
-                        bottomSheetState.show()
-                    }
-                    showBottomSheet = true
-                },
-                shape = RoundedCornerShape(15.dp),
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .height(48.dp)
-                    .fillMaxWidth()
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Spacer(modifier = Modifier.height(20.dp).width(60.dp))
-                    Text(
-                        style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
-                        color = Color.White,
-                        text = "Check Out",
-                        fontWeight = FontWeight.Bold,
-                    )
-                    Text(
-                        modifier = Modifier
-                            .height(20.dp)
-                            .width(60.dp)
-                            .background(color = colorResource(id = R.color.green3)),
-                        text = "$99.99",
-                        style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
-                        color = Color.White,
-                        textAlign = TextAlign.Center
-                    )
-                }
+
+        if (items.isEmpty()) {
+            item {
+                Text(
+                    text = "Your cart is empty",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.tertiary,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    textAlign = TextAlign.Center
+                )
             }
-            Spacer(modifier = Modifier.height(16.dp))
+        } else {
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
+                Button(
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+                    onClick = {
+                        scope.launch {
+                            bottomSheetState.show()
+                        }
+                        showBottomSheet = true
+                    },
+                    shape = RoundedCornerShape(15.dp),
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp)
+                        .height(48.dp)
+                        .fillMaxWidth()
+                ) {
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Spacer(modifier = Modifier.height(20.dp).width(60.dp))
+                        Text(
+                            style = MaterialTheme.typography.titleMedium,
+                            color = Color.White,
+                            text = "Check Out",
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            modifier = Modifier
+                                .height(20.dp)
+                                .width(60.dp)
+                                .background(color = colorResource(id = R.color.green3)),
+                            text = "$${items.sumOf { it.totalPrice }}", // Update to reflect total price of items
+                            style = MaterialTheme.typography.titleMedium,
+                            color = Color.White,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+            }
         }
     }
     if (showBottomSheet) {
@@ -142,21 +163,22 @@ fun CartList(
                 bottomSheetState.hide()
                 showBottomSheet = false
             }
-        },navController = navController)
+        }, navController = navController)
     }
 }
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)
     ModalBottomSheet(
-        modifier = Modifier.wrapContentHeight(),
+        modifier = Modifier.wrapContentHeight().background(color = MaterialTheme.colorScheme.secondary),
         sheetState = sheetState,
         onDismissRequest = { onDismissRequest() }
     ) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(vertical = 8.dp, horizontal = 16.dp)
+            modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.secondary)
         ) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -166,8 +188,8 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = "Checkout",
-                    style = androidx.compose.material3.MaterialTheme.typography.titleLarge,
-                    color = Color.Black,
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.surface,
                 )
                 Image(
                     painter = painterResource(id = R.drawable.close1),
@@ -179,19 +201,19 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).height(40.dp)
             ){
                 Text(
                     text = "Delivery",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyLarge,
-                    color = Color.Gray
+                    style = MaterialTheme.typography.bodyLarge,
+                    color  = MaterialTheme.colorScheme.tertiary,
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
                     textAlign = TextAlign.End,
                     text = "Select Method",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-                    color = Color.Black
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.surface,
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Image(
@@ -202,12 +224,12 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth().height(40.dp)
+                modifier = Modifier.fillMaxWidth().height(40.dp).padding(horizontal = 16.dp)
             ){
                 Text(
                     text = "Payment",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyLarge,
-                    color = Color.Gray
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.tertiary
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
@@ -223,18 +245,18 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth().height(40.dp)
+                modifier = Modifier.fillMaxWidth().height(40.dp).padding(horizontal = 16.dp)
             ){
                 Text(
                     text = "Promo Code",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyLarge,
-                    color = Color.Gray
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.tertiary
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
                     text = "Pick Discount",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-                    color = Color.Black
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.surface
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Image(
@@ -245,19 +267,19 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth().height(40.dp)
+                modifier = Modifier.fillMaxWidth().height(40.dp).padding(horizontal = 16.dp)
             ){
                 Text(
                     text = "Total Cost",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyLarge,
-                    color = Color.Gray
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.tertiary
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
                     textAlign = TextAlign.End,
                     text = "$99.99",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-                    color = Color.Black
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.surface
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Image(
@@ -267,19 +289,21 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             }
             Spacer(modifier = Modifier.height(16.dp))
             Text(
+                modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
                 text = "By placing an order you agree to our",
-                style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-                color = Color.Gray
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.tertiary
             )
             Text(
+                modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
                 text = "Terms and Conditions",
-                style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-                color = Color.Black
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.surface
 
             )
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                 onClick = {
                     onDismissRequest()
                     navController.navigate(RouteDestinations.ACCEPTED_ORDER)
@@ -287,10 +311,10 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
                 shape = RoundedCornerShape(15.dp),
                 modifier = Modifier
                     .height(48.dp)
-                    .fillMaxWidth()
+                    .fillMaxWidth().padding(horizontal = 16.dp)
             ) {
                 Text(
-                    style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.White,
                     text = "Place Order",
                     fontWeight = FontWeight.Bold,
@@ -337,13 +361,13 @@ fun CartCard(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = item.name,
-                    style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.Black
                 )
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = item.des,
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodyMedium,
                     color = Color.Gray
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -368,7 +392,7 @@ fun CartCard(
                     Spacer(modifier = Modifier.width(16.dp))
                     Text(
                         text = item.quantity.toString(),
-                        style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodyMedium,
                         color = Color.Black
                     )
                     Spacer(modifier = Modifier.width(16.dp))
@@ -401,7 +425,7 @@ fun CartCard(
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
                     text = "$${item.totalPrice}",
-                    style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.Black
                 )
             }

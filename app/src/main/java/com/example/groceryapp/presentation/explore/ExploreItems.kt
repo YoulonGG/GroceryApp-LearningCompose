@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.explore.beverages
+package com.example.groceryapp.presentation.explore
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -33,7 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.groceryapp.R
 
-data class BeveragesClass(
+data class ExploreItemsClass(
     val image: Int,
     val name: String,
     val des: String,
@@ -41,7 +41,7 @@ data class BeveragesClass(
 )
 
 @Composable
-fun BeverageList(items: List<BeveragesClass>) {
+fun BeverageList(items: List<ExploreItemsClass>) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -64,7 +64,7 @@ fun BeverageList(items: List<BeveragesClass>) {
 }
 
 @Composable
-fun BeverageCard(item: BeveragesClass, modifier: Modifier = Modifier) {
+fun BeverageCard(item: ExploreItemsClass, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -137,7 +137,7 @@ fun BeverageCard(item: BeveragesClass, modifier: Modifier = Modifier) {
 @Composable
 fun PreviewBeveragesCard() {
     BeverageCard(
-        item = BeveragesClass(
+        item = ExploreItemsClass(
             image = R.drawable.apple,
             name = "Sample Item",
             des = "Sample Description",

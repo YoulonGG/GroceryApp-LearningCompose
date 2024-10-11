@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
@@ -29,7 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -61,32 +60,34 @@ fun OTPScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp)
-            .background(color = Color.White)
+            .background(color = MaterialTheme.colorScheme.secondary)
     ) {
         Spacer(modifier = Modifier.height(80.dp))
         Image(
+            colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.surface),
             painter = painterResource(id = R.drawable.baseline_arrow_back_ios_new_24),
             contentDescription = null,
             modifier = Modifier
-                .width(24.dp)
-                .height(24.dp)
+                .padding(start = 16.dp)
+                .size(24.dp)
                 .clickable { navController.popBackStack() }
         )
         Spacer(modifier = Modifier.height(62.dp))
         Text(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Enter 4-digits code",
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.surface,
             style = MaterialTheme.typography.titleLarge
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Code",
-            color = Color.Gray,
+            color = MaterialTheme.colorScheme.tertiary,
             style = MaterialTheme.typography.titleMedium
         )
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             for (i in 0..3) {
@@ -125,11 +126,12 @@ fun OTPScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.End)
+                .padding(horizontal = 16.dp)
         ) {
             Text(
                 text = "Resend Code",
                 style = MaterialTheme.typography.bodyLarge,
-                color = colorResource(id = R.color.green1),
+                color = MaterialTheme.colorScheme.primary,
                 textAlign = TextAlign.Center
             )
             Box(
@@ -137,7 +139,7 @@ fun OTPScreen(navController: NavController) {
                 modifier = Modifier
                     .size(50.dp)
                     .clip(CircleShape)
-                    .background(color = colorResource(id = R.color.green1))
+                    .background(color = MaterialTheme.colorScheme.primary)
                     .clickable {
                         navController.navigate(RouteDestinations.SELECT_LOCATION_SCREEN)
                     }

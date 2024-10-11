@@ -30,14 +30,14 @@ fun LoginScreen(navController: NavHostController) {
     var selectedImageRes by remember { mutableIntStateOf(R.drawable.cam) }
 
     Box(
-        modifier = Modifier.fillMaxSize().background(color = Color.White)
+        modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.secondary)
     ) {
         Image(
             painter = painterResource(id = R.drawable.bg1),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(350.dp)
+                .height(355.dp)
         )
         Column(
             modifier = Modifier
@@ -47,7 +47,7 @@ fun LoginScreen(navController: NavHostController) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 style = MaterialTheme.typography.titleLarge,
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.surface,
                 text = "Get your groceries \nwith nectar",
                 fontWeight = FontWeight.Bold,
             )
@@ -66,14 +66,14 @@ fun LoginScreen(navController: NavHostController) {
                 Text(
                     text = selectedCountryCode,
                     style = MaterialTheme.typography.bodyLarge,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.surface,
                     modifier = Modifier.padding(start = 10.dp)
                 )
             }
             HorizontalDivider(modifier = Modifier.background(color = Color.Gray), thickness = 1.dp)
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                 onClick = { navController.navigate(RouteDestinations.PHONE_NUMBER) },
                 shape = RoundedCornerShape(15.dp),
                 modifier = Modifier
@@ -91,7 +91,7 @@ fun LoginScreen(navController: NavHostController) {
             Text(
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.Gray,
+                color = MaterialTheme.colorScheme.tertiary,
                 text = "Or connect with social media",
                 modifier = Modifier
                     .padding(start = 8.dp)
@@ -99,7 +99,7 @@ fun LoginScreen(navController: NavHostController) {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.blue1)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onBackground),
                 onClick = {},
                 shape = RoundedCornerShape(15.dp),
                 modifier = Modifier
@@ -120,7 +120,7 @@ fun LoginScreen(navController: NavHostController) {
             }
             Spacer(modifier = Modifier.height(10.dp))
             Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.blue2)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.background),
                 onClick = {},
                 shape = RoundedCornerShape(15.dp),
                 modifier = Modifier

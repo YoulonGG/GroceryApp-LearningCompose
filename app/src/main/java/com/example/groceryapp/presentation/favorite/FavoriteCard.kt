@@ -49,7 +49,7 @@ fun CartList(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(MaterialTheme.colorScheme.secondary)
     ) {
         items(favoriteItems) { item ->
             Spacer(modifier = Modifier.height(8.dp))
@@ -64,7 +64,8 @@ fun CartList(
         item {
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary
+                ),
                 onClick = {},
                 shape = RoundedCornerShape(15.dp),
                 modifier = Modifier
@@ -121,14 +122,16 @@ fun FavoriteCard(
                     text = item.name,
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.titleMedium,
-                    maxLines = 2
+                    maxLines = 2,
+                    color = MaterialTheme.colorScheme.onSecondary
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = item.des,
                     style = MaterialTheme.typography.bodyMedium,
-                    maxLines = 2
+                    maxLines = 2,
+                    color = MaterialTheme.colorScheme.onSecondary
                 )
             }
             Row (
@@ -138,6 +141,7 @@ fun FavoriteCard(
                 Text(
                     text = item.unitPrice,
                     fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSecondary,
                     style = MaterialTheme.typography.titleMedium,
                 )
                 Spacer(modifier = Modifier.width(4.dp))

@@ -10,7 +10,12 @@ import com.example.groceryapp.presentation.splashScreen.SplashScreen
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.ACCOUNT
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.CART
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.EXPLORE
+import com.example.groceryapp.presentation.app.RouteDestinations.Companion.EXPLORE_BAKERY_SNACK
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.EXPLORE_BEVERAGES
+import com.example.groceryapp.presentation.app.RouteDestinations.Companion.EXPLORE_COOKING_INCREDIENT
+import com.example.groceryapp.presentation.app.RouteDestinations.Companion.EXPLORE_DAIRY
+import com.example.groceryapp.presentation.app.RouteDestinations.Companion.EXPLORE_FRUIT_VEGETABLE
+import com.example.groceryapp.presentation.app.RouteDestinations.Companion.EXPLORE_MEAT_FISH
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.FAVOURITE
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.LOGIN
 import com.example.groceryapp.presentation.app.RouteDestinations.Companion.OTP
@@ -24,7 +29,12 @@ import com.example.groceryapp.presentation.app.RouteDestinations.Companion.WELCO
 import com.example.groceryapp.presentation.cart.AcceptedOrderScreen
 import com.example.groceryapp.presentation.cart.CartScreen
 import com.example.groceryapp.presentation.explore.ExploreScreen
-import com.example.groceryapp.presentation.explore.beverages.BeveragesScreen
+import com.example.groceryapp.presentation.explore.exploreProducts.BakerySnackScreen
+import com.example.groceryapp.presentation.explore.exploreProducts.BeveragesScreen
+import com.example.groceryapp.presentation.explore.exploreProducts.CookingIncredientScreen
+import com.example.groceryapp.presentation.explore.exploreProducts.DairyScreens
+import com.example.groceryapp.presentation.explore.exploreProducts.FruitsVegetablesScreen
+import com.example.groceryapp.presentation.explore.exploreProducts.MeatScreen
 import com.example.groceryapp.presentation.favorite.FavoriteScreen
 import com.example.groceryapp.presentation.login.LoginScreen
 import com.example.groceryapp.presentation.login.OTPScreen
@@ -53,6 +63,11 @@ fun Route(navController: NavHostController) {
         composable(SIGN_UP) { SignUpScreen(navController) }
         composable(EXPLORE_BEVERAGES) { BeveragesScreen(navController) }
         composable(ACCEPTED_ORDER) { AcceptedOrderScreen(navController) }
+        composable(EXPLORE_FRUIT_VEGETABLE) { FruitsVegetablesScreen(navController) }
+        composable(EXPLORE_BAKERY_SNACK) { BakerySnackScreen(navController) }
+        composable(EXPLORE_DAIRY) { DairyScreens(navController) }
+        composable(EXPLORE_COOKING_INCREDIENT) { CookingIncredientScreen(navController) }
+        composable(EXPLORE_MEAT_FISH) { MeatScreen(navController) }
     }
 }
 
@@ -73,5 +88,10 @@ class RouteDestinations {
         const val SIGN_UP = "signupScreen"
         const val EXPLORE_BEVERAGES = "exploreBeverages"
         const val ACCEPTED_ORDER = "acceptedOrder"
+        const val EXPLORE_FRUIT_VEGETABLE = "exploreFruit"
+        const val EXPLORE_BAKERY_SNACK = "exploreBakery"
+        const val EXPLORE_COOKING_INCREDIENT = "exploreCooking"
+        const val EXPLORE_DAIRY = "exploreDairy"
+        const val EXPLORE_MEAT_FISH = "exploreMeat"
     }
 }
