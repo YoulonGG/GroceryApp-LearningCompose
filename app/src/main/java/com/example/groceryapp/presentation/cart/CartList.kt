@@ -114,7 +114,9 @@ fun CartList(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Spacer(modifier = Modifier.height(20.dp).width(60.dp))
+                    Spacer(modifier = Modifier
+                        .height(20.dp)
+                        .width(60.dp))
                     Text(
                         style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
                         color = Color.White,
@@ -156,12 +158,16 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
         onDismissRequest = { onDismissRequest() }
     ) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(vertical = 8.dp, horizontal = 16.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(vertical = 8.dp, horizontal = 16.dp)
         ) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth().height(40.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
@@ -202,7 +208,9 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth().height(40.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
             ){
                 Text(
                     text = "Payment",
@@ -223,7 +231,9 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth().height(40.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
             ){
                 Text(
                     text = "Promo Code",
@@ -245,7 +255,9 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth().height(40.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
             ){
                 Text(
                     text = "Total Cost",
@@ -300,6 +312,7 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
         }
     }
 }
+
 
 @Composable
 fun CartCard(
