@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -29,6 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.core.components.PrimaryButton
 import com.example.groceryapp.presentation.app.RouteDestinations
 
 @Composable
@@ -39,12 +41,12 @@ fun WelcomeScreen(navController: NavController) {
             .fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.welcome),
-            modifier = Modifier.fillMaxSize(),
-            contentDescription = "Background Image",
-            contentScale = ContentScale.Crop
-        )
+//        Image(
+//            painter = painterResource(id = R.drawable.welcome),
+//            modifier = Modifier.fillMaxSize(),
+//            contentDescription = "Background Image",
+//            contentScale = ContentScale.Crop
+//        )
         Column(
             modifier = Modifier.fillMaxSize().padding(top = 500.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -53,8 +55,7 @@ fun WelcomeScreen(navController: NavController) {
                 painter = painterResource(id = R.drawable.carrot),
                 contentDescription = "Background Image",
                 modifier = Modifier
-                    .width(40.dp)
-                    .height(40.dp)
+                    .size(40.dp)
                 )
             Text(
                 style = MaterialTheme.typography.displayMedium,
@@ -71,22 +72,7 @@ fun WelcomeScreen(navController: NavController) {
                 modifier = Modifier.padding(horizontal = 42.dp).padding(top = 8.dp)
             )
             Spacer(modifier = Modifier.weight(1f))
-            Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
-                onClick = {navController.navigate(RouteDestinations.LOGIN)},
-                shape = RoundedCornerShape(15.dp),
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .height(48.dp)
-                    .fillMaxWidth()
-            ) {
-                Text(
-                    fontSize = 16.sp,
-                    color = Color.White,
-                    text = "Get Start",
-                    fontWeight = FontWeight.Bold,
-                )
-            }
+            PrimaryButton(text = "Login", onClick = {})
             Spacer(modifier = Modifier.height(60.dp))
         }
     }
