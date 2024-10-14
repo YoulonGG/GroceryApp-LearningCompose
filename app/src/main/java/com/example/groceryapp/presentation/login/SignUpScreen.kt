@@ -13,16 +13,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,10 +26,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -44,6 +37,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.core.components.DescriptionText
+import com.example.groceryapp.core.components.HeaderText
+import com.example.groceryapp.core.components.HorizontalLine
+import com.example.groceryapp.core.components.PrimaryButton
 import com.example.groceryapp.presentation.app.RouteDestinations
 
 @Composable
@@ -55,7 +52,7 @@ fun SignUpScreen(navController: NavController) {
     var passwordVisible by remember { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier.fillMaxSize().background(color = Color.White)
+        modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.surface)
     ) {
         Spacer(modifier = Modifier.height(150.dp))
         Image(
@@ -67,25 +64,20 @@ fun SignUpScreen(navController: NavController) {
                 .align(Alignment.CenterHorizontally)
         )
         Spacer(modifier = Modifier.height(42.dp))
-        Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        HeaderText(
             text = "Sign Up",
-            color = Color.Black,
-            style = MaterialTheme.typography.titleLarge
+            modifier = Modifier.padding(horizontal = 16.dp),
         )
         Spacer(modifier = Modifier.height(10.dp))
-        Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        DescriptionText(
             text = "Enter your credentials to continue",
-            color = Color.Gray,
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(start = 16.dp),
         )
         Spacer(modifier = Modifier.height(32.dp))
-        Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        DescriptionText(
             text = "Username",
-            color = Color.Gray,
-            style = MaterialTheme.typography.bodyLarge
+            modifier = Modifier.padding(start = 16.dp)
         )
         Spacer(modifier = Modifier.height(8.dp))
         BasicTextField(
@@ -100,13 +92,11 @@ fun SignUpScreen(navController: NavController) {
             ),
         )
         Spacer(modifier = Modifier.height(10.dp))
-        HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp).background(color = Color.Black), thickness = 1.dp)
+        HorizontalLine(thickness = 1, color = MaterialTheme.colorScheme.onPrimary)
         Spacer(modifier = Modifier.height(24.dp))
-        Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        DescriptionText(
             text = "Email",
-            color = Color.Gray,
-            style = MaterialTheme.typography.bodyLarge
+            modifier = Modifier.padding(start = 16.dp)
         )
         Spacer(modifier = Modifier.height(8.dp))
         BasicTextField(
@@ -121,13 +111,11 @@ fun SignUpScreen(navController: NavController) {
             ),
         )
         Spacer(modifier = Modifier.height(10.dp))
-        HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp).background(color = Color.Black), thickness = 1.dp)
+        HorizontalLine(thickness = 1, color = MaterialTheme.colorScheme.onPrimary)
         Spacer(modifier = Modifier.height(24.dp))
-        Text(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        DescriptionText(
             text = "Password",
-            color = Color.Gray,
-            style = MaterialTheme.typography.bodyLarge
+            modifier = Modifier.padding(start = 16.dp)
         )
         Box(
             modifier = Modifier.padding(horizontal = 16.dp)
@@ -157,74 +145,59 @@ fun SignUpScreen(navController: NavController) {
                 }
             }
         }
-        HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp).background(color = Color.Black), thickness = 1.dp)
+        HorizontalLine(thickness = 1, color = MaterialTheme.colorScheme.onPrimary)
         Spacer(modifier = Modifier.height(8.dp))
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
         ) {
-            Text(
+            DescriptionText(
                 text = "By continuing you agree to our",
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.onPrimary,
             )
-            Text(
+            DescriptionText(
                 modifier = Modifier.weight(1f),
                 text = " Terms of Service",
                 style = MaterialTheme.typography.bodyMedium,
-                color = colorResource(id = R.color.green1),
+                color = MaterialTheme.colorScheme.primary,
             )
         }
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
         ) {
-            Text(
+            DescriptionText(
                 text = "and",
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.onPrimary,
             )
-            Text(
+            DescriptionText(
                 modifier = Modifier.weight(1f),
                 text = " Privacy Policy",
                 style = MaterialTheme.typography.bodyMedium,
-                color = colorResource(id = R.color.green1),
+                color = MaterialTheme.colorScheme.primary,
                 )
         }
         Spacer(modifier = Modifier.height(42.dp))
-        Button(
-            colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
-            onClick = {navController.navigate(RouteDestinations.SIGN_IN)},
-            shape = RoundedCornerShape(15.dp),
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .height(48.dp)
-                .fillMaxWidth()
-        ) {
-            Text(
-                style = MaterialTheme.typography.titleMedium,
-                color = Color.White,
-                text = "Sign Up",
-                fontWeight = FontWeight.Bold,
-            )
-        }
+        PrimaryButton(
+            text = "Sign Up",
+            onClick = {navController.navigate(RouteDestinations.SIGN_IN)}
+        )
         Spacer(modifier = Modifier.height(10.dp))
         Row(
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(
+            DescriptionText(
                 text = "Already have an account?",
-                style = MaterialTheme.typography.bodyMedium,
-                color = Color.Black
+                color = MaterialTheme.colorScheme.onSurface,
+                style = MaterialTheme.typography.bodyMedium
             )
-            Text(
-                modifier = Modifier
-                    .padding(start = 8.dp)
-                    .clickable {
-                        navController.navigate("signingScreen")
-                    },
+            Spacer(modifier = Modifier.width(4.dp))
+            DescriptionText(
+                modifier = Modifier.clickable { navController.navigate(RouteDestinations.SIGN_IN) },
                 text = "Login",
-                style = MaterialTheme.typography.bodyMedium,
-                color = colorResource(id = R.color.green1)
+                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.bodyMedium
             )
         }
     }

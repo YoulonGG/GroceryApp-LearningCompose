@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -49,6 +50,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.core.components.HeaderText
 import com.example.groceryapp.presentation.app.RouteDestinations
 import com.example.groceryapp.presentation.bottomNavigationBar.BottomNavigation
 
@@ -58,22 +60,20 @@ fun ExploreScreen(navController: NavController) {
     var exploreSearch by remember { mutableStateOf("") }
 
     Scaffold(
-        modifier = Modifier.background(color = Color.White).padding(top = 42.dp),
+        modifier = Modifier.background(color = MaterialTheme.colorScheme.surface),
         bottomBar = { BottomNavigation(navController) },
         topBar = {
             TopAppBar(
-                contentColor = Color.White,
-                backgroundColor = Color.White,
+                contentColor = MaterialTheme.colorScheme.onSurface,
+                backgroundColor = MaterialTheme.colorScheme.surface,
                 title = {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
+                    HeaderText(
                         text = "Find Products",
-                        style = MaterialTheme.typography.titleLarge,
-                        color = Color.Black,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
                     )
-                }
+                },
+                modifier = Modifier.statusBarsPadding()
             )
         }
     ) { innerPadding ->
@@ -92,7 +92,8 @@ fun ExploreScreen(navController: NavController) {
                     "Search store...",
                     style = TextStyle(
                         fontSize = 16.sp,
-                        color = Color.Gray)
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
                 ) },
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,

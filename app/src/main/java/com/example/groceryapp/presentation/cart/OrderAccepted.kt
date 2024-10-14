@@ -29,21 +29,34 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.core.components.DescriptionText
+import com.example.groceryapp.core.components.HeaderText
+import com.example.groceryapp.core.components.PrimaryButton
 import com.example.groceryapp.presentation.app.RouteDestinations
 
 
+@Preview
+@Composable
+fun Testing() {
+    AcceptedOrderScreen(navController = rememberNavController())
+}
+
 @Composable
 fun AcceptedOrderScreen(navController: NavController) {
+
     var showOrderDialog by remember { mutableStateOf(false) }
 
-
     Column(
-        modifier = Modifier.fillMaxSize().background(color = Color.White)
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.White)
     ) {
         Image(
             painter = painterResource(id = R.drawable.acceptedorder),
@@ -53,53 +66,34 @@ fun AcceptedOrderScreen(navController: NavController) {
                 .height(350.dp)
         )
         Spacer(modifier = Modifier.height(32.dp))
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
+        HeaderText(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             text = "Your Order has been Accepted",
             style = MaterialTheme.typography.displaySmall,
-            color = Color.Black,
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Text(
+        DescriptionText(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
             text = "Your items have been placed and it’s on its way to being processed",
             style = MaterialTheme.typography.titleMedium,
-            color = Color.Gray,
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.weight(1f))
-        Button(
-            colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
-            onClick = { showOrderDialog = true },
-            shape = RoundedCornerShape(15.dp),
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .height(48.dp)
-                .fillMaxWidth()
-        ) {
-            Text(
-                style = MaterialTheme.typography.titleMedium,
-                color = Color.White,
-                text = "Track Order",
-                fontWeight = FontWeight.Bold,
-            )
-        }
+        PrimaryButton(
+            text = "Track Order",
+            onClick = { showOrderDialog = true }
+        )
         if (showOrderDialog) {
             OrderFilter(onDismiss = { showOrderDialog = false }, navController)
         }
         Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable { navController.navigate(RouteDestinations.CART) },
+        DescriptionText(
+            modifier = Modifier.fillMaxWidth().clickable { navController.navigate(RouteDestinations.CART) },
             text = "Back Home",
-            style = MaterialTheme.typography.titleMedium,
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.onSurface,
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(60.dp))
@@ -116,22 +110,28 @@ fun OrderFilter(
     ) {
         Surface(
             modifier = Modifier
-                .background(color = Color.White,shape = RoundedCornerShape(15.dp))
+                .background(color = Color.White, shape = RoundedCornerShape(15.dp))
                 .clip(RoundedCornerShape(15.dp))
         ) {
             Column(
                 modifier = Modifier
                     .background(color = Color.White)
-                    .fillMaxWidth().padding(16.dp)
+                    .fillMaxWidth()
+                    .padding(16.dp)
             ) {
                 Image(
-                    modifier = Modifier.size(24.dp).clickable { onDismiss() },
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clickable { onDismiss() },
                     painter = painterResource(id = R.drawable.close1),
                     contentDescription = null,
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Image(
-                    modifier = Modifier.size(160.dp).fillMaxWidth().align(alignment = Alignment.CenterHorizontally),
+                    modifier = Modifier
+                        .size(160.dp)
+                        .fillMaxWidth()
+                        .align(alignment = Alignment.CenterHorizontally),
                     painter = painterResource(id = R.drawable.bag),
                     contentDescription = null,
                 )

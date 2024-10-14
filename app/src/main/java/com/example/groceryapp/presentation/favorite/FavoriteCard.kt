@@ -33,6 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.groceryapp.R
+import com.example.groceryapp.core.components.HorizontalLine
 
 
 data class FavoriteClass(
@@ -55,9 +56,9 @@ fun CartList(
             Spacer(modifier = Modifier.height(8.dp))
             FavoriteCard(item = item)
             Spacer(modifier = Modifier.height(8.dp))
-            HorizontalDivider(
-                modifier = Modifier.padding(horizontal = 8.dp),
-                color = Color.Gray.copy(alpha = 0.4F)
+            HorizontalLine(
+                thickness = 1,
+                color = MaterialTheme.colorScheme.onPrimary
             )
             Spacer(modifier = Modifier.height(8.dp))
         }

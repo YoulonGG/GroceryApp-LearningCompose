@@ -4,15 +4,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,6 +17,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.core.components.HeaderText
+import com.example.groceryapp.core.components.HorizontalLine
+import com.example.groceryapp.core.components.PrimaryButton
+import com.example.groceryapp.core.components.SelectFlagPhoneNumber
 import com.example.groceryapp.presentation.app.RouteDestinations
 
 @Composable
@@ -28,6 +29,8 @@ fun LoginScreen(navController: NavHostController) {
     var selectedCountry by remember { mutableStateOf("Cambodia") }
     var selectedCountryCode by remember { mutableStateOf("+855") }
     var selectedImageRes by remember { mutableIntStateOf(R.drawable.cam) }
+
+    var phoneNumber by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier.fillMaxSize().background(color = Color.White)
@@ -42,103 +45,44 @@ fun LoginScreen(navController: NavHostController) {
         Column(
             modifier = Modifier
                 .padding(top = 360.dp)
-                .padding(horizontal = 16.dp)
         ) {
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                style = MaterialTheme.typography.titleLarge,
-                color = Color.Black,
+            HeaderText(
                 text = "Get your groceries \nwith nectar",
-                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(start = 16.dp)
             )
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp)
-                    .clickable { showBottomSheet = true }
-            ) {
-                Image(
-                    painter = painterResource(id = selectedImageRes),
-                    contentDescription = null,
-                    modifier = Modifier.size(30.dp)
-                )
-                Text(
-                    text = selectedCountryCode,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = Color.Black,
-                    modifier = Modifier.padding(start = 10.dp)
-                )
-            }
-            HorizontalDivider(modifier = Modifier.background(color = Color.Gray), thickness = 1.dp)
+            SelectFlagPhoneNumber(
+                imageRes = selectedImageRes,
+                countryCode = selectedCountryCode,
+                onClick = { showBottomSheet = true },
+                phoneNumber = phoneNumber,
+                onPhoneNumberChange = { phoneNumber = it }
+            )
+            HorizontalLine(color = MaterialTheme.colorScheme.onPrimary, thickness = 1)
             Spacer(modifier = Modifier.height(16.dp))
-            Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
-                onClick = { navController.navigate(RouteDestinations.PHONE_NUMBER) },
-                shape = RoundedCornerShape(15.dp),
-                modifier = Modifier
-                    .height(48.dp)
-                    .fillMaxWidth()
-            ) {
-                Text(
-                    style = MaterialTheme.typography.titleMedium,
-                    color = Color.White,
-                    text = "Login",
-                    fontWeight = FontWeight.Bold,
-                )
-            }
+            PrimaryButton(
+                text = "Login",
+                onClick = {navController.navigate(RouteDestinations.PHONE_NUMBER)})
             Spacer(modifier = Modifier.height(42.dp))
             Text(
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.Gray,
+                color = MaterialTheme.colorScheme.onPrimary,
                 text = "Or connect with social media",
-                modifier = Modifier
-                    .padding(start = 8.dp)
-                    .fillMaxWidth()
-            )
+                modifier = Modifier.fillMaxWidth())
             Spacer(modifier = Modifier.height(16.dp))
-            Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.blue1)),
-                onClick = {},
-                shape = RoundedCornerShape(15.dp),
-                modifier = Modifier
-                    .height(50.dp)
-                    .fillMaxWidth()
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.googlesymbol),
-                    contentDescription = null,
-                    modifier = Modifier.size(24.dp)
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                Text(
-                    style = MaterialTheme.typography.titleMedium,
-                    color = Color.White,
-                    text = "Continue with Google",
-                )
-            }
+            PrimaryButton(
+                text = "Continue with Google",
+                imageRes = R.drawable.googlesymbol,
+                backgroundColor = MaterialTheme.colorScheme.background,
+                onClick = { }
+            )
             Spacer(modifier = Modifier.height(10.dp))
-            Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.blue2)),
-                onClick = {},
-                shape = RoundedCornerShape(15.dp),
-                modifier = Modifier
-                    .height(50.dp)
-                    .fillMaxWidth()
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.facebooklogo),
-                    contentDescription = null,
-                    modifier = Modifier.size(24.dp)
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                Text(
-                    style = MaterialTheme.typography.titleMedium,
-                    color = Color.White,
-                    text = "Continue with Facebook",
-                )
-            }
+            PrimaryButton(
+                text = "Continue with Facebook",
+                imageRes = R.drawable.googlesymbol,
+                backgroundColor = MaterialTheme.colorScheme.onBackground,
+                onClick = { }
+            )
         }
     }
     if (showBottomSheet) {
