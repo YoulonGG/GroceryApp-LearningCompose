@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.explore.beverages
+package com.example.groceryapp.presentation.explore.exploreItems
 
 
 import androidx.compose.foundation.Image
@@ -48,6 +48,8 @@ import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import com.example.groceryapp.R
 import com.example.groceryapp.core.components.HeaderText
+import com.example.groceryapp.presentation.explore.ExploreClass
+import com.example.groceryapp.presentation.explore.ExploreList
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -55,12 +57,12 @@ import com.example.groceryapp.core.components.HeaderText
 fun BeveragesScreen(navController: NavController) {
 
     val beverages = listOf(
-        BeveragesClass(R.drawable.b1, "Diet Coke", "355ML, Price", "1.99$"),
-        BeveragesClass(R.drawable.b2, "Sprite", "325ML, Price", "1.50$"),
-        BeveragesClass(R.drawable.b3, "Apple & Grape Juice", "2L, Price", "15.99$"),
-        BeveragesClass(R.drawable.b4, "Orange Juice", "2L, Price", "15.99$"),
-        BeveragesClass(R.drawable.b5, "Coca Cola", "325ML, Price", "4.99$"),
-        BeveragesClass(R.drawable.b6, "Pepsi", "335ML, Price", "4.99$"),
+        ExploreClass(R.drawable.b1, "Diet Coke", "355ML, Price", "1.99$"),
+        ExploreClass(R.drawable.b2, "Sprite", "325ML, Price", "1.50$"),
+        ExploreClass(R.drawable.b3, "Apple & Grape Juice", "2L, Price", "15.99$"),
+        ExploreClass(R.drawable.b4, "Orange Juice", "2L, Price", "15.99$"),
+        ExploreClass(R.drawable.b5, "Coca Cola", "325ML, Price", "4.99$"),
+        ExploreClass(R.drawable.b6, "Pepsi", "335ML, Price", "4.99$"),
     )
 
     var showFilterDialog by remember { mutableStateOf(false) }
@@ -108,7 +110,7 @@ fun BeveragesScreen(navController: NavController) {
                 .background(color = Color.White)
         ) {
             Box(modifier = Modifier.padding(horizontal = 8.dp)) {
-                BeverageList(items = beverages)
+                ExploreList(items = beverages)
             }
         }
     }

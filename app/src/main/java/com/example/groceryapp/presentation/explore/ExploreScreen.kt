@@ -3,13 +3,11 @@ package com.example.groceryapp.presentation.explore
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,12 +21,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.TopAppBar
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,20 +31,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.core.components.DescriptionText
 import com.example.groceryapp.core.components.HeaderText
+import com.example.groceryapp.core.components.SearchField
 import com.example.groceryapp.presentation.app.RouteDestinations
 import com.example.groceryapp.presentation.bottomNavigationBar.BottomNavigation
 
@@ -60,7 +51,7 @@ fun ExploreScreen(navController: NavController) {
     var exploreSearch by remember { mutableStateOf("") }
 
     Scaffold(
-        modifier = Modifier.background(color = MaterialTheme.colorScheme.surface),
+        modifier = Modifier.background(MaterialTheme.colorScheme.surface),
         bottomBar = { BottomNavigation(navController) },
         topBar = {
             TopAppBar(
@@ -70,7 +61,6 @@ fun ExploreScreen(navController: NavController) {
                     HeaderText(
                         text = "Find Products",
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.fillMaxWidth()
                     )
                 },
                 modifier = Modifier.statusBarsPadding()
@@ -81,358 +71,78 @@ fun ExploreScreen(navController: NavController) {
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .background(color = Color.White)
+                .background(color = MaterialTheme.colorScheme.surface)
                 .verticalScroll(rememberScrollState())
         ) {
             Spacer(modifier = Modifier.height(16.dp))
-            TextField(
+            SearchField(
                 value = exploreSearch,
-                onValueChange = { exploreSearch = it },
-                placeholder = { Text(
-                    "Search store...",
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        color = MaterialTheme.colorScheme.onPrimary
-                    )
-                ) },
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color.White,
-                    unfocusedContainerColor = Color.White,
-                    disabledContainerColor = Color.White,
-                    focusedIndicatorColor = colorResource(id = R.color.white2),
-                    unfocusedIndicatorColor = colorResource(id = R.color.white2),
-                    disabledIndicatorColor = Color.Transparent
-                ),
-                shape = RoundedCornerShape(15.dp),
-                textStyle = TextStyle(fontSize = 16.sp),
-                leadingIcon = {
-                    Icon(
-                        painter = painterResource(id = R.drawable.search),
-                        contentDescription = null,
-                        modifier = Modifier.size(20.dp)
-                    )
-                },
-                modifier = Modifier
-                    .height(50.dp)
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .shadow(elevation = 16.dp, shape = RoundedCornerShape(10.dp))
+                onValueChange ={ exploreSearch = it }
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Column(
-                modifier = Modifier.fillMaxSize().background(color = Color.White).padding(horizontal = 16.dp)
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
-                ) {
-                    Card(
-                        modifier = Modifier
-                            .weight(1f)
-                            .width(180.dp)
-                            .height(200.dp)
-                            .background(color = Color.White)
-                            .border(BorderStroke(0.5.dp, color = colorResource(id = R.color.blue1)), shape = RoundedCornerShape(10.dp)),
-                        shape = RoundedCornerShape(10.dp),
-                        elevation = 4.dp
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .fillMaxSize()
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.explore1),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(115.dp)
-                                    .clip(CircleShape)
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
-                                text = "Fresh Fruits and Vegetables",
-                                style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Card(
-                        modifier = Modifier
-                            .weight(1f)
-                            .width(180.dp)
-                            .height(200.dp)
-                            .background(color = Color.White)
-                            .border(BorderStroke(1.dp, color = colorResource(id = R.color.purple_200)), shape = RoundedCornerShape(10.dp)),
-                        shape = RoundedCornerShape(10.dp),
-                        elevation = 4.dp
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .fillMaxSize()
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.explore2),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(115.dp)
-                                    .clip(CircleShape)
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
-                                text = "Cooking Oil and Ghee",
-                                style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
-                }
-                Row(
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
-                ) {
-                    Card(
-                        modifier = Modifier
-                            .weight(1f)
-                            .width(180.dp)
-                            .height(200.dp)
-                            .background(color = Color.White)
-                            .border(BorderStroke(1.dp, color = colorResource(id = R.color.teal_700)), shape = RoundedCornerShape(10.dp)),
-                        shape = RoundedCornerShape(10.dp),
-                        elevation = 4.dp
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .fillMaxSize()
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.explore3),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(115.dp)
-                                    .clip(CircleShape)
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
-                                text = "Meat and Fish",
-                                style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Card(
-                        modifier = Modifier
-                            .weight(1f)
-                            .width(180.dp)
-                            .height(200.dp)
-                            .background(color = Color.White)
-                            .border(BorderStroke(1.dp, color = colorResource(id = R.color.green1)), shape = RoundedCornerShape(10.dp)),
-                        shape = RoundedCornerShape(10.dp),
-                        elevation = 4.dp
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .fillMaxSize()
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.explore4),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(115.dp)
-                                    .clip(CircleShape)
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
-                                text = "Bakery and Snacks",
-                                style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
-                }
-                Row(
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
-                ) {
-                    Card(
-                        modifier = Modifier
-                            .weight(1f)
-                            .width(180.dp)
-                            .height(200.dp)
-                            .background(color = Color.White)
-                            .border(BorderStroke(1.dp, color = colorResource(id = R.color.blue2)), shape = RoundedCornerShape(10.dp)),
-                        shape = RoundedCornerShape(10.dp),
-                        elevation = 4.dp
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .fillMaxSize()
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.explore5),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(115.dp)
-                                    .clip(CircleShape)
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
-                                text = "Dairy and Egg",
-                                style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Card(
-                        modifier = Modifier
-                            .weight(1f)
-                            .clickable { navController.navigate(RouteDestinations.EXPLORE_BEVERAGES) }
-                            .width(180.dp)
-                            .height(200.dp)
-                            .background(color = Color.White)
-                            .border(BorderStroke(1.dp, color = colorResource(id = R.color.purple_200)), shape = RoundedCornerShape(10.dp)),
-                        shape = RoundedCornerShape(10.dp),
-                        elevation = 4.dp
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .fillMaxSize()
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.explore6),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(115.dp)
-                                    .clip(CircleShape)
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
-                                text = "Beverages",
-                                style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
-                }
-                Row(
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
-                ) {
-                    Card(
-                        modifier = Modifier
-                            .weight(1f)
-                            .clickable { navController.navigate(RouteDestinations.EXPLORE_BEVERAGES) }
-                            .width(180.dp)
-                            .height(200.dp)
-                            .background(color = Color.White)
-                            .border(BorderStroke(1.dp, color = colorResource(id = R.color.purple_700)), shape = RoundedCornerShape(10.dp)),
-                        shape = RoundedCornerShape(10.dp),
-                        elevation = 4.dp
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .fillMaxSize()
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.explore6),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(115.dp)
-                                    .clip(CircleShape)
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
-                                text = "Beverages",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = Color.Black,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Card(
-                        modifier = Modifier
-                            .weight(1f)
-                            .clickable { navController.navigate(RouteDestinations.EXPLORE_BEVERAGES) }
-                            .width(180.dp)
-                            .height(200.dp)
-                            .background(color = Color.White)
-                            .border(BorderStroke(0.5.dp, color = colorResource(id = R.color.blue1)), shape = RoundedCornerShape(10.dp)),
-                        shape = RoundedCornerShape(10.dp),
-                        elevation = 4.dp
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .fillMaxSize()
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.explore6),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(115.dp)
-                                    .clip(CircleShape)
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            androidx.compose.material.Text(
-                                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(horizontal = 8.dp),
-                                text = "Beverages",
-                                style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
+            val categories = listOf(
+                Pair("Fresh Fruits and Vegetables", R.drawable.explore1 to RouteDestinations.EXPLORE_FRUIT),
+                Pair("Cooking Oil and Ghee", R.drawable.explore2 to RouteDestinations.EXPLORE_COOKING),
+                Pair("Meat and Fish", R.drawable.explore3 to RouteDestinations.EXPLORE_MEAT),
+                Pair("Bakery and Snacks", R.drawable.explore4 to RouteDestinations.EXPLORE_BAKERY),
+                Pair("Dairy and Egg", R.drawable.explore5 to RouteDestinations.EXPLORE_DAIRY),
+                Pair("Beverages", R.drawable.explore6 to RouteDestinations.EXPLORE_BEVERAGES)
+            )
+
+            CategoryGrid(categories, navController)
+        }
+    }
+}
+
+@Composable
+fun CategoryGrid(categories: List<Pair<String, Pair<Int, String>>>, navController: NavController) {
+    categories.chunked(2).forEach { rowItems ->
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
+        ) {
+            rowItems.forEach { (text, iconAndDestination) ->
+                CategoryCard(text = text, iconRes = iconAndDestination.first) {
+                    navController.navigate(iconAndDestination.second)
                 }
             }
         }
     }
 }
+
+@Composable
+fun CategoryCard(text: String, iconRes: Int, onClick: () -> Unit) {
+    Card(
+        modifier = Modifier
+            .clickable(onClick = onClick)
+            .width(180.dp)
+            .height(200.dp),
+        shape = RoundedCornerShape(10.dp),
+        border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.6F))
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.padding(8.dp)
+        ) {
+            Image(
+                painter = painterResource(id = iconRes),
+                contentDescription = null,
+                modifier = Modifier.size(115.dp).clip(CircleShape)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            DescriptionText(
+                text = text,
+                style = MaterialTheme.typography.titleMedium,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+        }
+    }
+}
+
+
 
 
 

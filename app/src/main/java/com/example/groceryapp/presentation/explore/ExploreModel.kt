@@ -1,4 +1,4 @@
-package com.example.groceryapp.presentation.explore.beverages
+package com.example.groceryapp.presentation.explore
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -33,7 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.groceryapp.R
 
-data class BeveragesClass(
+data class ExploreClass(
     val image: Int,
     val name: String,
     val des: String,
@@ -41,11 +41,11 @@ data class BeveragesClass(
 )
 
 @Composable
-fun BeverageList(items: List<BeveragesClass>) {
+fun ExploreList(items: List<ExploreClass>) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(color = MaterialTheme.colorScheme.surface)
     ) {
         items(items.chunked(2), key = { it.hashCode() }) { rowItems ->
             Row(
@@ -53,7 +53,7 @@ fun BeverageList(items: List<BeveragesClass>) {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 rowItems.forEach { item ->
-                    BeverageCard(item = item, modifier = Modifier.weight(1f))
+                    ExploreCard(item = item, modifier = Modifier.weight(1f))
                 }
                 if (rowItems.size == 1) {
                     Spacer(modifier = Modifier.weight(1f))
@@ -64,7 +64,7 @@ fun BeverageList(items: List<BeveragesClass>) {
 }
 
 @Composable
-fun BeverageCard(item: BeveragesClass, modifier: Modifier = Modifier) {
+fun ExploreCard(item: ExploreClass, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -72,7 +72,7 @@ fun BeverageCard(item: BeveragesClass, modifier: Modifier = Modifier) {
             .padding(horizontal = 8.dp, vertical = 10.dp),
         shape = RoundedCornerShape(10.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
-        border = BorderStroke(0.5.dp,Color.Gray.copy(alpha = 0.6F)),
+        border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.6F))
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -136,8 +136,8 @@ fun BeverageCard(item: BeveragesClass, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun PreviewBeveragesCard() {
-    BeverageCard(
-        item = BeveragesClass(
+    ExploreCard(
+        item = ExploreClass(
             image = R.drawable.apple,
             name = "Sample Item",
             des = "Sample Description",
