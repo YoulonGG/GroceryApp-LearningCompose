@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,23 +12,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -41,6 +34,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.core.components.DescriptionText
+import com.example.groceryapp.core.components.HeaderText
+import com.example.groceryapp.core.components.TextWithNavigateButton
 import com.example.groceryapp.presentation.app.RouteDestinations
 
 @Composable
@@ -61,32 +57,30 @@ fun OTPScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp)
-            .background(color = Color.White)
+            .background(color = MaterialTheme.colorScheme.surface)
     ) {
         Spacer(modifier = Modifier.height(80.dp))
         Image(
             painter = painterResource(id = R.drawable.baseline_arrow_back_ios_new_24),
             contentDescription = null,
             modifier = Modifier
-                .width(24.dp)
-                .height(24.dp)
+                .padding(start = 16.dp)
+                .size(24.dp)
                 .clickable { navController.popBackStack() }
         )
         Spacer(modifier = Modifier.height(62.dp))
-        Text(
+
+        HeaderText(
             text = "Enter 4-digits code",
-            color = Color.Black,
-            style = MaterialTheme.typography.titleLarge
+            modifier = Modifier.padding(start = 16.dp)
         )
         Spacer(modifier = Modifier.height(32.dp))
-        Text(
+        DescriptionText(
             text = "Code",
-            color = Color.Gray,
-            style = MaterialTheme.typography.titleMedium
+            modifier = Modifier.padding(start = 16.dp)
         )
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             for (i in 0..3) {
@@ -119,35 +113,12 @@ fun OTPScreen(navController: NavController) {
             }
         }
         Spacer(modifier = Modifier.weight(1f))
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.End)
-        ) {
-            Text(
-                text = "Resend Code",
-                style = MaterialTheme.typography.bodyLarge,
-                color = colorResource(id = R.color.green1),
-                textAlign = TextAlign.Center
-            )
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .size(50.dp)
-                    .clip(CircleShape)
-                    .background(color = colorResource(id = R.color.green1))
-                    .clickable {
-                        navController.navigate(RouteDestinations.SELECT_LOCATION_SCREEN)
-                    }
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.white_arrow),
-                    contentDescription = null,
-                )
-            }
-        }
+        TextWithNavigateButton(
+            text = "Resend Code",
+            imageRes = R.drawable.white_arrow,
+            onClick = { navController.navigate(RouteDestinations.SELECT_LOCATION_SCREEN) }
+        )
+
         Spacer(modifier = Modifier.height(60.dp))
     }
 }

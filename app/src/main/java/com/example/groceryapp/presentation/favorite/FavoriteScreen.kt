@@ -10,15 +10,14 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.TopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.groceryapp.R
+import com.example.groceryapp.core.components.HeaderText
 import com.example.groceryapp.presentation.bottomNavigationBar.BottomNavigation
 
 @Composable
@@ -37,21 +36,16 @@ fun FavoriteScreen(navController: NavController) {
         bottomBar = { BottomNavigation(navController) },
         topBar = {
             TopAppBar(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(color = Color.White)
-                    .statusBarsPadding(),
-                backgroundColor = Color.White,
+                contentColor = MaterialTheme.colorScheme.onSurface,
+                backgroundColor = MaterialTheme.colorScheme.surface,
                 title = {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
+                    HeaderText(
                         text = "Favorite",
-                        style = MaterialTheme.typography.titleLarge,
-                        color = Color.Black,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
                     )
-                }
+                },
+                modifier = Modifier.statusBarsPadding()
             )
         }
     ) { innerPadding ->

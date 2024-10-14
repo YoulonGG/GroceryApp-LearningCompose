@@ -19,7 +19,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Card
+import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -39,13 +39,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.core.components.DescriptionText
+import com.example.groceryapp.core.components.HeaderText
 import com.example.groceryapp.presentation.bottomNavigationBar.BottomNavigation
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
@@ -107,7 +108,7 @@ fun ShopScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = Color.White)
+                .background(color = MaterialTheme.colorScheme.surface)
                 .padding(paddingValues)
                 .verticalScroll(rememberScrollState())
         ) {
@@ -116,8 +117,7 @@ fun ShopScreen(navController: NavController) {
                 painter = painterResource(id = R.drawable.orangecarrot),
                 contentDescription = null,
                 modifier = Modifier
-                    .width(30.dp)
-                    .height(30.dp)
+                    .size(30.dp)
                     .align(Alignment.CenterHorizontally)
             )
             Spacer(modifier = Modifier.height(5.dp))
@@ -130,10 +130,10 @@ fun ShopScreen(navController: NavController) {
                     painter = painterResource(id = R.drawable.locationpin),
                     contentDescription = null
                 )
-                Text(
+                DescriptionText(
                     text = "Phnom Penh, Cambodia",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = colorResource(id = R.color.black)
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurface
 
                 )
             }
@@ -144,7 +144,7 @@ fun ShopScreen(navController: NavController) {
                 placeholder = {
                     Text(
                         "Search store...",
-                        style = TextStyle(fontSize = 16.sp, color = Color.Gray)
+                        style = TextStyle(fontSize = 16.sp, color = MaterialTheme.colorScheme.onPrimary)
                     )
                 },
                 colors = TextFieldDefaults.colors(
@@ -203,67 +203,27 @@ fun ShopScreen(navController: NavController) {
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .padding(top = 8.dp)
-            ) {
-                Text(
-                    text = "Exclusive Offer",
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = colorResource(id = R.color.black)
-                )
-                Text(
-                    text = "See all",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = colorResource(id = R.color.green1),
-                )
-            }
+            HeaderText(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                text = "Exclusive Offer",
+                endText = "See all"
+            )
             Box (modifier = Modifier.padding(horizontal = 8.dp)){
                 ExclusiveHorizontalItemList(items = exclusiveItem, modifier = Modifier)
             }
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-            ) {
-                Text(
-                    text = "Best Selling",
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = colorResource(id = R.color.black)
-                )
-                Text(
-                    text = "See all",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = colorResource(id = R.color.green1)
-                )
-            }
+            HeaderText(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                text = "Best Selling",
+                endText = "See all"
+            )
             Box (modifier = Modifier.padding(horizontal = 8.dp)) {
                 ExclusiveHorizontalItemList(items = bestSellingItem)
             }
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-            ) {
-                Text(
-                    text = "Groceries",
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = colorResource(id = R.color.black)
-                )
-                Text(
-                    text = "See all",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = colorResource(id = R.color.green1)
-                )
-            }
+            HeaderText(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                text = "Groceries",
+                endText = "See all"
+            )
             Spacer(modifier = Modifier.height(8.dp))
             LazyRow(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)
@@ -271,6 +231,7 @@ fun ShopScreen(navController: NavController) {
                 items(itemsList) { item ->
                     Card(
                         modifier = Modifier
+                            .background(color = MaterialTheme.colorScheme.surface)
                             .width(180.dp)
                             .padding(horizontal = 8.dp),
                         shape = RoundedCornerShape(10.dp),
@@ -289,7 +250,8 @@ fun ShopScreen(navController: NavController) {
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
                                 text = item.second,
-                                style = MaterialTheme.typography.titleMedium
+                                style = MaterialTheme.typography.titleMedium,
+                                color = MaterialTheme.colorScheme.onSurface
                             )
                         }
                     }

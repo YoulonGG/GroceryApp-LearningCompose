@@ -19,11 +19,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -37,15 +36,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.groceryapp.R
+import com.example.groceryapp.core.components.DescriptionText
+import com.example.groceryapp.core.components.HeaderText
+import com.example.groceryapp.core.components.PrimaryButton
 import com.example.groceryapp.presentation.app.RouteDestinations
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 data class CartClass(
     val image: Int,
@@ -54,21 +55,20 @@ data class CartClass(
     val unitPrice: Double,
     var quantity: Int = 1
 ) {
-    val totalPrice: Double
-        get() = unitPrice * quantity
+    val totalPrice: Double get() = unitPrice * quantity
 }
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CartList(
-    initialItems: List<CartClass> ,
+    initialItems: List<CartClass>,
     navController: NavController
 ) {
     val items = remember { mutableStateListOf<CartClass>().apply { addAll(initialItems) } }
     val bottomSheetState = rememberModalBottomSheetState(false)
     val scope = rememberCoroutineScope()
     var showBottomSheet by remember { mutableStateOf(false) }
+
+    val totalAmount = calculateTotal(items)
 
     LazyColumn(
         modifier = Modifier
@@ -93,49 +93,17 @@ fun CartList(
             )
             Spacer(modifier = Modifier.height(8.dp))
         }
-        item {
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
-                onClick = {
-                    scope.launch {
-                        bottomSheetState.show()
-                    }
-                    showBottomSheet = true
-                },
-                shape = RoundedCornerShape(15.dp),
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .height(48.dp)
-                    .fillMaxWidth()
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Spacer(modifier = Modifier
-                        .height(20.dp)
-                        .width(60.dp))
-                    Text(
-                        style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
-                        color = Color.White,
-                        text = "Check Out",
-                        fontWeight = FontWeight.Bold,
-                    )
-                    Text(
-                        modifier = Modifier
-                            .height(20.dp)
-                            .width(60.dp)
-                            .background(color = colorResource(id = R.color.green3)),
-                        text = "$99.99",
-                        style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
-                        color = Color.White,
-                        textAlign = TextAlign.Center
-                    )
-                }
+
+        if (items.isNotEmpty()) {
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
+                PrimaryButton(
+                    text = "Checkout",
+                    onClick = { showBottomSheet = true },
+                    endText = String.format(Locale.US, "%.2f", totalAmount, "$"),
+                )
+                Spacer(modifier = Modifier.height(16.dp))
             }
-            Spacer(modifier = Modifier.height(16.dp))
         }
     }
     if (showBottomSheet) {
@@ -144,8 +112,11 @@ fun CartList(
                 bottomSheetState.hide()
                 showBottomSheet = false
             }
-        },navController = navController)
+        }, navController = navController)
     }
+}
+private fun calculateTotal(items: List<CartClass>): Double {
+    return items.sumOf { it.unitPrice * it.quantity }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -160,20 +131,16 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(vertical = 8.dp, horizontal = 16.dp)
+                .padding(vertical = 8.dp)
         ) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(40.dp)
+                modifier = Modifier.fillMaxWidth().height(40.dp)
             ) {
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
+                HeaderText(
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
                     text = "Checkout",
-                    style = androidx.compose.material3.MaterialTheme.typography.titleLarge,
-                    color = Color.Black,
                 )
                 Image(
                     painter = painterResource(id = R.drawable.close1),
@@ -185,19 +152,17 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).height(40.dp)
             ){
-                Text(
+                DescriptionText(
                     text = "Delivery",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyLarge,
-                    color = Color.Gray
                 )
                 Spacer(modifier = Modifier.weight(1f))
-                Text(
+                DescriptionText(
                     textAlign = TextAlign.End,
                     text = "Select Method",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-                    color = Color.Black
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Image(
@@ -208,14 +173,10 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(40.dp)
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).height(40.dp)
             ){
-                Text(
+                DescriptionText(
                     text = "Payment",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyLarge,
-                    color = Color.Gray
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
@@ -231,20 +192,16 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(40.dp)
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).height(40.dp)
             ){
-                Text(
+                DescriptionText(
                     text = "Promo Code",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyLarge,
-                    color = Color.Gray
                 )
                 Spacer(modifier = Modifier.weight(1f))
-                Text(
+                DescriptionText(
                     text = "Pick Discount",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-                    color = Color.Black
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Image(
@@ -255,21 +212,18 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(40.dp)
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).height(40.dp)
             ){
-                Text(
+                DescriptionText(
                     text = "Total Cost",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyLarge,
-                    color = Color.Gray
                 )
                 Spacer(modifier = Modifier.weight(1f))
-                Text(
+                DescriptionText(
                     textAlign = TextAlign.End,
-                    text = "$99.99",
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-                    color = Color.Black
+//                    text = String.format(Locale.US, "%.2f", totalAmount, "$"),
+                    text = "00.00$",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Image(
@@ -278,36 +232,23 @@ fun BottomSheet(onDismissRequest: () -> Unit, navController: NavController) {
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
-            Text(
+            DescriptionText(
                 text = "By placing an order you agree to our",
-                style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-                color = Color.Gray
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.padding(start = 16.dp)
             )
-            Text(
+            DescriptionText(
                 text = "Terms and Conditions",
-                style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-                color = Color.Black
-
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.padding(start = 16.dp)
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Button(
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.green1)),
-                onClick = {
-                    onDismissRequest()
-                    navController.navigate(RouteDestinations.ACCEPTED_ORDER)
-                },
-                shape = RoundedCornerShape(15.dp),
-                modifier = Modifier
-                    .height(48.dp)
-                    .fillMaxWidth()
-            ) {
-                Text(
-                    style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
-                    color = Color.White,
-                    text = "Place Order",
-                    fontWeight = FontWeight.Bold,
-                )
-            }
+            PrimaryButton(
+                text = "Place Order",
+                onClick = { navController.navigate(RouteDestinations.ACCEPTED_ORDER) },
+            )
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
@@ -350,13 +291,13 @@ fun CartCard(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = item.name,
-                    style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.Black
                 )
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = item.des,
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodyMedium,
                     color = Color.Gray
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -381,7 +322,7 @@ fun CartCard(
                     Spacer(modifier = Modifier.width(16.dp))
                     Text(
                         text = item.quantity.toString(),
-                        style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodyMedium,
                         color = Color.Black
                     )
                     Spacer(modifier = Modifier.width(16.dp))
@@ -414,7 +355,7 @@ fun CartCard(
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
                     text = "$${item.totalPrice}",
-                    style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleMedium,
                     color = Color.Black
                 )
             }

@@ -9,24 +9,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
@@ -41,14 +34,14 @@ fun WelcomeScreen(navController: NavController) {
             .fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
-//        Image(
-//            painter = painterResource(id = R.drawable.welcome),
-//            modifier = Modifier.fillMaxSize(),
-//            contentDescription = "Background Image",
-//            contentScale = ContentScale.Crop
-//        )
+        Image(
+            painter = painterResource(id = R.drawable.welcome),
+            modifier = Modifier.fillMaxSize(),
+            contentDescription = "Background Image",
+            contentScale = ContentScale.Crop
+        )
         Column(
-            modifier = Modifier.fillMaxSize().padding(top = 500.dp),
+            modifier = Modifier.fillMaxSize().padding(top = 400.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Image(
@@ -59,7 +52,7 @@ fun WelcomeScreen(navController: NavController) {
                 )
             Text(
                 style = MaterialTheme.typography.displayMedium,
-                color = Color.White,
+                color = MaterialTheme.colorScheme.surface,
                 text = "Welcome \n to Our Store",
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
@@ -67,12 +60,18 @@ fun WelcomeScreen(navController: NavController) {
             )
             Text(
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.White,
+                color = MaterialTheme.colorScheme.surface,
                     text = "Get your groceries in as fast as one hour",
                 modifier = Modifier.padding(horizontal = 42.dp).padding(top = 8.dp)
             )
             Spacer(modifier = Modifier.weight(1f))
-            PrimaryButton(text = "Login", onClick = {})
+            PrimaryButton(
+                text = "Login with Email",
+                onClick = {navController.navigate(RouteDestinations.SIGN_IN)})
+            Spacer(modifier = Modifier.height(16.dp))
+            PrimaryButton(
+                text = "Login with Phone Number",
+                onClick = {navController.navigate(RouteDestinations.LOGIN)})
             Spacer(modifier = Modifier.height(60.dp))
         }
     }

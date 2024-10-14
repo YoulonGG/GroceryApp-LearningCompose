@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -46,6 +47,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import com.example.groceryapp.R
+import com.example.groceryapp.core.components.HeaderText
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -80,11 +82,9 @@ fun BeveragesScreen(navController: NavController) {
                             contentDescription = null,
                             modifier = Modifier.size(24.dp).clickable { navController.popBackStack() }
                         )
-                        Text(
+                        HeaderText(
                             text = "Beverages",
                             style = MaterialTheme.typography.titleLarge,
-                            color = Color.Black,
-                            fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Center
                         )
                         Icon(
@@ -96,7 +96,8 @@ fun BeveragesScreen(navController: NavController) {
                             Filter(onDismiss = { showFilterDialog = false })
                         }
                     }
-                }
+                },
+                modifier = Modifier.statusBarsPadding()
             )
         }
     ) { innerPadding ->
