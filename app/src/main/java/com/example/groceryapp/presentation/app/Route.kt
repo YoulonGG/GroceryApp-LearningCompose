@@ -47,7 +47,7 @@ import com.example.groceryapp.presentation.shop.ShopScreen
 
 @Composable
 fun Route(navController: NavHostController) {
-    NavHost(navController, startDestination = EXPLORE) {
+    NavHost(navController, startDestination = SPLASH) {
         composable(SPLASH) { SplashScreen(navController) }
         composable(WELCOME) { WelcomeScreen(navController) }
         composable(LOGIN) { LoginScreen(navController) }
