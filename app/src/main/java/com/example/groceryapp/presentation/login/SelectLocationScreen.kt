@@ -1,14 +1,12 @@
 package com.example.groceryapp.presentation.login
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -34,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.groceryapp.R
+import com.example.groceryapp.core.components.BackAndBackground
 import com.example.groceryapp.core.components.DescriptionText
 import com.example.groceryapp.core.components.HeaderText
 import com.example.groceryapp.core.components.PrimaryButton
@@ -60,135 +59,132 @@ fun SelectLocationScreen(navController: NavController) {
         disabledIndicatorColor = Color.Transparent,
     )
 
-    Column(
-        modifier = Modifier.fillMaxSize(),
+    BackAndBackground(
+        imageRes = R.drawable.baseline_arrow_back_ios_new_24,
+        onClick = {  navController.popBackStack()  }
     ) {
-        Spacer(modifier = Modifier.height(70.dp))
-        Image(
-            painter = painterResource(id = R.drawable.baseline_arrow_back_ios_new_24),
-            contentDescription = null,
-            modifier = Modifier
-                .padding(start = 16.dp)
-                .size(24.dp)
-                .clickable { navController.popBackStack() }
-        )
-        Image(
-            painter = painterResource(id = R.drawable.location),
-            contentDescription = null,
-            modifier = Modifier
-                .width(180.dp)
-                .height(150.dp)
-                .align(Alignment.CenterHorizontally)
-        )
-        Spacer(modifier = Modifier.height(32.dp))
         Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier.fillMaxSize(),
         ) {
-            HeaderText(
-                text = "Select your location",
-                modifier = Modifier.align(Alignment.CenterHorizontally).padding(horizontal = 16.dp),
-                textAlign = TextAlign.Center
+            Spacer(modifier = Modifier.height(150.dp))
+            Image(
+                painter = painterResource(id = R.drawable.location),
+                contentDescription = null,
+                modifier = Modifier
+                    .width(180.dp)
+                    .height(150.dp)
+                    .align(Alignment.CenterHorizontally)
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(32.dp))
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                HeaderText(
+                    text = "Select your location",
+                    modifier = Modifier.align(Alignment.CenterHorizontally).padding(horizontal = 16.dp),
+                    textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                DescriptionText(
+                    modifier = Modifier.padding(16.dp),
+                    text = "Switch on your location to stay tuned with what's happening in your area",
+                    textAlign = TextAlign.Center
+                )
+            }
+            Spacer(modifier = Modifier.height(40.dp))
             DescriptionText(
-                modifier = Modifier.padding(16.dp),
-                text = "Switch on your location to stay tuned with what's happening in your area",
-                textAlign = TextAlign.Center
+                text = "Your Zone",
+                modifier = Modifier.padding(start = 16.dp)
             )
-        }
-        Spacer(modifier = Modifier.height(52.dp))
-        DescriptionText(
-            text = "Your Zone",
-            modifier = Modifier.padding(start = 16.dp)
-        )
-        ExposedDropdownMenuBox(
-            modifier = Modifier.fillMaxWidth(),
-            expanded = expandedZone,
-            onExpandedChange = { expandedZone = !expandedZone }
-        ) {
-            TextField(
-                colors = colors,
-                value = selectZone[selectedZoneIndex],
-                onValueChange = {},
-                readOnly = true,
-                trailingIcon = {
-                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedZone)
-                },
-                modifier = Modifier.fillMaxWidth().menuAnchor()
-            )
-            ExposedDropdownMenu(
+            ExposedDropdownMenuBox(
+                modifier = Modifier.fillMaxWidth(),
                 expanded = expandedZone,
-                onDismissRequest = { expandedZone = false },
-                modifier = Modifier.fillMaxWidth()
+                onExpandedChange = { expandedZone = !expandedZone }
             ) {
-                selectZone.forEachIndexed { index, item ->
-                    DropdownMenuItem(
-                        text = { Text(text = item) },
-                        onClick = {
-                            selectedZoneIndex = index
-                            expandedZone = false
-                            errorMessage = ""
-                        }
-                    )
+                TextField(
+                    colors = colors,
+                    value = selectZone[selectedZoneIndex],
+                    onValueChange = {},
+                    readOnly = true,
+                    trailingIcon = {
+                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedZone)
+                    },
+                    modifier = Modifier.fillMaxWidth().menuAnchor()
+                )
+                ExposedDropdownMenu(
+                    expanded = expandedZone,
+                    onDismissRequest = { expandedZone = false },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    selectZone.forEachIndexed { index, item ->
+                        DropdownMenuItem(
+                            text = { Text(text = item) },
+                            onClick = {
+                                selectedZoneIndex = index
+                                expandedZone = false
+                                errorMessage = ""
+                            }
+                        )
+                    }
                 }
             }
-        }
-        DescriptionText(
-            text = "Your Area",
-            modifier = Modifier.padding(start = 16.dp)
-        )
-        ExposedDropdownMenuBox(
-            modifier = Modifier.fillMaxWidth(),
-            expanded = expandedArea,
-            onExpandedChange = { expandedArea = !expandedArea }
-        ) {
-            TextField(
-                colors = colors,
-                value = selectArea[selectedAreaIndex],
-                onValueChange = {},
-                readOnly = true,
-                trailingIcon = {
-                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedArea)
-                },
-                modifier = Modifier.fillMaxWidth().menuAnchor()
-            )
-            ExposedDropdownMenu(
-                expanded = expandedArea,
-                onDismissRequest = { expandedArea = false },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                selectArea.forEachIndexed { index, item ->
-                    DropdownMenuItem(
-                        text = { Text(text = item) },
-                        onClick = {
-                            selectedAreaIndex = index
-                            expandedArea = false
-                            errorMessage = ""
-                        }
-                    )
-                }
-            }
-        }
-        if (errorMessage.isNotEmpty()) {
             DescriptionText(
-                text = errorMessage,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.error
+                text = "Your Area",
+                modifier = Modifier.padding(start = 16.dp)
             )
-        }
-        Spacer(modifier = Modifier.weight(1f))
-        PrimaryButton(
-            text = "Submit",
-            onClick = {
-                if (selectedZoneIndex > 0 && selectedAreaIndex > 0) {
-                    navController.navigate(RouteDestinations.SIGN_IN)
-                } else {
-                    errorMessage = "Please select both zone and area."
+            ExposedDropdownMenuBox(
+                modifier = Modifier.fillMaxWidth(),
+                expanded = expandedArea,
+                onExpandedChange = { expandedArea = !expandedArea }
+            ) {
+                TextField(
+                    colors = colors,
+                    value = selectArea[selectedAreaIndex],
+                    onValueChange = {},
+                    readOnly = true,
+                    trailingIcon = {
+                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedArea)
+                    },
+                    modifier = Modifier.fillMaxWidth().menuAnchor()
+                )
+                ExposedDropdownMenu(
+                    expanded = expandedArea,
+                    onDismissRequest = { expandedArea = false },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    selectArea.forEachIndexed { index, item ->
+                        DropdownMenuItem(
+                            text = { Text(text = item) },
+                            onClick = {
+                                selectedAreaIndex = index
+                                expandedArea = false
+                                errorMessage = ""
+                            }
+                        )
+                    }
                 }
             }
-        )
-        Spacer(modifier = Modifier.height(60.dp))
+            if (errorMessage.isNotEmpty()) {
+                DescriptionText(
+                    text = errorMessage,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            PrimaryButton(
+                text = "Submit",
+                onClick = {
+                    if (selectedZoneIndex > 0 && selectedAreaIndex > 0) {
+                        navController.navigate(RouteDestinations.SIGN_IN)
+                    } else {
+                        errorMessage = "Please select both zone and area."
+                    }
+                }
+            )
+            Spacer(modifier = Modifier.height(60.dp))
+        }
     }
 }
 
